@@ -1,0 +1,19 @@
+package com.example.interviewpractice.model;
+
+import com.example.interviewpractice.base.IBaseRequestCallBack;
+
+/**
+ * Created by Administrator on 2017/12/26.
+ */
+
+public interface BannerModel<T> {
+    /**
+     * @descriptoin	获取网络数据
+     */
+    void loadWeather(IBaseRequestCallBack<T> iBaseRequestCallBack);
+
+    /**
+     * @descriptoin	注销subscribe
+     */
+    void onUnsubscribe();
+}
