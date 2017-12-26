@@ -1,6 +1,7 @@
 package com.example.interviewpractice.model;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.interviewpractice.app.Api;
 import com.example.interviewpractice.base.BaseModel;
@@ -29,7 +30,7 @@ public class BannerModelImp extends BaseModel implements BannerModel<BannerBean>
     }
 
     @Override
-    public void loadWeather(IBaseRequestCallBack<BannerBean> iBaseRequestCallBack) {
+    public void loadBanner(final IBaseRequestCallBack<BannerBean> iBaseRequestCallBack) {
 
        mcompositeDisposable.add(api.getMessage()
              .observeOn(AndroidSchedulers.mainThread())
@@ -37,6 +38,11 @@ public class BannerModelImp extends BaseModel implements BannerModel<BannerBean>
              .subscribe(new Consumer<BannerBean>() {
                  @Override
                  public void accept(BannerBean bannerBean) throws Exception {
+                     if (bannerBean!=null){
+                         iBaseRequestCallBack.requestSuccess(bannerBean);
+                     }else {
+                         Toast.makeText(context, "555", Toast.LENGTH_SHORT).show();
+                     }
 
                  }
              }));
@@ -45,10 +51,10 @@ public class BannerModelImp extends BaseModel implements BannerModel<BannerBean>
 
     @Override
     public void onUnsubscribe() {
-        if(mcompositeDisposable.isDisposed()){
-            mcompositeDisposable.clear();  //注销
-            mcompositeDisposable.remove(mcompositeDisposable);
-        }
+//        if(mcompositeDisposable.isDisposed()){
+//            mcompositeDisposable.clear();  //注销
+//            mcompositeDisposable.remove(mcompositeDisposable);
+//        }
     }
     }
 

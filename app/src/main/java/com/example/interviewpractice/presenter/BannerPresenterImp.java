@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.interviewpractice.base.BasePresenterImp;
 import com.example.interviewpractice.enity.BannerBean;
+import com.example.interviewpractice.model.BannerModelImp;
 import com.example.interviewpractice.view.BannerView;
 
 /**
@@ -12,7 +13,7 @@ import com.example.interviewpractice.view.BannerView;
 
 public class BannerPresenterImp  extends BasePresenterImp<BannerView,BannerBean> implements BannerPresenter{
     private Context context=null;
-    private BannerPresenterImp bannerPresenterImp=null;
+    private BannerModelImp bannerPresenterImp=null;
     /**
      * @param view 具体业务的视图接口对象
      * @descriptoin 构造方法
@@ -20,13 +21,13 @@ public class BannerPresenterImp  extends BasePresenterImp<BannerView,BannerBean>
     public BannerPresenterImp(BannerView view,Context context) {
         super(view);
         this.context=context;
-        this.bannerPresenterImp=new BannerPresenterImp(view,context);
+        this.bannerPresenterImp= new BannerModelImp(context);
     }
 
 
     @Override
     public void loadBanner() {
-        bannerPresenterImp.loadBanner();
+        bannerPresenterImp.loadBanner(this);
     }
 
     @Override
