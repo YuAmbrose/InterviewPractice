@@ -1,4 +1,4 @@
-package com.example.interviewpractice.base;
+package com.example.interviewpractice.ui.baseView;
 
 import android.support.v4.app.Fragment;
 

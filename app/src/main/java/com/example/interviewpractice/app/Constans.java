@@ -5,5 +5,5 @@ package com.example.interviewpractice.app;
  */
 
 public class Constans {
-    public static final String Douban = "https://api.douban.com/v2/";//豆瓣请求地址
+    public static final String EyepetizerBaseUrl = "http://baobab.kaiyanapp.com/api/";//开眼baseUrl
 }

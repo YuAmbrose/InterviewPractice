@@ -1,4 +1,4 @@
-package com.example.interviewpractice.base;
+package com.example.interviewpractice.ui.baseView;
 
 
 import android.support.v4.app.Fragment;
@@ -19,4 +19,10 @@ public class BaseActivity extends AppCompatActivity {
         double statusBarHeight = Math.ceil(25 * fragment.getResources().getDisplayMetrics().density);
         return (int) statusBarHeight;
     }
+
+    /**
+     * 切换fragment
+     * @param fragment
+     */
+
 }

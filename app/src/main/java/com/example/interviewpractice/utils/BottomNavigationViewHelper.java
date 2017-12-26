@@ -1,5 +1,6 @@
 package com.example.interviewpractice.utils;
 
+import android.annotation.SuppressLint;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -7,11 +8,12 @@ import android.util.Log;
 
 import java.lang.reflect.Field;
 
-/**禁止BottomNavigationView超过三个时的动画
+/**禁止BottomNavigationView超过三个item的动画
  * Created by 鱼握拳 on 2017/12/13.
  */
 
 public class BottomNavigationViewHelper {
+    @SuppressLint("RestrictedApi")
     public static void disableShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
         try {

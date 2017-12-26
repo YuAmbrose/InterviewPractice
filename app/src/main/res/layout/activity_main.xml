@@ -1,33 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.interviewpractice.MainActivity">
-  <LinearLayout
-      android:layout_above="@+id/bottomnavgationview"
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-<TextView
-    android:text="5d6a5dadd5a6d5a这样一来跳转后只有一个 Activity，回退后也直接显示扫描界面。但是就这样的话也有一个问题。成功扫描图片一次后标志量一直大于 1 ，没办法再次扫图案抢红包了啊。所以我们还需要在红包 Activity 将标志量重置为 0。
-但是你直接在红包页面的 onCreate() 函数中重置 flag 的话，再次跳转的老 bug 又出现了。这个 bug 的出现很奇怪，也许是扫描时出现了延迟，导致退出红包 Activity 后程序还认为你扫描到了图案，再次带你去抢红包。
-那么我们把重置标志量的操作延迟一段时间吧，延迟靠什么？Handler 咯~
-在 HelloAR 中新建一个 Handler：这样一来跳转后只有一个 Activity，回退后也直接显示扫描界面。但是就这样的话也有一个问题。成功扫描图片一次后标志量一直大于 1 ，没办法再次扫图案抢红包了啊。所以我们还需要在红包 Activity 将标志量重置为 0。
-但是你直接在红包页面的 onCreate() 函数中重置 flag 的话，再次跳转的老 bug 又出现了。这个 bug 的出现很奇怪，也许是扫描时出现了延迟，导致退出红包 Activity 后程序还认为你扫描到了图案，再次带你去抢红包。
-那么我们把重置标志量的操作延迟一段时间吧，延迟靠什么？Handler 咯~
-在 HelloAR 中新建一个 Handler："
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
-  </LinearLayout>
   <android.support.design.widget.BottomNavigationView
+      android:id="@+id/bottomnavgationview"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_alignParentBottom="true"
       app:itemBackground="@color/white"
-      android:id="@+id/bottomnavgationview"
-      app:menu="@menu/bottombavigationbar_menu">
-  </android.support.design.widget.BottomNavigationView>
-</RelativeLayout>
+      android:layout_gravity="bottom"
+      app:menu="@menu/bottombavigationbar_menu"/>
+  <FrameLayout
+      android:id="@+id/fg"
+      android:layout_above="@+id/bottomnavgationview"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
+
+</android.support.design.widget.CoordinatorLayout>
