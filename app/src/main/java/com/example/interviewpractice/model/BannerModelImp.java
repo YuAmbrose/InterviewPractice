@@ -6,7 +6,11 @@ import com.example.interviewpractice.app.Api;
 import com.example.interviewpractice.base.BaseModel;
 import com.example.interviewpractice.base.IBaseRequestCallBack;
 import com.example.interviewpractice.enity.BannerBean;
+import com.example.interviewpractice.enity.CategoryTab;
 
+import java.util.List;
+
+import cn.bmob.v3.datatype.BmobFile;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -20,10 +24,12 @@ public class BannerModelImp extends BaseModel implements BannerModel<BannerBean>
     private Context context = null;
     private Api api;
     private CompositeDisposable mcompositeDisposable;
-
+    private List<CategoryTab> homeEntrances;
+    private String types;
+    private BmobFile icons;
     public BannerModelImp(Context mContext) {
-        super();
-        context = mContext;
+       super();
+       context = mContext;
        api = retrofitManager.getService();
        mcompositeDisposable = new CompositeDisposable();
     }
@@ -46,6 +52,9 @@ public class BannerModelImp extends BaseModel implements BannerModel<BannerBean>
              }));
 
     }
+
+
+
 
     @Override
     public void onUnsubscribe() {

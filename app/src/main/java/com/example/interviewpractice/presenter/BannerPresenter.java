@@ -10,6 +10,7 @@ public interface BannerPresenter{
      * @descriptoin	获取网络数据
      */
     void loadBanner();
+
     /**
      * @descriptoin	注销subscribe
      */

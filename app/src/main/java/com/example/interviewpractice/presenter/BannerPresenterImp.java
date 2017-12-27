@@ -30,8 +30,12 @@ public class BannerPresenterImp  extends BasePresenterImp<BannerView,BannerBean>
        bannerModelImp.loadBanner(this);
     }
 
+
+
     @Override
     public void onUnsubscribe() {
         bannerModelImp.onUnsubscribe();
     }
+
+
 }
