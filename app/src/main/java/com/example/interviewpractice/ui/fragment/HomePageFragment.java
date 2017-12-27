@@ -65,7 +65,6 @@ public class HomePageFragment extends BaseFragment implements BannerView {
     @Override
     public void loadDataSuccess(BannerBean tData) {
         Log.e("123", "loadDataSuccess: "+tData.toString() );
-        List<BannerBean.ItemListBean.DataBean.CoverBean> images = new ArrayList<>();
         if (tData.getItemList() != null) {
             List<String> listImage = new ArrayList<>();
             List<String> listTitle = new ArrayList<>();
