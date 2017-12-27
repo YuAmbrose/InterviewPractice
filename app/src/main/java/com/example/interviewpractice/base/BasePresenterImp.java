@@ -51,7 +51,7 @@ public class BasePresenterImp<V extends IBaseView , T> implements IBaseRequestCa
      * @date 2017/2/16 15:14
      */
     @Override
-    public void requestComplete() {
+    public void requestComplete()  {
         iBaseView.disimissProgress();
     }
 

@@ -13,7 +13,7 @@ import com.example.interviewpractice.view.BannerView;
 
 public class BannerPresenterImp  extends BasePresenterImp<BannerView,BannerBean> implements BannerPresenter{
     private Context context=null;
-    private BannerModelImp bannerPresenterImp=null;
+    private BannerModelImp bannerModelImp=null;
     /**
      * @param view 具体业务的视图接口对象
      * @descriptoin 构造方法
@@ -21,17 +21,17 @@ public class BannerPresenterImp  extends BasePresenterImp<BannerView,BannerBean>
     public BannerPresenterImp(BannerView view,Context context) {
         super(view);
         this.context=context;
-        this.bannerPresenterImp= new BannerModelImp(context);
+        this.bannerModelImp= new BannerModelImp(context);
     }
 
 
     @Override
     public void loadBanner() {
-        bannerPresenterImp.loadBanner(this);
+       bannerModelImp.loadBanner(this);
     }
 
     @Override
     public void onUnsubscribe() {
-        bannerPresenterImp.onUnsubscribe();
+        bannerModelImp.onUnsubscribe();
     }
 }

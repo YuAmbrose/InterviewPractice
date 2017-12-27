@@ -26,7 +26,7 @@ public class HomePageFragment extends BaseFragment implements BannerView {
     @BindView(R.id.banner)
     Banner banner;
 
-    private BannerPresenterImp bannerPresenterImp=null;
+    private BannerPresenterImp bannerPresenterImp=new BannerPresenterImp(this,getContext());
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
@@ -60,7 +60,7 @@ public class HomePageFragment extends BaseFragment implements BannerView {
     }
     @Override
     public void loadDataError(Throwable throwable) {
-
+            bannerPresenterImp.requestError(throwable);
     }
     @Override
     public void loadDataSuccess(BannerBean tData) {
