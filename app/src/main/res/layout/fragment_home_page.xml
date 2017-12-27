@@ -10,5 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     app:delay_time="3000"/>
-
+<include layout="@layout/category_tab"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
 </LinearLayout>

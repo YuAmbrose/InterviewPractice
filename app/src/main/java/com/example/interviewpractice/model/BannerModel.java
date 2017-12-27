@@ -11,7 +11,6 @@ public interface BannerModel<T> {
      * @descriptoin	获取网络数据
      */
     void loadBanner(IBaseRequestCallBack<T> iBaseRequestCallBack);
-
     /**
      * @descriptoin	注销subscribe
      */

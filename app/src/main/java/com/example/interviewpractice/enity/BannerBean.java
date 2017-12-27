@@ -3,6 +3,7 @@ package com.example.interviewpractice.enity;
 import java.util.List;
 
 /**
+ * 首页banner
  * Created by 鱼握拳 on 2017/12/19.
  */
 
