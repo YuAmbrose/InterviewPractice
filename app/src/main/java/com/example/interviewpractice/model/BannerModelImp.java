@@ -20,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Administrator on 2017/12/26.
  */
 
-public class BannerModelImp extends BaseModel implements BannerModel<BannerBean>{
+public class BannerModelImp extends BaseModel implements BannerModel<BannerBean> {
     private Context context = null;
     private Api api;
     private CompositeDisposable mcompositeDisposable;
@@ -58,10 +58,12 @@ public class BannerModelImp extends BaseModel implements BannerModel<BannerBean>
 
     @Override
     public void onUnsubscribe() {
-//        if(mcompositeDisposable.isDisposed()){
             mcompositeDisposable.clear();  //注销
-//            mcompositeDisposable.remove(mcompositeDisposable);
-//        }
     }
+
+    @Override
+    public void loadCategoryTab(final IBaseRequestCallBack iBaseRequestCallBack) {
+
     }
+}
 

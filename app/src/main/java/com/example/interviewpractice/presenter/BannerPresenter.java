@@ -15,5 +15,7 @@ public interface BannerPresenter{
      * @descriptoin	注销subscribe
      */
     void onUnsubscribe();
+
+    void categoryTabPes();
 }
 

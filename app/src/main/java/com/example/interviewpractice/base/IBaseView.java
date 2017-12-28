@@ -20,6 +20,7 @@ public interface IBaseView<T> {
     void loadDataSuccess(T tData);
 
 
+
     /**
      * @descriptoin	请求数据错误
      */

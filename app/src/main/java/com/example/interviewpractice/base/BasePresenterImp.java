@@ -50,7 +50,4 @@ public class BasePresenterImp<V extends IBaseView , T> implements IBaseRequestCa
     public void requestSuccess(T callBack) {
         iBaseView.loadDataSuccess(callBack);
     }
-
-
-
 }

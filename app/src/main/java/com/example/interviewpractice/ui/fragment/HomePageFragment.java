@@ -17,10 +17,12 @@ import com.example.interviewpractice.adapter.adapter.EntranceAdapter;
 import com.example.interviewpractice.enity.BannerBean;
 import com.example.interviewpractice.enity.CategoryTab;
 import com.example.interviewpractice.presenter.BannerPresenterImp;
+import com.example.interviewpractice.presenter.CagPesenterImp;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.example.interviewpractice.utils.GlideImageLoader;
 import com.example.interviewpractice.utils.ScreenUtil;
 import com.example.interviewpractice.view.BannerView;
+import com.example.interviewpractice.view.CategorytabView;
 import com.example.interviewpractice.weight.IndicatorView;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -30,27 +32,31 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.bmob.v3.datatype.BmobFile;
 
-public class HomePageFragment extends BaseFragment implements BannerView {
-
+public class HomePageFragment extends BaseFragment implements BannerView,CategorytabView{
     public static final int HOME_ENTRANCE_PAGE_SIZE = 10;//首页菜单单页显示数量
+    private static final String TAG = "HomePageFragment";
     @BindView(R.id.banner)
     Banner banner;
     @BindView(R.id.main_home_entrance_vp)
-    ViewPager entranceViewPage;
+    ViewPager entranceViewPager;
     @BindView(R.id.main_home_entrance_indicator)
     IndicatorView entranceIndicatorView;
     @BindView(R.id.home_entrance)
     LinearLayout homeEntranceLayout;
-    private ViewPager entranceViewPager;
     private  EntranceAdapter entranceAdapter;
     private BannerPresenterImp bannerPresenterImp = new BannerPresenterImp(this, getContext());
+    private CagPesenterImp cagPesenterImp=new CagPesenterImp((CategorytabView) this,getContext());
     private List<CategoryTab> homeEntrances=new ArrayList<>();
+    private String types;
+    private BmobFile icons;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         ButterKnife.bind(this, view);
-        bannerPresenterImp.loadBanner();
+        bannerPresenterImp. loadBanner();
+        cagPesenterImp.categoryTabPes();
         return view;
     }
 
@@ -64,6 +70,9 @@ public class HomePageFragment extends BaseFragment implements BannerView {
     public void disimissProgress() {
 
     }
+
+
+
 
     @Override
     public void loadDataError(Throwable throwable) {
@@ -104,7 +113,6 @@ public class HomePageFragment extends BaseFragment implements BannerView {
     }
     @Override
     public void loadDataSuccess(BannerBean tData) {
-        Log.e("123", "loadDataSuccess: " + tData.toString());
         if (tData.getItemList() != null) {
             List<String> listImage = new ArrayList<>();
             List<String> listTitle = new ArrayList<>();
@@ -144,4 +152,19 @@ public class HomePageFragment extends BaseFragment implements BannerView {
         //结束轮播
         banner.stopAutoPlay();
     }
+    @Override
+    public void loadCagSuccess(List<CategoryTab> categoryTabs) {
+        Log.e("123", "loadDataSuccess: " + categoryTabs.toString());
+        for (int i = 0; i <categoryTabs.size() ; i++) {
+            types=categoryTabs.get(i).getType();
+            icons=categoryTabs.get(i).getTypeIcon();
+            homeEntrances.add(new CategoryTab(types,icons));
+        }
+        if (homeEntrances.size()==categoryTabs.size()){
+            init();
+        }else {
+
+        }
+        }
+
 }

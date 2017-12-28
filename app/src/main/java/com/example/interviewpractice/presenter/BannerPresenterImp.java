@@ -37,5 +37,9 @@ public class BannerPresenterImp  extends BasePresenterImp<BannerView,BannerBean>
         bannerModelImp.onUnsubscribe();
     }
 
+    @Override
+    public void categoryTabPes() {
+
+    }
 
 }
