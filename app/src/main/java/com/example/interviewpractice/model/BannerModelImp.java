@@ -1,6 +1,7 @@
 package com.example.interviewpractice.model;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.interviewpractice.app.Api;
 import com.example.interviewpractice.base.BaseModel;
@@ -42,6 +43,7 @@ public class BannerModelImp extends BaseModel implements BannerModel<BannerBean>
              .subscribe(new Consumer<BannerBean>() {
                  @Override
                  public void accept(BannerBean bannerBean) throws Exception {
+                     Log.e("轮播图", String.valueOf(bannerBean.getItemList().size()));
                      iBaseRequestCallBack.requestSuccess(bannerBean);
                  }
              }, new Consumer<Throwable>() {

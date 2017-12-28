@@ -1,5 +1,7 @@
 package com.example.interviewpractice.base;
 
+import java.util.List;
+
 /**
  * 描述：请求数据的回调接口
  * Presenter用于接受model获取（加载）数据后的回调
@@ -27,5 +29,5 @@ public interface IBaseRequestCallBack<T> {
      */
     void requestSuccess(T callBack);
 
-
+    void listSuccess(List<T> callback);
 }

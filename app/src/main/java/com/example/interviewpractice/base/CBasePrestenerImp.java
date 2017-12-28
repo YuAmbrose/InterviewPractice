@@ -32,6 +32,11 @@ public class CBasePrestenerImp <V extends CategorytabView , T> implements IBaseR
 
     @Override
     public void requestSuccess(T callBack) {
-        cBaseView.loadCagSuccess((List) callBack);
+        cBaseView.loadCagSuccess(callBack);
+    }
+
+    @Override
+    public void listSuccess(List<T> callback) {
+
     }
 }

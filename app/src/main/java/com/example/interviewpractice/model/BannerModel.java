@@ -16,5 +16,5 @@ public interface BannerModel<T> {
      */
     void onUnsubscribe();
 
-    void loadCategoryTab(IBaseRequestCallBack<T> iBaseRequestCallBack);
+    void loadCategoryTab(IBaseRequestCallBack iBaseRequestCallBack);
 }

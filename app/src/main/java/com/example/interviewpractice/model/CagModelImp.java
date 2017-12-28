@@ -1,6 +1,7 @@
 package com.example.interviewpractice.model;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.base.BaseModel;
@@ -34,14 +35,16 @@ public class CagModelImp extends BaseModel implements BannerModel<CategoryTab> {
     }
 
     @Override
-    public void loadCategoryTab(final IBaseRequestCallBack<CategoryTab> iBaseRequestCallBack) {
+    public void loadCategoryTab(final IBaseRequestCallBack iBaseRequestCallBack) {
         homeEntrances = new ArrayList<>();
         BmobQuery<CategoryTab> query = new BmobQuery<>();
         query.order("-createdAt");
         query.findObjects(MyApplication.getContext(), new FindListener<CategoryTab>() {
             @Override
             public void onSuccess(List<CategoryTab> list) {
-               iBaseRequestCallBack.requestSuccess((CategoryTab) list);
+                Log.e("分类栏", String.valueOf(list.size()));
+                iBaseRequestCallBack.listSuccess(list);
+//               iBaseRequestCallBack.requestSuccess(list);
             }
             @Override
             public void onError(int i, String s) {

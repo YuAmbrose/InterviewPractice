@@ -111,8 +111,10 @@ public class HomePageFragment extends BaseFragment implements BannerView,Categor
             }
         });
     }
+
     @Override
     public void loadDataSuccess(BannerBean tData) {
+        Log.e(TAG, "loadDataSuccess: " );
         if (tData.getItemList() != null) {
             List<String> listImage = new ArrayList<>();
             List<String> listTitle = new ArrayList<>();
@@ -152,19 +154,25 @@ public class HomePageFragment extends BaseFragment implements BannerView,Categor
         //结束轮播
         banner.stopAutoPlay();
     }
-    @Override
-    public void loadCagSuccess(List<CategoryTab> categoryTabs) {
-        Log.e("123", "loadDataSuccess: " + categoryTabs.toString());
-        for (int i = 0; i <categoryTabs.size() ; i++) {
-            types=categoryTabs.get(i).getType();
-            icons=categoryTabs.get(i).getTypeIcon();
-            homeEntrances.add(new CategoryTab(types,icons));
-        }
-        if (homeEntrances.size()==categoryTabs.size()){
-            init();
-        }else {
 
-        }
-        }
+    @Override
+    public void loadCagSuccess(CategoryTab tList) {
+
+    }
+//    @Override
+//    public void loadCagSuccess(List<CategoryTab> categoryTabs) {
+//        Log.e("123", "loadDataSuccess: " + categoryTabs.toString());
+//        for (int i = 0; i <categoryTabs.size() ; i++) {
+//            types=categoryTabs.get(i).getType();
+//            icons=categoryTabs.get(i).getTypeIcon();
+//            homeEntrances.add(new CategoryTab(types,icons));
+//        }
+//        if (homeEntrances.size()==categoryTabs.size()){
+//            init();
+//        }else {
+//
+//        }
+//        }
+
 
 }
