@@ -48,8 +48,8 @@ public class MainActivity extends BaseActivity {
         BottomNavigationViewHelper.disableShiftMode(mBottomNavigationBar);
         //初始化添加fragment
         FragmentManager fragmentManage = getSupportFragmentManager();
-        fragmentManage.beginTransaction().add(R.id.fg,mineFragment).commit();
-        mFragment=mineFragment;
+        fragmentManage.beginTransaction().add(R.id.fg,homepageFragemnt).commit();
+        mFragment=homepageFragemnt;
 
 
     }
@@ -78,7 +78,7 @@ public class MainActivity extends BaseActivity {
                 return true;
             }
         });
-        mBottomNavigationBar.getMenu().getItem(3).setChecked(true);
+        mBottomNavigationBar.getMenu().getItem(0).setChecked(true);
     }
 
     /**

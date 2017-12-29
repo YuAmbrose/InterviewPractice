@@ -2,8 +2,6 @@ package com.example.interviewpractice.base;
 
 import com.example.interviewpractice.view.CategorytabView;
 
-import java.util.List;
-
 /**
  * Created by Administrator on 2017/12/28.
  */
@@ -11,7 +9,7 @@ import java.util.List;
 public class CBasePrestenerImp <V extends CategorytabView , T> implements IBaseRequestCallBack<T> {
     private CBaseView cBaseView;
 
-    public CBasePrestenerImp(CategorytabView view) {
+    public CBasePrestenerImp(V view) {
         this.cBaseView=view;
     }
 
@@ -35,8 +33,4 @@ public class CBasePrestenerImp <V extends CategorytabView , T> implements IBaseR
         cBaseView.loadCagSuccess(callBack);
     }
 
-    @Override
-    public void listSuccess(List<T> callback) {
-
-    }
 }

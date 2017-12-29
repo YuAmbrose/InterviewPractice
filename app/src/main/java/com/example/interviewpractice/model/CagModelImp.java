@@ -19,7 +19,8 @@ import cn.bmob.v3.listener.FindListener;
  */
 
 public class CagModelImp extends BaseModel implements BannerModel<CategoryTab> {
-    private List<CategoryTab> homeEntrances;
+    private List<CategoryTab> homeEntrances=new ArrayList<>();
+    private CategoryTab categoryTab;
 
     public CagModelImp(Context context) {
     }
@@ -36,15 +37,18 @@ public class CagModelImp extends BaseModel implements BannerModel<CategoryTab> {
 
     @Override
     public void loadCategoryTab(final IBaseRequestCallBack iBaseRequestCallBack) {
-        homeEntrances = new ArrayList<>();
         BmobQuery<CategoryTab> query = new BmobQuery<>();
         query.order("-createdAt");
         query.findObjects(MyApplication.getContext(), new FindListener<CategoryTab>() {
             @Override
             public void onSuccess(List<CategoryTab> list) {
                 Log.e("分类栏", String.valueOf(list.size()));
-                iBaseRequestCallBack.listSuccess(list);
-//               iBaseRequestCallBack.requestSuccess(list);
+                for (int i = 0; i <list.size(); i++) {
+                  categoryTab=new CategoryTab(list.get(i).getType(),list.get(i).getTypeIcon());
+                    iBaseRequestCallBack.requestSuccess(categoryTab);
+                }
+
+//                  iBaseRequestCallBack.listSuccess((List) categoryTab);
             }
             @Override
             public void onError(int i, String s) {

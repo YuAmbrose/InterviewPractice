@@ -49,6 +49,7 @@ public class BannerModelImp extends BaseModel implements BannerModel<BannerBean>
              }, new Consumer<Throwable>() {
                  @Override
                  public void accept(Throwable throwable) throws Exception {
+                     Log.e("888", "accept: "+throwable.getMessage() );
                      iBaseRequestCallBack.requestError(throwable);
                  }
              }));

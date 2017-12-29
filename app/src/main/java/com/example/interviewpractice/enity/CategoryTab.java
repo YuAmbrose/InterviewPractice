@@ -14,6 +14,8 @@ public class CategoryTab extends BmobObject {
         this.typeIcon = typeIcon;
     }
 
+
+
     public BmobFile getTypeIcon() {
         return typeIcon;
     }

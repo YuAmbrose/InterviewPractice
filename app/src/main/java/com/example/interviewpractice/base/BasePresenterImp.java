@@ -1,7 +1,5 @@
 package com.example.interviewpractice.base;
 
-import java.util.List;
-
 /**
  * 描述：
  *  * 代理对象的基础实现 ：  一些基础的方法
@@ -53,8 +51,5 @@ public class BasePresenterImp<V extends IBaseView , T> implements IBaseRequestCa
         iBaseView.loadDataSuccess(callBack);
     }
 
-    @Override
-    public void listSuccess(List<T> callback) {
 
-    }
 }
