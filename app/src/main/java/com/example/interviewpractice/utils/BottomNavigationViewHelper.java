@@ -9,7 +9,7 @@ import android.util.Log;
 import java.lang.reflect.Field;
 
 /**禁止BottomNavigationView超过三个item的动画
- * Created by 鱼握拳 on 2017/12/13.
+ * Created by 鱼握拳 on 2017/12/23.
  */
 
 public class BottomNavigationViewHelper {

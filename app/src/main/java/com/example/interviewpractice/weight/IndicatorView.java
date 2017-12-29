@@ -14,8 +14,11 @@ import android.view.View;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.utils.ScreenUtil;
 
-
 /**
+ * Author: Mr.xiao on 2017/5/23
+ *
+ * @mail:xhb_199409@163.com
+ * @github:https://github.com/xiaohaibin
  * @describe: 指示器
  */
 public class IndicatorView extends View {

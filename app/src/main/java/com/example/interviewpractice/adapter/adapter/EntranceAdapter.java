@@ -21,7 +21,7 @@ import java.util.List;
 
 public class EntranceAdapter extends RecyclerView.Adapter<EntranceAdapter.EntranceViewHolder> {
 
-    private final LayoutInflater mLayoutInflater;
+
     private List<CategoryTab> mDatas;
     /**
      * 页数下标,从0开始(通俗讲第几页)
@@ -32,6 +32,7 @@ public class EntranceAdapter extends RecyclerView.Adapter<EntranceAdapter.Entran
      */
     private int mPageSize;
     private Context mContext;
+    private final LayoutInflater mLayoutInflater;
     private List<CategoryTab> homeEntrances;
 
     public EntranceAdapter(Context context, List<CategoryTab> datas, int index, int pageSize) {
@@ -66,7 +67,7 @@ public class EntranceAdapter extends RecyclerView.Adapter<EntranceAdapter.Entran
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, homeEntrances.get(pos).getType(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, homeEntrances.get(pos).getId(), Toast.LENGTH_SHORT).show();
             }
         });
     }

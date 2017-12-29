@@ -2,13 +2,6 @@ package com.example.interviewpractice.utils;
 
 import android.content.Context;
 
-/**
- * Author: Mr.xiao on 2017/5/23
- *
- * @mail:xhb_199409@163.com
- * @github:https://github.com/xiaohaibin
- * @describe:
- */
 
 public class ScreenUtil {
 

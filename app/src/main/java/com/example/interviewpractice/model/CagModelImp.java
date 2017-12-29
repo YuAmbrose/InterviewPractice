@@ -44,11 +44,9 @@ public class CagModelImp extends BaseModel implements BannerModel<CategoryTab> {
             public void onSuccess(List<CategoryTab> list) {
                 Log.e("分类栏", String.valueOf(list.size()));
                 for (int i = 0; i <list.size(); i++) {
-                  categoryTab=new CategoryTab(list.get(i).getType(),list.get(i).getTypeIcon());
+                  categoryTab=new CategoryTab(list.get(i).getType(),list.get(i).getTypeIcon(),list.get(i).getId());
                     iBaseRequestCallBack.requestSuccess(categoryTab);
                 }
-
-//                  iBaseRequestCallBack.listSuccess((List) categoryTab);
             }
             @Override
             public void onError(int i, String s) {

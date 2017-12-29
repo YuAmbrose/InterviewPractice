@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.CagegoryViewPagerAdapter;
 import com.example.interviewpractice.adapter.adapter.EntranceAdapter;
@@ -25,35 +24,38 @@ import com.example.interviewpractice.view.CategorytabView;
 import com.example.interviewpractice.weight.IndicatorView;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.bmob.v3.datatype.BmobFile;
 
 public class HomePageFragment extends BaseFragment implements BannerView,CategorytabView{
     public static final int HOME_ENTRANCE_PAGE_SIZE = 10;//首页菜单单页显示数量
     private static final String TAG = "HomePageFragment";
+    private ViewPager entranceViewPager;
+    private LinearLayout homeEntranceLayout;
+    private IndicatorView entranceIndicatorView;
+
     @BindView(R.id.banner)
     Banner banner;
-    @BindView(R.id.main_home_entrance_vp)
-    ViewPager entranceViewPager;
-    @BindView(R.id.main_home_entrance_indicator)
-    IndicatorView entranceIndicatorView;
-    @BindView(R.id.home_entrance)
-    LinearLayout homeEntranceLayout;
+//    @BindView(R.id.main_home_entrance_vp)
+//    ViewPager entranceViewPager;
+//    @BindView(R.id.main_home_entrance_indicator)
+//    IndicatorView entranceIndicatorView;
+//    @BindView(R.id.home_entrance)
+//    LinearLayout homeEntranceLayout;
     private  EntranceAdapter entranceAdapter;
     private BannerPresenterImp bannerPresenterImp = new BannerPresenterImp(this, getContext());
     private CagPesenterImp cagPesenterImp=new CagPesenterImp((CategorytabView) this,getContext());
     private List<CategoryTab> homeEntrances=new ArrayList<>();
-    private String types;
-    private BmobFile icons;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         ButterKnife.bind(this, view);
+        homeEntranceLayout = (LinearLayout) view.findViewById(R.id.home_entrance);
+        entranceViewPager = (ViewPager) view.findViewById(R.id.main_home_entrance_vp);
+        entranceIndicatorView = (IndicatorView) view.findViewById(R.id.main_home_entrance_indicator);
         bannerPresenterImp. loadBanner();
         cagPesenterImp.categoryTabPes();
         return view;
@@ -75,10 +77,18 @@ public class HomePageFragment extends BaseFragment implements BannerView,Categor
     public void loadDataError(Throwable throwable) {
         bannerPresenterImp.requestError(throwable);
     }
+
+    @Override
+    public void loadCagSuccess(CategoryTab tList) {
+        homeEntrances.add(tList);
+        if (homeEntrances.size()==1){
+            init();
+        }
+    }
     private void init() {
         LinearLayout.LayoutParams layoutParams12 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) ((float) ScreenUtil.getScreenWidth() / 2.0f));
         //首页菜单分页
-        LinearLayout.LayoutParams entrancelayoutParams = new  LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT, (int) ((float) ScreenUtil.getScreenWidth() / 2.0f + 70));
+        LinearLayout.LayoutParams entrancelayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) ((float) ScreenUtil.getScreenWidth() / 2.0f + 70));
         homeEntranceLayout.setLayoutParams(entrancelayoutParams);
         entranceViewPager.setLayoutParams(layoutParams12);
         LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -109,23 +119,13 @@ public class HomePageFragment extends BaseFragment implements BannerView,Categor
         });
     }
     @Override
-    public void loadCagSuccess(CategoryTab tList) {
-        homeEntrances.add(tList);
-        if (homeEntrances.size()==1){
-            init();
-        }
-        Log.e(TAG, "分类栏信息："+homeEntrances.size() );
-        Log.e(TAG, "分类栏的详细信息:"+tList.getType().toString() +tList.getTypeIcon());
-
-    }
-    @Override
     public void loadDataSuccess(BannerBean tData) {
         Log.e(TAG, "loadDataSuccess: " );
         if (tData.getItemList() != null) {
             List<String> listImage = new ArrayList<>();
             List<String> listTitle = new ArrayList<>();
-            for (int i = 0; i < 4; i++) {
-                if (i == 5) {
+            for (int i = 1; i < 6; i++) {
+                if (i == 6) {
                 } else {
                     if (tData.getItemList().get(i).getData().getCover().getFeed() != null && tData.getItemList().get(i).getData().getTitle() != null) {
                         listImage.add(tData.getItemList().get(i).getData().getCover().getFeed());
@@ -164,24 +164,4 @@ public class HomePageFragment extends BaseFragment implements BannerView,Categor
         //结束轮播
         banner.stopAutoPlay();
     }
-
-
-
-
-//    @Override
-//    public void loadCagSuccess(List<CategoryTab> categoryTabs) {
-//        Log.e("123", "loadDataSuccess: " + categoryTabs.toString());
-//        for (int i = 0; i <categoryTabs.size() ; i++) {
-//            types=categoryTabs.get(i).getType();
-//            icons=categoryTabs.get(i).getTypeIcon();
-//            homeEntrances.add(new CategoryTab(types,icons));
-//        }
-//        if (homeEntrances.size()==categoryTabs.size()){
-//            init();
-//        }else {
-//
-//        }
-//        }
-
-
 }
