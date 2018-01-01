@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity {
                         break;
                     case R.id.discover:
                         switchFragment(discoverFragement);
-                        break;
+                    break;
                     case R.id.forum:
                         switchFragment(forumFragment);
                         break;

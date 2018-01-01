@@ -75,7 +75,7 @@ public class HomePageFragment extends BaseFragment implements BannerView,Categor
 
     @Override
     public void loadDataError(Throwable throwable) {
-        bannerPresenterImp.requestError(throwable);
+//        bannerPresenterImp.requestError(throwable);
     }
 
     @Override
@@ -124,7 +124,7 @@ public class HomePageFragment extends BaseFragment implements BannerView,Categor
         if (tData.getItemList() != null) {
             List<String> listImage = new ArrayList<>();
             List<String> listTitle = new ArrayList<>();
-            for (int i = 1; i < 6; i++) {
+            for (int i = 3; i < 6; i++) {
                 if (i == 6) {
                 } else {
                     if (tData.getItemList().get(i).getData().getCover().getFeed() != null && tData.getItemList().get(i).getData().getTitle() != null) {
