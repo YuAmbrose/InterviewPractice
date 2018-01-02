@@ -25,6 +25,8 @@
     android:layout_height="200dp">
 </fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard>
     <TextView
+        android:layout_margin="3dp"
+        android:text="88888"
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

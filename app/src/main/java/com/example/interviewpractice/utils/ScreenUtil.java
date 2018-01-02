@@ -2,7 +2,6 @@ package com.example.interviewpractice.utils;
 
 import android.content.Context;
 
-
 public class ScreenUtil {
 
     static double scale;

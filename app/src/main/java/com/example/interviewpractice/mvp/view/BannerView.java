@@ -1,6 +1,6 @@
-package com.example.interviewpractice.view;
+package com.example.interviewpractice.mvp.view;
 
-import com.example.interviewpractice.base.IBaseView;
+import com.example.interviewpractice.mvp.base.IBaseView;
 import com.example.interviewpractice.enity.BannerBean;
 
 /**

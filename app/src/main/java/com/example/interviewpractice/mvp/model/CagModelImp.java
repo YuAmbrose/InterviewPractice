@@ -1,11 +1,10 @@
-package com.example.interviewpractice.model;
+package com.example.interviewpractice.mvp.model;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.example.interviewpractice.MyApplication;
-import com.example.interviewpractice.base.BaseModel;
-import com.example.interviewpractice.base.IBaseRequestCallBack;
+import com.example.interviewpractice.http.IBaseRequestCallBack;
 import com.example.interviewpractice.enity.CategoryTab;
 
 import java.util.ArrayList;
@@ -18,25 +17,17 @@ import cn.bmob.v3.listener.FindListener;
  * Created by Administrator on 2017/12/28.
  */
 
-public class CagModelImp extends BaseModel implements BannerModel<CategoryTab> {
+public class CagModelImp implements CagModel<CategoryTab> {
     private List<CategoryTab> homeEntrances=new ArrayList<>();
     private CategoryTab categoryTab;
+    private Context context = null;
 
-    public CagModelImp(Context context) {
+    public CagModelImp(Context mcontext) {
+        super();
+        context = mcontext;
     }
-
     @Override
-    public void loadBanner(IBaseRequestCallBack<CategoryTab> iBaseRequestCallBack) {
-
-    }
-
-    @Override
-    public void onUnsubscribe() {
-
-    }
-
-    @Override
-    public void loadCategoryTab(final IBaseRequestCallBack iBaseRequestCallBack) {
+    public void loadCategoryTab(final IBaseRequestCallBack<CategoryTab> iBaseRequestCallBack) {
         BmobQuery<CategoryTab> query = new BmobQuery<>();
         query.order("-createdAt");
         query.findObjects(MyApplication.getContext(), new FindListener<CategoryTab>() {
@@ -44,7 +35,7 @@ public class CagModelImp extends BaseModel implements BannerModel<CategoryTab> {
             public void onSuccess(List<CategoryTab> list) {
                 Log.e("分类栏", String.valueOf(list.size()));
                 for (int i = 0; i <list.size(); i++) {
-                  categoryTab=new CategoryTab(list.get(i).getType(),list.get(i).getTypeIcon(),list.get(i).getId());
+                  categoryTab =new CategoryTab(list.get(i).getType(),list.get(i).getTypeIcon(),list.get(i).getId());
                     iBaseRequestCallBack.requestSuccess(categoryTab);
                 }
             }

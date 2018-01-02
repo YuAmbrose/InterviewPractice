@@ -1,4 +1,4 @@
-package com.example.interviewpractice.presenter;
+package com.example.interviewpractice.mvp.presenter;
 
 /**
  * Created by Administrator on 2017/12/26.
@@ -16,6 +16,6 @@ public interface BannerPresenter{
      */
     void onUnsubscribe();
 
-    void categoryTabPes();
+    void loadRanklist(String strategy);
 }
 

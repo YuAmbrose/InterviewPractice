@@ -1,18 +1,9 @@
-package com.example.interviewpractice.base;
+package com.example.interviewpractice.mvp.base;
 
 /**
  * 描述：视图基类
  */
 public interface IBaseView<T> {
-    /**
-     * @descriptoin	请求前加载progress
-     */
-    void showProgress();
-
-    /**
-     * @descriptoin	请求结束之后隐藏progress
-     */
-    void disimissProgress();
 
     /**
      * @descriptoin	请求数据成功

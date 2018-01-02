@@ -1,11 +1,11 @@
-package com.example.interviewpractice.presenter;
+package com.example.interviewpractice.mvp.presenter;
 
 import android.content.Context;
 
-import com.example.interviewpractice.base.BasePresenterImp;
+import com.example.interviewpractice.mvp.base.BasePresenterImp;
 import com.example.interviewpractice.enity.BannerBean;
-import com.example.interviewpractice.model.BannerModelImp;
-import com.example.interviewpractice.view.BannerView;
+import com.example.interviewpractice.mvp.model.BannerModelImp;
+import com.example.interviewpractice.mvp.view.BannerView;
 
 /**
  * Created by Administrator on 2017/12/26.
@@ -37,9 +37,11 @@ public class BannerPresenterImp  extends BasePresenterImp<BannerView,BannerBean>
         bannerModelImp.onUnsubscribe();
     }
 
-    @Override
-    public void categoryTabPes() {
 
+
+    @Override
+    public void loadRanklist(String strategy) {
+        bannerModelImp.loadRanklist(strategy,this);
     }
 
 }

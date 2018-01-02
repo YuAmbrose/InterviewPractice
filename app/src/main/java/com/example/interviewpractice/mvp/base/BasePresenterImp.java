@@ -1,4 +1,6 @@
-package com.example.interviewpractice.base;
+package com.example.interviewpractice.mvp.base;
+
+import com.example.interviewpractice.http.IBaseRequestCallBack;
 
 /**
  * 描述：
@@ -6,7 +8,7 @@ package com.example.interviewpractice.base;
  * @param <V> 视图接口对象(view) 具体业务各自继承自IBaseView
  * @param <T> 业务请求返回的具体对象
  */
-public class BasePresenterImp<V extends IBaseView , T> implements IBaseRequestCallBack<T> {
+public class BasePresenterImp<V extends IBaseView, T> implements IBaseRequestCallBack<T> {
 
     private IBaseView iBaseView = null;  //基类视图
 
@@ -21,26 +23,10 @@ public class BasePresenterImp<V extends IBaseView , T> implements IBaseRequestCa
     /**
      * @descriptoin	请求之前显示progress
      */
-    @Override
-    public void beforeRequest() {
-        iBaseView.showProgress();
-    }
 
-    /**
-     * @descriptoin	请求异常显示异常信息
-     */
     @Override
     public void requestError(Throwable throwable) {
-        iBaseView.loadDataError(throwable);
-        iBaseView.disimissProgress(); //请求错误，提示错误信息之后隐藏progress
-    }
 
-    /**
-     * @descriptoin	请求完成之后隐藏progress
-     */
-    @Override
-    public void requestComplete()  {
-        iBaseView.disimissProgress();
     }
 
     /**

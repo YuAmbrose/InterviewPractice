@@ -10,26 +10,43 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     app:delay_time="3000"/>
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/home_entrance"
+    <LinearLayout
+        android:id="@+id/home_entrance"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/main_home_entrance_vp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/main_home_entrance_vp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <com.example.interviewpractice.weight.IndicatorView
-                    android:id="@+id/main_home_entrance_indicator"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    app:gravity="0"
-                    app:indicatorColor="#668b8989"
-                    app:indicatorColorSelected="#FF5722"
-                    app:indicatorWidth="6"/>
-        </LinearLayout>
+            android:layout_height="wrap_content"/>
+        <com.example.interviewpractice.weight.IndicatorView
+            android:id="@+id/main_home_entrance_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:gravity="0"
+            app:indicatorColor="#668b8989"
+            app:indicatorColorSelected="#FF5722"
+            app:indicatorWidth="6"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/ranklisttablayout"
+            app:tabIndicatorHeight="3dp"
+            app:tabSelectedTextColor="#498e79"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:tabIndicatorColor="#498e79"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/ranklistviewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#ffffff"/>
+    </LinearLayout>
 </LinearLayout>

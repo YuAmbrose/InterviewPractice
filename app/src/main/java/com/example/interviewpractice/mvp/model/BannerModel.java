@@ -1,6 +1,7 @@
-package com.example.interviewpractice.model;
+package com.example.interviewpractice.mvp.model;
 
-import com.example.interviewpractice.base.IBaseRequestCallBack;
+
+import com.example.interviewpractice.http.IBaseRequestCallBack;
 
 /**
  * Created by Administrator on 2017/12/26.
@@ -16,5 +17,6 @@ public interface BannerModel<T> {
      */
     void onUnsubscribe();
 
-    void loadCategoryTab(IBaseRequestCallBack iBaseRequestCallBack);
+    void  loadRanklist(String strategy,IBaseRequestCallBack<T> iBaseRequestCallBack);
+
 }

@@ -1,4 +1,4 @@
-package com.example.interviewpractice.base;
+package com.example.interviewpractice.http;
 
 /**
  * 描述：请求数据的回调接口
@@ -8,14 +8,6 @@ package com.example.interviewpractice.base;
  */
 public interface IBaseRequestCallBack<T> {
 
-    /**
-     * @descriptoin	请求之前的操作
-     */
-    void beforeRequest();
-    /**
-     * @descriptoin	请求完成
-     */
-    void requestComplete();
 
     /**
      * @descriptoin	请求异常
@@ -26,5 +18,4 @@ public interface IBaseRequestCallBack<T> {
      * @descriptoin	请求成功
      */
     void requestSuccess(T callBack);
-
 }

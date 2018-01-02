@@ -1,7 +1,5 @@
-package com.example.interviewpractice.base;
+package com.example.interviewpractice.http;
 
-
-import com.example.interviewpractice.http.RetrofitManager;
 
 /**
  * 描述：业务对象的基类
