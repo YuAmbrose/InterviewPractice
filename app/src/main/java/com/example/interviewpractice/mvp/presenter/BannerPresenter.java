@@ -16,6 +16,6 @@ public interface BannerPresenter{
      */
     void onUnsubscribe();
 
-    void loadRanklist(String strategy);
+    void loadRanklist(String strategy,int start,int num);
 }
 

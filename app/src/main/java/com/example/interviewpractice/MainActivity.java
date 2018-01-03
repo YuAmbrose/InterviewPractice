@@ -21,6 +21,7 @@ import com.example.interviewpractice.utils.BottomNavigationViewHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 
 public class MainActivity extends BaseActivity {
@@ -105,5 +106,13 @@ public class MainActivity extends BaseActivity {
             }
             mFragment = fragment;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (JCVideoPlayer.backPress()) {
+            return;
+        }
+        super.onBackPressed();
     }
 }

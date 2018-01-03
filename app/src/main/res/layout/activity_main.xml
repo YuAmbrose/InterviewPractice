@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.interviewpractice.MainActivity">
-  <android.support.design.widget.BottomNavigationView
-      android:id="@+id/bottomnavgationview"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      app:itemBackground="@color/white"
-      android:layout_gravity="bottom"
-      app:menu="@menu/bottombavigationbar_menu"/>
   <FrameLayout
       android:id="@+id/fg"
       android:layout_above="@+id/bottomnavgationview"
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
+  <android.support.design.widget.BottomNavigationView
+      android:id="@+id/bottomnavgationview"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:itemBackground="@color/white"
+     android:layout_alignParentBottom="true"
+      app:menu="@menu/bottombavigationbar_menu"/>
 
-</android.support.design.widget.CoordinatorLayout>
+
+</RelativeLayout>

@@ -75,11 +75,10 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
 
     @Override
     public void loadDataSuccess(BannerBean tData) {
-        Log.e(TAG, "loadDataSuccess: ");
         if (tData.getItemList() != null) {
             List<String> listImage = new ArrayList<>();
             List<String> listTitle = new ArrayList<>();
-            for (int i = 3; i < 6; i++) {
+            for (int i = 2; i < 6; i++) {
                 if (i == 6) {
                 } else {
                     if (tData.getItemList().get(i).getData().getCover().getFeed() != null && tData.getItemList().get(i).getData().getTitle() != null) {
@@ -120,7 +119,6 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
 
     @Override
     public void loadCagSuccess(CategoryTab tList) {
-        Log.e(TAG, "ran ");
         homeEntrances.add(tList);
         if (tList.toString().isEmpty()) {
         } else {
@@ -136,6 +134,7 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
 
     public void init() {
         LinearLayout.LayoutParams layoutParams12 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) ((float) ScreenUtil.getScreenWidth() / 2.0f));
+//        FrameLayout.LayoutParams entrancelayoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, (int) ((float) ScreenUtil.getScreenWidth() / 2.0f + 70));
         LinearLayout.LayoutParams entrancelayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) ((float) ScreenUtil.getScreenWidth() / 2.0f + 70));
         homeEntranceLayout.setLayoutParams(entrancelayoutParams);
         entranceViewPager.setLayoutParams(layoutParams12);

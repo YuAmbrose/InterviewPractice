@@ -17,6 +17,6 @@ public interface BannerModel<T> {
      */
     void onUnsubscribe();
 
-    void  loadRanklist(String strategy,IBaseRequestCallBack<T> iBaseRequestCallBack);
+    void  loadRanklist(String strategy,int start,int num,IBaseRequestCallBack<T> iBaseRequestCallBack);
 
 }

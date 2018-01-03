@@ -71,6 +71,7 @@ public class RetrofitManager {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
         api = retrofit.create(Api.class);
 
 
@@ -88,7 +89,7 @@ public class RetrofitManager {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
-                Log.d(TAG, "请求网址为："+message);
+                Log.e(TAG, "请求网址为："+message);
             }
         });
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

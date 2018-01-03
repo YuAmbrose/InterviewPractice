@@ -1,34 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="30dp">
-    <ImageView
-       android:layout_marginLeft="5dp"
-        android:src="@mipmap/ic_launcher"
-        android:id="@+id/iconhead"
-        android:layout_width="30dp"
-        android:layout_height="30dp" />
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_marginLeft="8dp"
+            android:id="@+id/iconhead"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:layout_marginLeft="9dp"
+            android:paddingTop="9dp"
+            android:id="@+id/iconname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <android.support.v7.widget.CardView
+        android:paddingTop="3dp"
+        app:cardCornerRadius="5dp"
+        android:elevation="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+            android:id="@+id/player"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+        </fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard>
+    </android.support.v7.widget.CardView>
     <TextView
-        android:paddingTop="10dp"
-        android:id="@+id/iconname"
-        android:text="YouTu"
+        android:layout_margin="9dp"
+        android:textStyle="bold"
+        android:id="@+id/titleviewText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-</LinearLayout>
-<fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
-    android:id="@+id/player"
-    android:layout_width="match_parent"
-    android:layout_height="200dp">
-</fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard>
-    <TextView
-        android:layout_margin="3dp"
-        android:text="88888"
-        android:id="@+id/description"
+    <View
+        android:background="#c1c1be"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"/>
+        android:layout_height="0.1dp"/>
 </LinearLayout>

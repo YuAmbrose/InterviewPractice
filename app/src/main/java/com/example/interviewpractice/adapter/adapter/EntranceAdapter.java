@@ -2,7 +2,6 @@ package com.example.interviewpractice.adapter.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,12 +59,11 @@ public class EntranceAdapter extends RecyclerView.Adapter<EntranceAdapter.Entran
          * 在给View绑定显示的数据时，计算正确的position = position + mIndex * mPageSize，
          */
         final int pos = position + mIndex * mPageSize;
-        Log.e("888", "onBindViewHolder: "+homeEntrances.size() );
-        holder.entranceNameTextView.setText(homeEntrances.get(pos).getType());
         if (homeEntrances.get(pos).getTypeIcon().getUrl()!=null){
             Glide.with(mContext)
                     .load(homeEntrances.get(pos).getTypeIcon().getUrl())
                     .into(holder.entranceIconImageView);
+            holder.entranceNameTextView.setText(homeEntrances.get(pos).getType());
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
