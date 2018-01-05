@@ -27,23 +27,6 @@ public class BannerModelImp extends BaseModel implements BannerModel<BannerBean>
         mcompositeDisposable = new CompositeDisposable();
     }
     @Override
-    public void loadRanklist(String strategy,int start,int num,final IBaseRequestCallBack iBaseRequestCallBack) {
-        mcompositeDisposable.add(api.getRankList(strategy,start,num)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Consumer<BannerBean>() {
-                    @Override
-                    public void accept(BannerBean bannerBean) throws Exception {
-                        iBaseRequestCallBack.requestSuccess(bannerBean);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        iBaseRequestCallBack.requestError(throwable);
-                    }
-                }));
-    }
-    @Override
     public void loadBanner(final IBaseRequestCallBack iBaseRequestCallBack) {
         mcompositeDisposable.add(api.getMessage()
                 .observeOn(AndroidSchedulers.mainThread())

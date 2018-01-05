@@ -17,7 +17,7 @@ import com.example.interviewpractice.ui.fragment.DiscoverFragment;
 import com.example.interviewpractice.ui.fragment.ForumFragment;
 import com.example.interviewpractice.ui.fragment.HomePageFragment;
 import com.example.interviewpractice.ui.fragment.MineFragment;
-import com.example.interviewpractice.utils.BottomNavigationViewHelper;
+import com.example.interviewpractice.utils.helper.BottomNavigationViewHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -114,5 +114,9 @@ public class MainActivity extends BaseActivity {
             return;
         }
         super.onBackPressed();
+    }
+    protected void onPause() {
+        super.onPause();
+        JCVideoPlayer.releaseAllVideos();
     }
 }

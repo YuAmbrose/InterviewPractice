@@ -7,5 +7,8 @@ import android.support.v4.app.Fragment;
  */
 
 public class BaseFragment extends Fragment {
-
+    public int getStatusBarHeight(BaseFragment fragment) {
+        double statusBarHeight = Math.ceil(25 * fragment.getResources().getDisplayMetrics().density);
+        return (int) statusBarHeight;
+    }
 }

@@ -39,10 +39,10 @@ public class BannerPresenterImp  extends BasePresenterImp<BannerView,BannerBean>
 
 
 
-
-    @Override
-    public void loadRanklist(String strategy,int start,int num) {
-        bannerModelImp.loadRanklist(strategy,start,num,this);
-    }
+//
+//    @Override
+//    public void loadRanklist(String strategy,int start,int num) {
+//        bannerModelImp.loadRanklist(strategy,start,num,this);
+//    }
 
 }

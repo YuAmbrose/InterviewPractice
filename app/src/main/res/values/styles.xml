@@ -15,4 +15,9 @@
         <!--<item name="windowActionBar">false</item>-->
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="MainAppBar" parent="android:Widget">
+        <item name="elevation">0dip</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>

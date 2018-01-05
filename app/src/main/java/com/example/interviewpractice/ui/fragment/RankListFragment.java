@@ -2,16 +2,15 @@ package com.example.interviewpractice.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.RankListAdapter;
-import com.example.interviewpractice.enity.BannerBean;
-import com.example.interviewpractice.mvp.presenter.BannerPresenterImp;
-import com.example.interviewpractice.mvp.view.BannerView;
+import com.example.interviewpractice.enity.RankListBean;
+import com.example.interviewpractice.mvp.presenter.RankListPresenterImp;
+import com.example.interviewpractice.mvp.view.RankListView;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 
@@ -21,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class RankListFragment extends BaseFragment implements BannerView {
+public class RankListFragment extends BaseFragment implements RankListView {
 
     @BindView(R.id.recycle)
     EasyRecyclerView rankListRecyclerview;
@@ -30,8 +29,8 @@ public class RankListFragment extends BaseFragment implements BannerView {
     private String part;
     public static final String PATH = "args_page";
     private RankListAdapter rankListAdapter;
-    private BannerPresenterImp bannerPresenterImp = new BannerPresenterImp(this, getContext());
-    private List<BannerBean.ItemListBean> listBeans;
+    private RankListPresenterImp rankListPresenterImp=new RankListPresenterImp(this,getContext());
+    private List<RankListBean.ItemListBean> listBeans;
     private StaggeredGridLayoutManager staggeredGridLayoutManager;
     public static RankListFragment newInstance(int position) {
         Bundle args = new Bundle();
@@ -51,7 +50,7 @@ public class RankListFragment extends BaseFragment implements BannerView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_rank_list, container, false);
         ButterKnife.bind(this, view);
-        bannerPresenterImp.loadRanklist(part,0,10);
+        rankListPresenterImp.loadRanklist(part,0,10);
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         rankListRecyclerview.setLayoutManager(staggeredGridLayoutManager);
         rankListRecyclerview.setAdapter(rankListAdapter);
@@ -59,17 +58,14 @@ public class RankListFragment extends BaseFragment implements BannerView {
     }
 
     @Override
-    public void loadDataSuccess(BannerBean tData) {
-        Log.e(TAG, "打印出" );
-        listBeans = tData.getItemList();
+    public void rankSuccess(RankListBean rData) {
+        listBeans = rData.getItemList();
         rankListAdapter.addAll(listBeans);
         rankListAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void loadDataError(Throwable throwable) {
+    public void selectSuccess(RankListBean sData) {
 
     }
-
-
 }

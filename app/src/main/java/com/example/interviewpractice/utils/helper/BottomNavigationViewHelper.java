@@ -1,4 +1,4 @@
-package com.example.interviewpractice.utils;
+package com.example.interviewpractice.utils.helper;
 
 import android.annotation.SuppressLint;
 import android.support.design.internal.BottomNavigationItemView;

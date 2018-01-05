@@ -1,6 +1,7 @@
 package com.example.interviewpractice.app;
 
 import com.example.interviewpractice.enity.BannerBean;
+import com.example.interviewpractice.enity.RankListBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -17,11 +18,13 @@ public interface Api {
      * @return
      */
 //    @Headers("Cache-Control: public, max-age=86400")
-    @GET("v4/tabs/selected")
+    @GET("v2/feed")
     Observable<BannerBean> getMessage();
 
     @GET("v3/ranklist")
-    Observable<BannerBean> getRankList(@Query("strategy") String strategy,
-                                       @Query("start")int start,
-                                       @Query("num") int num);
+    Observable<RankListBean> getRankList(@Query("strategy") String strategy,
+                                         @Query("start")int start,
+                                         @Query("num") int num);
+    @GET("v3/categories/videoList?id=2&strategy=mostPopular")
+    Observable<RankListBean> getSelected();
 }
