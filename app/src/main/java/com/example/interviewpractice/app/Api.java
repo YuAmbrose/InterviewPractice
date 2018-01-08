@@ -1,6 +1,7 @@
 package com.example.interviewpractice.app;
 
 import com.example.interviewpractice.enity.BannerBean;
+import com.example.interviewpractice.enity.PgcBean;
 import com.example.interviewpractice.enity.RankListBean;
 
 import io.reactivex.Observable;
@@ -27,4 +28,7 @@ public interface Api {
                                          @Query("num") int num);
     @GET("v3/categories/videoList?id=2&strategy=mostPopular")
     Observable<RankListBean> getSelected();
+
+    @GET("v4/pgcs/all?start=10&num=10")
+    Observable<PgcBean> getPgc();
 }

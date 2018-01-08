@@ -3,6 +3,7 @@ package com.example.interviewpractice.ui.fragment;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -15,14 +16,18 @@ import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.CagegoryViewPagerAdapter;
 import com.example.interviewpractice.adapter.adapter.EntranceAdapter;
 import com.example.interviewpractice.adapter.adapter.HomeRecyclervAdapter;
+import com.example.interviewpractice.adapter.adapter.PgcAdapter;
 import com.example.interviewpractice.enity.BannerBean;
 import com.example.interviewpractice.enity.CategoryTab;
+import com.example.interviewpractice.enity.PgcBean;
 import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.mvp.presenter.BannerPresenterImp;
 import com.example.interviewpractice.mvp.presenter.CagPesenterImp;
+import com.example.interviewpractice.mvp.presenter.PgcPresenterImp;
 import com.example.interviewpractice.mvp.presenter.RankListPresenterImp;
 import com.example.interviewpractice.mvp.view.BannerView;
 import com.example.interviewpractice.mvp.view.CategorytabView;
+import com.example.interviewpractice.mvp.view.PgcView;
 import com.example.interviewpractice.mvp.view.RankListView;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.example.interviewpractice.utils.ScreenUtil;
@@ -38,7 +43,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomePageFragment extends BaseFragment implements BannerView, CategorytabView, RankListView {
+public class HomePageFragment extends BaseFragment implements BannerView, CategorytabView, RankListView, PgcView {
     @BindView(R.id.banner)
     Banner banner;
     @BindView(R.id.main_home_entrance_vp)
@@ -50,6 +55,8 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
     private static final String TAG = "HomePageFragment";
     @BindView(R.id.easyrecycler)
     EasyRecyclerView easyrecycler;
+    @BindView(R.id.pgc_recyclerview)
+    EasyRecyclerView pgcRecyclerview;
 
     private BannerPresenterImp bannerPresenterImp = new BannerPresenterImp(this, getContext());
     private CagPesenterImp cagPesenterImp = new CagPesenterImp(this, getContext());
@@ -58,16 +65,31 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
     private EntranceAdapter entranceAdapter;
     private HomeRecyclervAdapter homeRecyclervAdapter;
     private List<RankListBean.ItemListBean> itemListBeans;
+    private List<PgcBean.ItemListBean> pgcBeans;
     private RankListPresenterImp rankListPresenterImp = new RankListPresenterImp(this, getContext());
-
+    private PgcPresenterImp pgcPresenterImp=new PgcPresenterImp(this,getContext());
+    private PgcAdapter pgcAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         ButterKnife.bind(this, view);
+
+        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        pgcRecyclerview.setLayoutManager(layoutManager);
+        pgcAdapter=new PgcAdapter(getContext());
+//        StaggeredGridLayoutManager pgcGridLayoutManager = new StaggeredGridLayoutManager(10, StaggeredGridLayoutManager.HORIZONTAL);
+//        pgcAdapter=new PgcAdapter(getContext());
+//        pgcRecyclerview.setLayoutManager(pgcGridLayoutManager);
+        pgcRecyclerview.setAdapter(pgcAdapter);
+
+
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-        homeRecyclervAdapter=new HomeRecyclervAdapter(getContext());
+        homeRecyclervAdapter = new HomeRecyclervAdapter(getContext());
         easyrecycler.setLayoutManager(staggeredGridLayoutManager);
         easyrecycler.setAdapter(homeRecyclervAdapter);
+
+        pgcPresenterImp.loadPgc();
         rankListPresenterImp.loadSelect();
         bannerPresenterImp.loadBanner();
         cagPesenterImp.categoryTabPes();
@@ -80,6 +102,10 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
         bannerPresenterImp.requestError(throwable);
     }
 
+    /**
+     * 轮播图的实现
+     * @param tData
+     */
     @Override
     public void loadDataSuccess(BannerBean tData) {
         if (tData.getIssueList() != null) {
@@ -124,6 +150,10 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
         banner.stopAutoPlay();
     }
 
+    /**
+     * 分类栏的实现
+     * @param tList
+     */
     @Override
     public void loadCagSuccess(CategoryTab tList) {
         homeEntrances.add(tList);
@@ -139,6 +169,9 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
         }
     }
 
+    /***
+     * 初始化分类栏的滑动
+     */
     public void init() {
         LinearLayout.LayoutParams layoutParams12 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) ((float) ScreenUtil.getScreenWidth() / 2.0f));
 //        FrameLayout.LayoutParams entrancelayoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, (int) ((float) ScreenUtil.getScreenWidth() / 2.0f + 70));
@@ -170,6 +203,10 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
         });
     }
 
+    /**
+     * 热门recyclerview
+     * @param rData
+     */
     @Override
     public void rankSuccess(RankListBean rData) {
 //        Log.e(TAG, "rankSuccess: "+rData.getItemList().size() );
@@ -177,11 +214,11 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
 //            if (rData.getItemList().get(i).getData().getCategory().isEmpty()
 //                    &&rData.getItemList().get(i).getData().getTitle().isEmpty()
 //                    &&rData.getItemList().get(i).getData().getCover().getFeed().isEmpty()){
-                rData.getItemList().remove(0);
-                rData.getItemList().remove(1);
+        rData.getItemList().remove(0);
+        rData.getItemList().remove(1);
 
-        itemListBeans=rData.getItemList();
-                homeRecyclervAdapter.addAll(itemListBeans);
+        itemListBeans = rData.getItemList();
+        homeRecyclervAdapter.addAll(itemListBeans);
 //            }
 //        }
 //        if (rData.getItemList().get(i))
@@ -192,6 +229,14 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
 
     @Override
     public void selectSuccess(RankListBean sData) {
+
+    }
+
+
+    @Override
+    public void loadPgc(PgcBean pData) {
+       pgcBeans=pData.getItemList();
+       pgcAdapter.addAll(pgcBeans);
 
     }
 

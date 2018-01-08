@@ -14,8 +14,6 @@ import cn.bmob.v3.Bmob;
 
 public class MyApplication extends Application {
     public static Context applicationContext;
-
-
     public static Context getContext() {
         return applicationContext;
     }

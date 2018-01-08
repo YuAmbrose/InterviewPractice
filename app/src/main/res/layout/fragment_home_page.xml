@@ -12,6 +12,32 @@
     android:layout_height="200dp"
     app:delay_time="3000"/>
     <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_margin="4dp"
+                android:text="推荐作者"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="13dp"
+                android:paddingTop="8dp"
+                android:src="@drawable/rightgetmore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <com.jude.easyrecyclerview.EasyRecyclerView
+            android:paddingTop="6dp"
+            android:id="@+id/pgc_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/home_entrance"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -29,6 +55,8 @@
             app:indicatorColorSelected="#FF5722"
             app:indicatorWidth="6"/>
     </LinearLayout>
+
+
 <com.jude.easyrecyclerview.EasyRecyclerView
     android:id="@+id/easyrecycler"
     android:layout_width="match_parent"
