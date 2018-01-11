@@ -124,9 +124,8 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
                 .setLayoutHelper(new LinearLayoutHelper())
                 .setHolder(CagHolder.class);
         delegateAdapter.addAdapter(banneradapter);
-        delegateAdapter.addAdapter(cagAdapter);
         delegateAdapter.addAdapter(pAdapter);
-
+        delegateAdapter.addAdapter(cagAdapter);
         mRecycler.setAdapter(delegateAdapter);
     }
 

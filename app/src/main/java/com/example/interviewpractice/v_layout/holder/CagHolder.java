@@ -44,10 +44,9 @@ public class CagHolder extends VBaseHolder<CategoryTab> {
     @Override
     public void setData(int ps, CategoryTab mData) {
         super.setData(ps, mData);
-//        Log.e(TAG, "setData: "+mData.toString() );
-//       homeEntrances.add(mData);
+        homeEntrances.add(mData);
+        Log.e(TAG, "88888: "+homeEntrances.size() );
         Log.e(TAG, "setData: "+mData.getId() );
-        Log.e(TAG, "setData: "+homeEntrances.size() );
         if (homeEntrances.size() <= 10) {
             initViewpager();
             entranceIndicatorView.setVisibility(View.GONE);
