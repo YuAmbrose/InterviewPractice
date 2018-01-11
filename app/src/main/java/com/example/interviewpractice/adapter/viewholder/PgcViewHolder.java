@@ -21,6 +21,7 @@ public class PgcViewHolder extends BaseViewHolder<PgcBean.ItemListBean> {
         private ImageView bgVeiw;
         private ImageView icon;
         private TextView iconName,iconDes;
+    private static final String TAG = "PgcViewHolder";
         public PgcViewHolder(ViewGroup parent) {
         super(parent, R.layout.pgc_recyclerview_item);
         bgVeiw=$(R.id.bgcolor);
@@ -33,10 +34,11 @@ public class PgcViewHolder extends BaseViewHolder<PgcBean.ItemListBean> {
     @Override
     public void setData(PgcBean.ItemListBean data) {
         super.setData(data);
+
         Glide.with(getContext())
                 .load(data.getData().getIcon())
                 .transform(new GlideRoundTransform(getContext(), 3))
-                .bitmapTransform(new BlurTransformation(getContext(), 100, 3))
+                .bitmapTransform(new BlurTransformation(getContext(), 200, 3))
                 .into(bgVeiw);
 
         Glide.with(getContext())

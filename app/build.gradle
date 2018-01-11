@@ -53,4 +53,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'fm.jiecao:jiecaovideoplayer:4.8.3'
+    compile ('com.alibaba.android:vlayout:1.2.8@aar') {
+        transitive = true
+    }
 }
