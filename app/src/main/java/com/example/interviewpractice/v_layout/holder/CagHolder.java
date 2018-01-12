@@ -45,15 +45,15 @@ public class CagHolder extends VBaseHolder<CategoryTab> {
     public void setData(int ps, CategoryTab mData) {
         super.setData(ps, mData);
         homeEntrances.add(mData);
-        Log.e(TAG, "88888: "+homeEntrances.size() );
-        Log.e(TAG, "setData: "+mData.getId() );
-        if (homeEntrances.size() <= 10) {
-            initViewpager();
-            entranceIndicatorView.setVisibility(View.GONE);
-        } else {
-            entranceIndicatorView.setVisibility(View.VISIBLE);
-            initViewpager();
-        }
+        Log.e(TAG, "setData: ====="+homeEntrances.size() );
+        initViewpager();
+//        if (homeEntrances.size() <= 10) {
+//            initViewpager();
+//            entranceIndicatorView.setVisibility(View.GONE);
+//        } else {
+//            entranceIndicatorView.setVisibility(View.VISIBLE);
+//            initViewpager();
+//        }
     }
 
     private void initViewpager() {

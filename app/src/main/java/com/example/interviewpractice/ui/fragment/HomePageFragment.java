@@ -68,10 +68,11 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
     private HomeRecyclervAdapter homeRecyclervAdapter;
     private List<RankListBean.ItemListBean> itemListBeans;
     private List<PgcBean.ItemListBean> pgcBeans;
+    private   List<CategoryTab> cag = new ArrayList<>();
     private RankListPresenterImp rankListPresenterImp = new RankListPresenterImp(this, getContext());
     private PgcPresenterImp pgcPresenterImp = new PgcPresenterImp(this, getContext());
     private PgcAdapter pgcAdapter;
-    private List<CategoryTab> homeEntrances = new ArrayList<>();;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
@@ -127,6 +128,7 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
         delegateAdapter.addAdapter(pAdapter);
         delegateAdapter.addAdapter(cagAdapter);
         mRecycler.setAdapter(delegateAdapter);
+
     }
 
     @Override
@@ -134,13 +136,7 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
         bannerPresenterImp.requestError(throwable);
     }
 
-    @Override
-    public void loadDataSuccess(BannerBean mData) {
-        List<BannerBean> b = new ArrayList<BannerBean>();
-        b.add(mData);
-        banneradapter.setData(b);
-        banneradapter.notifyDataSetChanged();
-    }
+
 
 
     @Override
@@ -149,8 +145,18 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
         c.add(pData);
         pAdapter.setData(c);
         pAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void loadDataSuccess(BannerBean mData) {
+        List<BannerBean> b = new ArrayList<BannerBean>();
+        b.add(mData);
+        banneradapter.setData(b);
+        banneradapter.notifyDataSetChanged();
 
     }
+
+
     /**
      * 分类栏的实现
      *
@@ -158,10 +164,12 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
      */
     @Override
     public void loadCagSuccess(CategoryTab tList) {
-        homeEntrances.add(tList);
-        Log.e(TAG, "8888888888888___"+homeEntrances.size() );
-            cagAdapter.setData(homeEntrances);
-            cagAdapter.notifyDataSetChanged();
+        Log.e(TAG, "======"+tList.getType()+tList.getId()+tList.getTypeIcon());
+        cag.add(tList);
+        Log.e(TAG, "******     -  "+cag.size() );
+        cagAdapter.setData(cag);
+        cagAdapter.notifyDataSetChanged();
+
 //        if (tList.toString().isEmpty()) {
 //        } else {
 //        }
