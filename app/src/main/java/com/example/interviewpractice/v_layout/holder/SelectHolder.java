@@ -1,6 +1,7 @@
 package com.example.interviewpractice.v_layout.holder;
 
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 
 import com.example.interviewpractice.MyApplication;
@@ -30,6 +31,7 @@ public class SelectHolder extends VBaseHolder<RankListBean>{
     }
     @Override
     public void setData(int ps, RankListBean rData) {
+        Log.e(TAG, "循环————"+rData.getItemList().size() );
         super.setData(ps, rData);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         homeRecyclervAdapter = new HomeRecyclervAdapter(MyApplication.getContext());
