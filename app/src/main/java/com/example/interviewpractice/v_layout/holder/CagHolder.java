@@ -34,7 +34,7 @@ public class CagHolder extends VBaseHolder<CategoryTab> {
     @BindView(R.id.home_entrance)
     LinearLayout homeEntranceLayout;
     private EntranceAdapter entranceAdapter;
-    private List<CategoryTab> homeEntrances=new ArrayList<>();
+    private List<CategoryTab> homeEntrances;
     public static final int HOME_ENTRANCE_PAGE_SIZE = 10;//首页菜单单页显示数量
     private static final String TAG = "CagHolder";
     public CagHolder(View itemView) {
@@ -44,6 +44,7 @@ public class CagHolder extends VBaseHolder<CategoryTab> {
     @Override
     public void setData(int ps, CategoryTab mData) {
         super.setData(ps, mData);
+        homeEntrances=new ArrayList<>();
         homeEntrances.add(mData);
         Log.e(TAG, "setData: ====="+homeEntrances.size() );
         initViewpager();

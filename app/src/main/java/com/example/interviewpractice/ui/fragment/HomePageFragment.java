@@ -157,18 +157,7 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
     }
 
 
-    /**
-     * 分类栏的实现
-     *
-     * @param tList
-     */
-    @Override
-    public void loadCagSuccess(CategoryTab tList) {
-        Log.e(TAG, "======"+tList.getType()+tList.getId()+tList.getTypeIcon());
-        cag.add(tList);
-        Log.e(TAG, "******     -  "+cag.size() );
-        cagAdapter.setData(cag);
-        cagAdapter.notifyDataSetChanged();
+
 
 //        if (tList.toString().isEmpty()) {
 //        } else {
@@ -180,7 +169,7 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
 //            entranceIndicatorView.setVisibility(View.VISIBLE);
 //            init();
 //        }
-    }
+
 
     /***
      * 初始化分类栏的滑动
@@ -252,5 +241,20 @@ public class HomePageFragment extends BaseFragment implements BannerView, Catego
         super.onStop();
         //结束轮播
 
+    }
+
+    /**
+     * 分类栏的实现
+     *
+     * @param tList
+     */
+    @Override
+    public void loadCagSuccess(List<CategoryTab> tList) {
+        for (int i = 0; i <tList.size() ; i++) {
+            cag.add(tList.get(i));
+        }
+        Log.e(TAG, "******     -  "+cag.size() );
+        cagAdapter.setData(cag);
+        cagAdapter.notifyDataSetChanged();
     }
 }
