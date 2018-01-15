@@ -22,9 +22,12 @@
 
             <com.jude.easyrecyclerview.EasyRecyclerView
             android:paddingTop="6dp"
-            android:nestedScrollingEnabled="true"
+            android:overScrollMode="never"
+            android:overScrollFooter="@android:color/transparent"
+            android:overScrollHeader="@android:color/transparent"
+            android:scrollbars="none"
             android:id="@+id/pgc_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"/>
 
 </LinearLayout>
