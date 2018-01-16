@@ -13,11 +13,13 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
   <android.support.design.widget.BottomNavigationView
+      app:itemIconTint="@color/nav_color_select"
+      app:itemTextColor="@color/nav_color_select"
       android:id="@+id/bottomnavgationview"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:itemBackground="@color/white"
-     android:layout_alignParentBottom="true"
+      android:layout_alignParentBottom="true"
       app:menu="@menu/bottombavigationbar_menu"/>
 
 
