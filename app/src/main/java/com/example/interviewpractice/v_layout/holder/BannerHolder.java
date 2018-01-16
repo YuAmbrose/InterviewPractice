@@ -34,15 +34,13 @@ public class BannerHolder extends VBaseHolder<BannerBean> {
         if (tData.getIssueList() != null) {
             List<String> listImage = new ArrayList<>();
             List<String> listTitle = new ArrayList<>();
-            for (int i = 1; i < 6; i++) {
-                if (i == 6) {
-                } else {
-                    if (tData.getIssueList().get(0).getItemList().get(i).getData().getCover().getFeed() != null && tData.getIssueList().get(0).getItemList().get(i).getData().getTitle() != null) {
+            for (int i =0; i <tData.getIssueList().get(0).getItemList().size(); i++) {
+                    if (tData.getIssueList().get(0).getItemList().get(i).getType().equals("video")) {
                         listImage.add(tData.getIssueList().get(0).getItemList().get(i).getData().getCover().getFeed());
                         listTitle.add(tData.getIssueList().get(0).getItemList().get(i).getData().getTitle());
                     } else {
+
                         Log.e(TAG, "出错了");
-                    }
                 }
             }
             banner.setImages((List<?>) listImage)
