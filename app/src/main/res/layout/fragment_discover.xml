@@ -2,27 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:orientation="vertical"
     tools:context="com.example.interviewpractice.ui.fragment.DiscoverFragment">
-    <LinearLayout
-        android:id="@+id/barlayout"
+    <include
+        layout="@layout/top_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-<android.support.v7.widget.Toolbar
-    android:background="@color/colorThem"
-    android:id="@+id/discover_toolbar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:text="发现"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</android.support.v7.widget.Toolbar>
-    </LinearLayout>
+        android:layout_height="wrap_content"/>
     <!--<LinearLayout-->
 
     <!--android:orientation="vertical"-->

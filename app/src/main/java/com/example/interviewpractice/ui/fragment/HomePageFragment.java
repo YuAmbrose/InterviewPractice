@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
@@ -125,8 +126,8 @@ public class HomePageFragment extends BaseFragment implements BannerView,RankLis
         delegateAdapter.addAdapter(banneradapter);
         delegateAdapter.addAdapter(headAdapter);
         delegateAdapter.addAdapter(pAdapter);
-        delegateAdapter.addAdapter(setlectAdapter);
         delegateAdapter.addAdapter(rankAdapter);
+        delegateAdapter.addAdapter(setlectAdapter);
         mRecycler.setAdapter(delegateAdapter);
 
 
@@ -137,7 +138,14 @@ public class HomePageFragment extends BaseFragment implements BannerView,RankLis
         scrollFixLayoutHelper.setShowType(2);
         scrollFixLayoutHelper.setPadding(0, getStatusBarHeight(this),0,0);
         scrollFixLayoutHelper.setSketchMeasure(true);
+//        scrollFixLayoutHelper.setFixViewAnimatorHelper(onGetFixViewAppearAnimator());
         return scrollFixLayoutHelper;
+    }
+
+    public ViewPropertyAnimator onGetFixViewAppearAnimator(View fixView) {
+        int height = fixView.getMeasuredHeight();
+        fixView.setTranslationY(-height);
+        return fixView.animate().translationYBy(height).alpha(1.0f).setDuration(500);
     }
 
     @Override

@@ -56,4 +56,5 @@ dependencies {
     compile ('com.alibaba.android:vlayout:1.2.8@aar') {
         transitive = true
     }
+    compile 'com.qmuiteam:qmui:1.0.6'
 }

@@ -1,11 +1,11 @@
 package com.example.interviewpractice.v_layout.holder;
 
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.v_layout.VBaseHolder;
+import com.qmuiteam.qmui.widget.QMUITopBar;
 
 import butterknife.BindView;
 
@@ -15,8 +15,8 @@ import butterknife.BindView;
 
 public class HeadHolder extends VBaseHolder<RankListBean> {
     private static final String TAG = "HeadHolder";
-    @BindView(R.id.head)
-    TextView textView;
+    @BindView(R.id.topbar)
+    QMUITopBar mTopBar;
     public HeadHolder(View itemView) {
         super(itemView);
     }
@@ -24,6 +24,7 @@ public class HeadHolder extends VBaseHolder<RankListBean> {
     @Override
     public void setData(int ps, RankListBean mData) {
         super.setData(ps, mData);
+        mTopBar.setTitle("主页");
 
     }
 }

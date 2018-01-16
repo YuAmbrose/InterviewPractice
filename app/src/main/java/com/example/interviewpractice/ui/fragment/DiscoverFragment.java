@@ -1,16 +1,15 @@
 package com.example.interviewpractice.ui.fragment;
 
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.RankListFragmentAdapter;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
+import com.qmuiteam.qmui.widget.QMUITopBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,21 +18,21 @@ import butterknife.ButterKnife;
 public class DiscoverFragment extends BaseFragment {
 
     private static final String TAG = "DiscoverFragment";
-    @BindView(R.id.discover_toolbar)
-    Toolbar discoverToolbar;
+
+    @BindView(R.id.topbar)
+    QMUITopBar mTopBar;
 //    @BindView(R.id.ranklisttablayout)
 //    TabLayout ranklisttablayout;
 //    @BindView(R.id.ranklistviewpager)
 //    ViewPager ranklistviewpager;
-    @BindView(R.id.barlayout)
-    LinearLayout barlayout;
+
     private RankListFragmentAdapter rankListFragmentAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_discover, container, false);
         ButterKnife.bind(this, view);
-        discoverToolbar.setPadding(0, getStatusBarHeight(this), 0, 0);
+        mTopBar.setTitle("发现");
 //        rankListFragmentAdapter = new RankListFragmentAdapter(getFragmentManager());
 //        ranklistviewpager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
 //            @Override
