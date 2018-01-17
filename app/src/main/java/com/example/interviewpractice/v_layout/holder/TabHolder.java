@@ -1,6 +1,5 @@
 package com.example.interviewpractice.v_layout.holder;
 
-import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -9,6 +8,7 @@ import android.view.View;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.RankListFragmentAdapter;
 import com.example.interviewpractice.enity.RankListBean;
+import com.example.interviewpractice.ui.fragment.HomePageFragment;
 import com.example.interviewpractice.v_layout.VBaseHolder;
 
 import butterknife.BindView;
@@ -23,11 +23,9 @@ public class TabHolder extends VBaseHolder<RankListBean> {
     TabLayout ranklisttablayout;
     @BindView(R.id.ranklistviewpager)
     ViewPager ranklistviewpager;
-
-    private static final String TAG = "TabHolder";
     private RankListFragmentAdapter rankListFragmentAdapter;
-    private Fragment  fragment=new Fragment();
-    private Context context;
+    private static final String TAG = "TabHolder";
+    private Fragment fragment=new HomePageFragment();
     public TabHolder(View itemView) {
         super(itemView);
     }
@@ -36,7 +34,6 @@ public class TabHolder extends VBaseHolder<RankListBean> {
     public void setData(int ps, RankListBean mData) {
         super.setData(ps, mData);
         rankListFragmentAdapter = new RankListFragmentAdapter(fragment.getFragmentManager());
-//        rankListFragmentAdapter = new RankListFragmentAdapter();
         ranklistviewpager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
             @Override
             public void onPageSelected(int position) {
@@ -47,4 +44,5 @@ public class TabHolder extends VBaseHolder<RankListBean> {
         ranklistviewpager.setOffscreenPageLimit(3);
         ranklisttablayout.setupWithViewPager(ranklistviewpager);
     }
+
 }

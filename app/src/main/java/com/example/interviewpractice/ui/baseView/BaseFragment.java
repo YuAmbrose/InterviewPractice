@@ -11,4 +11,5 @@ public class BaseFragment extends Fragment {
         double statusBarHeight = Math.ceil(25 * fragment.getResources().getDisplayMetrics().density);
         return (int) statusBarHeight;
     }
+
 }

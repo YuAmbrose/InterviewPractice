@@ -17,6 +17,7 @@ import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.EntranceAdapter;
 import com.example.interviewpractice.adapter.adapter.HomeRecyclervAdapter;
 import com.example.interviewpractice.adapter.adapter.PgcAdapter;
+import com.example.interviewpractice.adapter.adapter.RankListFragmentAdapter;
 import com.example.interviewpractice.enity.BannerBean;
 import com.example.interviewpractice.enity.CategoryTab;
 import com.example.interviewpractice.enity.PgcBean;
@@ -62,7 +63,7 @@ public class HomePageFragment extends BaseFragment implements BannerView,RankLis
     private Context mContext;
 
     private DelegateAdapter delegateAdapter;
-    private VBaseAdapter banneradapter,pAdapter,rankAdapter,setlectAdapter,headAdapter;
+    private VBaseAdapter banneradapter,pAdapter,rankAdapter,setlectAdapter,headAdapter,textAdapter;
 
     private List<BannerBean.IssueListBean> listBeansa;
     private List<RankListBean> itemListBeans=new ArrayList<RankListBean>();
@@ -79,6 +80,9 @@ public class HomePageFragment extends BaseFragment implements BannerView,RankLis
 
     private PgcAdapter pgcAdapter;
 
+
+    private RankListFragmentAdapter rankListFragmentAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
@@ -86,7 +90,6 @@ public class HomePageFragment extends BaseFragment implements BannerView,RankLis
         pgcPresenterImp.loadPgc();
         rankListPresenterImp.loadSelect();
         bannerPresenterImp.loadBanner();
-
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(mContext);
         mRecycler.setLayoutManager(virtualLayoutManager);
         final RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
@@ -129,8 +132,6 @@ public class HomePageFragment extends BaseFragment implements BannerView,RankLis
         delegateAdapter.addAdapter(setlectAdapter);
         delegateAdapter.addAdapter(rankAdapter);
         mRecycler.setAdapter(delegateAdapter);
-
-
     }
 
     private LayoutHelper getScrollLayoutHelper() {

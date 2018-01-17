@@ -1,7 +1,6 @@
 package com.example.interviewpractice.ui.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import com.qmuiteam.qmui.widget.QMUITopBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 
 public class DiscoverFragment extends BaseFragment {
@@ -24,9 +24,10 @@ public class DiscoverFragment extends BaseFragment {
     QMUITopBar mTopBar;
     @BindView(R.id.statebar)
     View statebarHeight;
-//    @BindView(R.id.ranklisttablayout)
+
+//    @BindView(R.id.ranklisttablayou)
 //    TabLayout ranklisttablayout;
-//    @BindView(R.id.ranklistviewpager)
+//    @BindView(R.id.ranklistviewpage)
 //    ViewPager ranklistviewpager;
 
     private RankListFragmentAdapter rankListFragmentAdapter;
@@ -39,8 +40,7 @@ public class DiscoverFragment extends BaseFragment {
         LinearLayout.LayoutParams params= (LinearLayout.LayoutParams) statebarHeight.getLayoutParams();//获取当前控件的布局对象
         params.height=getStatusBarHeight(this);//设置当前控件布局的高度
         statebarHeight.setLayoutParams(params);//将设置好的布局参数应用到控件中
-
-
+//
 //        rankListFragmentAdapter = new RankListFragmentAdapter(getFragmentManager());
 //        ranklistviewpager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
 //            @Override
@@ -54,17 +54,10 @@ public class DiscoverFragment extends BaseFragment {
         return view;
     }
 
-    @Override
-    public void onPause() {
-        Log.e(TAG, "onPause: ");
-        super.onPause();
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            JCVideoPlayer.releaseAllVideos();
+        }
     }
-
-    @Override
-    public void onStop() {
-        Log.e(TAG, "onStop: ");
-        super.onStop();
-    }
-
-
 }

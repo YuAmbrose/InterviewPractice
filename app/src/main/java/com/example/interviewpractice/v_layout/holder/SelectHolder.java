@@ -33,12 +33,15 @@ public class SelectHolder extends VBaseHolder<RankListBean>{
     public void setData(int ps, RankListBean rData) {
         Log.e(TAG, "循环————"+rData.getItemList().size() );
         super.setData(ps, rData);
+
+
+
+
+//        easyrecycler.addItemDecoration(new SpaceDecoration((int)RecyclerviewUtil.convertDpToPixel(8,MyApplication.getContext())));
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         homeRecyclervAdapter = new HomeRecyclervAdapter(MyApplication.getContext());
         easyrecycler.setLayoutManager(staggeredGridLayoutManager);
         easyrecycler.setAdapter(homeRecyclervAdapter);
-//        rData.getItemList().remove(0);
-//        rData.getItemList().remove(1);
         itemListBeans = rData.getItemList();
         homeRecyclervAdapter.addAll(itemListBeans);
     }
