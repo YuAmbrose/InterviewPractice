@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <View
+        android:id="@+id/statebar"
+        android:background="@color/app_color_blue"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+       />
 <com.qmuiteam.qmui.widget.QMUITopBar
         android:id="@+id/topbar"
-        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
-        android:layout_height="?attr/qmui_topbar_height"
-        xmlns:android="http://schemas.android.com/apk/res/android" />
+        android:layout_height="?attr/qmui_topbar_height" />
+</LinearLayout>

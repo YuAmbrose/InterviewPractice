@@ -126,8 +126,8 @@ public class HomePageFragment extends BaseFragment implements BannerView,RankLis
         delegateAdapter.addAdapter(banneradapter);
         delegateAdapter.addAdapter(headAdapter);
         delegateAdapter.addAdapter(pAdapter);
-        delegateAdapter.addAdapter(rankAdapter);
         delegateAdapter.addAdapter(setlectAdapter);
+        delegateAdapter.addAdapter(rankAdapter);
         mRecycler.setAdapter(delegateAdapter);
 
 
