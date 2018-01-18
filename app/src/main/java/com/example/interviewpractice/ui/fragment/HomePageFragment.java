@@ -37,6 +37,7 @@ import com.example.interviewpractice.v_layout.holder.HeadHolder;
 import com.example.interviewpractice.v_layout.holder.PgcHolder;
 import com.example.interviewpractice.v_layout.holder.SelectHolder;
 import com.example.interviewpractice.weight.FatRecyclerview;
+import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomePageFragment extends BaseFragment implements BannerView,RankListView, PgcView {
+import static com.example.interviewpractice.MyApplication.getContext;
+
+public class HomePageFragment extends BaseFragment implements BannerView,RankListView, PgcView{
 //    @BindView(R.id.banner)
 //    Banner banner;
 //    @BindView(R.id.main_home_entrance_vp)
@@ -77,11 +80,11 @@ public class HomePageFragment extends BaseFragment implements BannerView,RankLis
 
     public static final int HOME_ENTRANCE_PAGE_SIZE = 10;//首页菜单单页显示数量
     private EntranceAdapter entranceAdapter;
-    private HomeRecyclervAdapter homeRecyclervAdapter;
+
 
     private PgcAdapter pgcAdapter;
 
-
+    private HomeRecyclervAdapter homeRecyclervAdapter=new HomeRecyclervAdapter(getContext());
     private RankListFragmentAdapter rankListFragmentAdapter;
 
     @Override
@@ -89,8 +92,9 @@ public class HomePageFragment extends BaseFragment implements BannerView,RankLis
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         ButterKnife.bind(this, view);
         pgcPresenterImp.loadPgc();
-        rankListPresenterImp.loadSelect();
+        rankListPresenterImp.loadSelect(10,10);
         bannerPresenterImp.loadBanner();
+
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(mContext);
         mRecycler.setLayoutManager(virtualLayoutManager);
         final RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();

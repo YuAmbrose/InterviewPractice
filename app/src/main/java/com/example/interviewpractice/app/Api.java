@@ -26,8 +26,9 @@ public interface Api {
     Observable<RankListBean> getRankList(@Query("strategy") String strategy,
                                          @Query("start")int start,
                                          @Query("num") int num);
-    @GET("v4/discovery/hot?start=10&num=10")
-    Observable<RankListBean> getSelected();
+    @GET("v4/discovery/hot")
+    Observable<RankListBean> getSelected( @Query("start")int start,
+                                          @Query("num") int num);
 
     @GET("v4/pgcs/all?start=10&num=10")
     Observable<PgcBean> getPgc();

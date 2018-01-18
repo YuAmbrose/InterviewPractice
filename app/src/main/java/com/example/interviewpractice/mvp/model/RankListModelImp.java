@@ -45,8 +45,8 @@ public class RankListModelImp extends BaseModel implements  RankListModel<RankLi
     }
 
     @Override
-    public void loadSelected(final IBaseRequestCallBack<RankListBean> iBaseRequestCallBack) {
-        mcompositeDisposable.add(api.getSelected()
+    public void loadSelected(int start,int num,final IBaseRequestCallBack<RankListBean> iBaseRequestCallBack) {
+        mcompositeDisposable.add(api.getSelected(start,num)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Consumer<RankListBean>() {

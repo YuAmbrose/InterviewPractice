@@ -30,8 +30,8 @@ public class RankListPresenterImp extends RankListBasePresenterImp<RankListView,
     }
 
     @Override
-    public void loadSelect() {
-        rankListModelImp.loadSelected(this);
+    public void loadSelect(int start,int num) {
+        rankListModelImp.loadSelected(start,num,this);
     }
 
 

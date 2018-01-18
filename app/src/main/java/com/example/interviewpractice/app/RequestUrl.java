@@ -9,6 +9,7 @@ public class RequestUrl {
     public static final  String BaseUrl="http://baobab.kaiyanapp.com/api/";
 
     //根据Id获取作者的详情
+    //http://baobab.kaiyanapp.com/api/v4/pgcs/detail/tab?id=2203
     public static final  String pgcDetail=BaseUrl+"v3/pgc/videos?pgcId=56";
     //获取全部作者
     public static final  String pgc=BaseUrl+"v4/pgcs/all";
@@ -21,6 +22,7 @@ public class RequestUrl {
     public static final  String replay="v1/replies/video?id=2492";
 
     //根据分类id获取该分类的全部信息
+    //http://baobab.kaiyanapp.com/api/v4/categories/detail/tab?id=2
     public static final  String cagDetail=BaseUrl+"v3/categories/detail?id=18";
     //更多分类，一共有17个
     public static final  String CagMore=BaseUrl+"v2/categories";
