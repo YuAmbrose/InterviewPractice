@@ -1,6 +1,6 @@
 package com.example.interviewpractice.v_layout;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,8 +19,9 @@ import java.util.List;
 
 public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
     //上下文
-    private Context mContext;
+//    private Context mContext;
     //布局文件资源ID
+
     private int mResLayout;
     private VirtualLayoutManager.LayoutParams mLayoutParams;
     //数据源
@@ -31,17 +32,19 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
     private Class<? extends VBaseHolder> mClazz;
     //回调监听
     private ItemListener mListener;
-
-    public VBaseAdapter(Context context) {
-        mContext = context;
+    private Activity mActivity;
+//    public VBaseAdapter(Context context) {
+//        mContext = context;
+//    }
+    public VBaseAdapter(Activity activity) {
+        mActivity = activity;
     }
-
     /**
      * <br/> 方法名称:VBaseAdapter
      * <br/> 方法详述:构造函数
      * <br/> 参数:<同上申明>
      */
-    public VBaseAdapter(Context context, List<T> mDatas, int mResLayout, Class<? extends VBaseHolder> mClazz,
+    public VBaseAdapter(Activity activity,List<T> mDatas, int mResLayout, Class<? extends VBaseHolder> mClazz,
                         LayoutHelper layoutHelper, ItemListener listener) {
         if (mClazz == null) {
             throw new RuntimeException("clazz is null,please check your params !");
@@ -49,7 +52,8 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
         if (mResLayout == 0) {
             throw new RuntimeException("res is null,please check your params !");
         }
-        this.mContext = context;
+        this.mActivity=activity;
+//        this.mContext = context;
         this.mResLayout = mResLayout;
         this.mLayoutHelper = layoutHelper;
         this.mClazz = mClazz;
@@ -58,6 +62,8 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
         //this.mLayoutParams = new VirtualLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 
         // ViewGroup.LayoutParams.WRAP_CONTENT);
     }
+
+
 
     /**
      * <br/> 方法名称: VBaseAdapter
@@ -191,7 +197,8 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
     @Override
     public void onBindViewHolder(VBaseHolder holder, int position) {
         holder.setListener(mListener);
-        holder.setContext(mContext);
+        holder.setActivity(mActivity);
+//        holder.setContext(mContext);
         holder.setData(position, mDatas.get(position));
     }
 

@@ -1,5 +1,6 @@
 package com.example.interviewpractice.ui.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -29,12 +30,12 @@ import com.example.interviewpractice.mvp.view.BannerView;
 import com.example.interviewpractice.mvp.view.PgcView;
 import com.example.interviewpractice.mvp.view.RankListView;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
+import com.example.interviewpractice.v_layout.ItemListener;
 import com.example.interviewpractice.v_layout.VBaseAdapter;
 import com.example.interviewpractice.v_layout.holder.BannerHolder;
 import com.example.interviewpractice.v_layout.holder.HeadHolder;
 import com.example.interviewpractice.v_layout.holder.PgcHolder;
 import com.example.interviewpractice.v_layout.holder.SelectHolder;
-import com.example.interviewpractice.v_layout.holder.TabHolder;
 import com.example.interviewpractice.weight.FatRecyclerview;
 
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class HomePageFragment extends BaseFragment implements BannerView,RankLis
     @BindView(R.id.recycler)
     FatRecyclerview mRecycler;
     private Context mContext;
-
+    private Activity mActivity;
     private DelegateAdapter delegateAdapter;
     private VBaseAdapter banneradapter,pAdapter,rankAdapter,setlectAdapter,headAdapter,textAdapter;
 
@@ -101,36 +102,42 @@ public class HomePageFragment extends BaseFragment implements BannerView,RankLis
     }
 
     private void initAdapter() {
-        banneradapter = new VBaseAdapter(mContext)
+        banneradapter = new VBaseAdapter(mActivity)
                 .setData(new ArrayList<BannerBean>())
                 .setLayout(R.layout.vlayout_home_banner)
                 .setLayoutHelper(new LinearLayoutHelper())
                 .setHolder(BannerHolder.class);
-        pAdapter = new VBaseAdapter(mContext)
+        pAdapter = new VBaseAdapter(mActivity)
                 .setData(new ArrayList<PgcBean>())
                 .setLayout(R.layout.vlayout_home_pgc)
                 .setLayoutHelper(new LinearLayoutHelper())
                 .setHolder(PgcHolder.class);
-        headAdapter=new VBaseAdapter(mContext)
+        headAdapter=new VBaseAdapter(mActivity)
                 .setData(new ArrayList<RankListBean>())
                 .setLayout(R.layout.vlayout_home_head)
                 .setLayoutHelper(getScrollLayoutHelper())
                 .setHolder(HeadHolder.class);
-        rankAdapter=new VBaseAdapter(mContext)
-                .setData(new ArrayList<RankListBean>())
-                .setLayout(R.layout.vlayout_home_ranklist)
-                .setLayoutHelper(new LinearLayoutHelper())
-                .setHolder(TabHolder.class);
-        setlectAdapter=new VBaseAdapter(mContext)
+//        rankAdapter=new VBaseAdapter(mActivity)
+//                .setData(new ArrayList<RankListBean>())
+//                .setLayout(R.layout.vlayout_home_ranklist)
+//                .setLayoutHelper(new LinearLayoutHelper())
+//                .setHolder(TabHolder.class);
+        setlectAdapter=new VBaseAdapter(mActivity)
                     .setData(new ArrayList<RankListBean>())
                     .setLayout(R.layout.vlayout_home_select)
                     .setLayoutHelper(new LinearLayoutHelper())
+                .setListener(new ItemListener() {
+                    @Override
+                    public void onItemClick(View view, int position, Object mData) {
+
+                    }
+                })
                     .setHolder(SelectHolder.class);
         delegateAdapter.addAdapter(banneradapter);
         delegateAdapter.addAdapter(headAdapter);
         delegateAdapter.addAdapter(pAdapter);
         delegateAdapter.addAdapter(setlectAdapter);
-        delegateAdapter.addAdapter(rankAdapter);
+//        delegateAdapter.addAdapter(rankAdapter);
         mRecycler.setAdapter(delegateAdapter);
     }
 
@@ -179,8 +186,8 @@ public class HomePageFragment extends BaseFragment implements BannerView,RankLis
         setlectAdapter.setData(itemListBeans);
         setlectAdapter.notifyDataSetChanged();
 //
-        rankAdapter.setData(itemListBeans);
-        rankAdapter.notifyDataSetChanged();
+//        rankAdapter.setData(itemListBeans);
+//        rankAdapter.notifyDataSetChanged();
 
         headAdapter.setData(itemListBeans);
         headAdapter.notifyDataSetChanged();

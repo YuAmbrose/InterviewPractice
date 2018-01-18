@@ -1,5 +1,7 @@
 package com.example.interviewpractice.v_layout.holder;
 
+import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -25,6 +27,8 @@ public class TabHolder extends VBaseHolder<RankListBean> {
     ViewPager ranklistviewpager;
     private RankListFragmentAdapter rankListFragmentAdapter;
     private static final String TAG = "TabHolder";
+
+    private Activity activity;
     private Fragment fragment=new HomePageFragment();
     public TabHolder(View itemView) {
         super(itemView);
@@ -33,7 +37,14 @@ public class TabHolder extends VBaseHolder<RankListBean> {
     @Override
     public void setData(int ps, RankListBean mData) {
         super.setData(ps, mData);
-        rankListFragmentAdapter = new RankListFragmentAdapter(fragment.getFragmentManager());
+        android.app.FragmentManager fragmentManager = mC.getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+
+//        rankListFragmentAdapter = new RankListFragmentAdapter(fragmentTransaction);
+
+
+
         ranklistviewpager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
             @Override
             public void onPageSelected(int position) {

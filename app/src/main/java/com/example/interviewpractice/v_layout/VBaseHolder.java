@@ -1,6 +1,6 @@
 package com.example.interviewpractice.v_layout;
 
-import android.content.Context;
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -12,7 +12,9 @@ import butterknife.ButterKnife;
 
 public class VBaseHolder<T> extends RecyclerView.ViewHolder {
     public ItemListener mListener;
-    public Context mContext;
+    private Activity mActivity;
+    public Activity mC;
+//    public Context mContext;
     public View mView;
     public T mData;
     public int position;
@@ -23,14 +25,16 @@ public class VBaseHolder<T> extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
         init();
     }
-
+    public void setActivity(Activity activity) {
+            mActivity= activity;
+            mC=activity;
+    }
     public void init() {
 
     }
-
-    public void setContext(Context context) {
-        mContext = context;
-    }
+//    public void setContext(Context context) {
+//        mContext = context;
+//    }
 
     public void setListener(ItemListener listener) {
         mListener = listener;
