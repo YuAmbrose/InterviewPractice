@@ -7,7 +7,7 @@ import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.PgcAdapter;
 import com.example.interviewpractice.enity.PgcBean;
-import com.example.interviewpractice.v_layout.VBaseHolder;
+import com.example.interviewpractice.v_layout.VlayoutBaseHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 
 import java.util.List;
@@ -18,7 +18,7 @@ import butterknife.BindView;
  * Created by Administrator on 2018/1/11.
  */
 
-public class PgcHolder extends VBaseHolder<PgcBean> {
+public class PgcHolder extends VlayoutBaseHolder<PgcBean> {
         @BindView(R.id.pgc_recyclerview)
         EasyRecyclerView pgcRecyclerview;
         private PgcAdapter pgcAdapter;
@@ -38,5 +38,15 @@ public class PgcHolder extends VBaseHolder<PgcBean> {
         pgcBeans = mData.getItemList();
         pgcAdapter.addAll(pgcBeans);
         pgcRecyclerview.setAdapter(pgcAdapter);
+    }
+    @Override
+    public void init() {
+        super.init();
+        mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onItemClick(mView, position, mData);
+            }
+        });
     }
 }

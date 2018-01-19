@@ -1,6 +1,6 @@
 package com.example.interviewpractice.v_layout;
 
-import android.app.Activity;
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -12,39 +12,35 @@ import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.List;
 
-
 /**
- * Created by Moushao on 2017/8/23.
+ * Created by Administrator on 2018/1/19.
  */
 
-public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
+public class VlayoutBaseAdapter <T> extends DelegateAdapter.Adapter<VlayoutBaseHolder<T>> {
     //上下文
-//    private Context mContext;
+    private Context mContext;
     //布局文件资源ID
-
     private int mResLayout;
     private VirtualLayoutManager.LayoutParams mLayoutParams;
     //数据源
     private List<T> mDatas;
     //布局管理器
     private LayoutHelper mLayoutHelper;
-    //继承VBaseHolder的Holder
-    private Class<? extends VBaseHolder> mClazz;
+    //继承VlayoutBaseHolder的Holder
+    private Class<? extends VlayoutBaseHolder> mClazz;
     //回调监听
     private ItemListener mListener;
-    private Activity mActivity;
-//    public VBaseAdapter(Context context) {
-//        mContext = context;
-//    }
-    public VBaseAdapter(Activity activity) {
-        mActivity = activity;
+
+    public VlayoutBaseAdapter(Context context) {
+        mContext = context;
     }
+
     /**
-     * <br/> 方法名称:VBaseAdapter
+     * <br/> 方法名称:VlayoutBaseAdapter
      * <br/> 方法详述:构造函数
      * <br/> 参数:<同上申明>
      */
-    public VBaseAdapter(Activity activity,List<T> mDatas, int mResLayout, Class<? extends VBaseHolder> mClazz,
+    public VlayoutBaseAdapter(Context context, List<T> mDatas, int mResLayout, Class<? extends VlayoutBaseHolder> mClazz,
                         LayoutHelper layoutHelper, ItemListener listener) {
         if (mClazz == null) {
             throw new RuntimeException("clazz is null,please check your params !");
@@ -52,8 +48,7 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
         if (mResLayout == 0) {
             throw new RuntimeException("res is null,please check your params !");
         }
-        this.mActivity=activity;
-//        this.mContext = context;
+        this.mContext = context;
         this.mResLayout = mResLayout;
         this.mLayoutHelper = layoutHelper;
         this.mClazz = mClazz;
@@ -63,15 +58,13 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
         // ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
-
-
     /**
-     * <br/> 方法名称: VBaseAdapter
+     * <br/> 方法名称: VlayoutBaseAdapter
      * <br/> 方法详述: 设置数据源
      * <br/> 参数: mDatas，数据源
-     * <br/> 返回值:  VBaseAdapter
+     * <br/> 返回值:  VlayoutBaseAdapter
      */
-    public VBaseAdapter setData(List<T> mDatas) {
+    public VlayoutBaseAdapter setData(List<T> mDatas) {
         this.mDatas = mDatas;
         return this;
     }
@@ -80,9 +73,9 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
      * <br/> 方法名称: setItem
      * <br/> 方法详述: 设置单个数据源
      * <br/> 参数: mItem，单个数据源
-     * <br/> 返回值:  VBaseAdapter
+     * <br/> 返回值:  VlayoutBaseAdapter
      */
-    public VBaseAdapter setItem(T mItem) {
+    public VlayoutBaseAdapter setItem(T mItem) {
         this.mDatas.add(mItem);
         return this;
     }
@@ -91,9 +84,9 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
      * <br/> 方法名称: setLayout
      * <br/> 方法详述: 设置布局资源ID
      * <br/> 参数: mResLayout, 布局资源ID
-     * <br/> 返回值:  VBaseAdapter
+     * <br/> 返回值:  VlayoutBaseAdapter
      */
-    public VBaseAdapter setLayout(int mResLayout) {
+    public VlayoutBaseAdapter setLayout(int mResLayout) {
         if (mResLayout == 0) {
             throw new RuntimeException("res is null,please check your params !");
         }
@@ -105,9 +98,9 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
      * <br/> 方法名称: setLayoutHelper
      * <br/> 方法详述: 设置布局管理器
      * <br/> 参数: layoutHelper，管理器
-     * <br/> 返回值:  VBaseAdapter
+     * <br/> 返回值:  VlayoutBaseAdapter
      */
-    public VBaseAdapter setLayoutHelper(LayoutHelper layoutHelper) {
+    public VlayoutBaseAdapter setLayoutHelper(LayoutHelper layoutHelper) {
         this.mLayoutHelper = layoutHelper;
         return this;
     }
@@ -115,10 +108,10 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
     /**
      * <br/> 方法名称: setHolder
      * <br/> 方法详述: 设置holder
-     * <br/> 参数: mClazz,集成VBaseHolder的holder
-     * <br/> 返回值:  VBaseAdapter
+     * <br/> 参数: mClazz,集成VlayoutBaseHolder的holder
+     * <br/> 返回值:  VlayoutBaseAdapter
      */
-    public VBaseAdapter setHolder(Class<? extends VBaseHolder> mClazz) {
+    public VlayoutBaseAdapter setHolder(Class<? extends VlayoutBaseHolder> mClazz) {
         if (mClazz == null) {
             throw new RuntimeException("clazz is null,please check your params !");
         }
@@ -130,9 +123,9 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
      * <br/> 方法名称: setListener
      * <br/> 方法详述: 传入监听，方便回调
      * <br/> 参数: listener
-     * <br/> 返回值:  VBaseAdapter
+     * <br/> 返回值:  VlayoutBaseAdapter
      */
-    public VBaseAdapter setListener(ItemListener listener) {
+    public VlayoutBaseAdapter setListener(ItemListener listener) {
         this.mListener = listener;
         return this;
     }
@@ -141,7 +134,7 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
      * <br/> 方法名称: onCreateLayoutHelper
      * <br/> 方法详述: 继承elegateAdapter.Adapter后重写方法，告知elegateAdapter.Adapter使用何种布局管理器
      * <br/> 参数:
-     * <br/> 返回值:  VBaseAdapter
+     * <br/> 返回值:  VlayoutBaseAdapter
      */
     @Override
     public LayoutHelper onCreateLayoutHelper() {
@@ -155,9 +148,9 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
      * <br/> 方法名称: setTag
      * <br/> 方法详述: 设置mObject
      * <br/> 参数: mObject
-     * <br/> 返回值:  VBaseAdapter
+     * <br/> 返回值:  VlayoutBaseAdapter
      */
-    public VBaseAdapter setTag(int tag, Object mObject) {
+    public VlayoutBaseAdapter setTag(int tag, Object mObject) {
         if (mObject != null) {
             tags.put(tag, mObject);
         }
@@ -169,7 +162,7 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
      * <br/> 方法详述: 解析布局文件，返回传入holder的构造器
      */
     @Override
-    public VBaseHolder<T> onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VlayoutBaseHolder<T> onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = InflateConstants.inflate(parent.getContext(), parent, mResLayout);
         if (tags != null && tags.size() > 0) {
             for (int tag : tags.keySet()) {
@@ -177,7 +170,7 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
             }
         }
         try {
-            Constructor<? extends VBaseHolder> mClazzConstructor = mClazz.getConstructor(View.class);
+            Constructor<? extends VlayoutBaseHolder> mClazzConstructor = mClazz.getConstructor(View.class);
             if (mClazzConstructor != null) {
                 return mClazzConstructor.newInstance(view);
             }
@@ -191,14 +184,13 @@ public class VBaseAdapter<T> extends DelegateAdapter.Adapter<VBaseHolder<T>> {
      * <br/> 方法名称: onBindViewHolder
      * <br/> 方法详述: 绑定数据
      * <br/> 参数:
-     * <br/> 返回值:  VBaseAdapter
+     * <br/> 返回值:  VlayoutBaseAdapter
      */
-    
+
     @Override
-    public void onBindViewHolder(VBaseHolder holder, int position) {
+    public void onBindViewHolder(VlayoutBaseHolder holder, int position) {
         holder.setListener(mListener);
-        holder.setActivity(mActivity);
-//        holder.setContext(mContext);
+        holder.setContext(mContext);
         holder.setData(position, mDatas.get(position));
     }
 

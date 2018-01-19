@@ -1,7 +1,6 @@
 package com.example.interviewpractice.v_layout.holder;
 
 import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -11,7 +10,7 @@ import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.RankListFragmentAdapter;
 import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.ui.fragment.HomePageFragment;
-import com.example.interviewpractice.v_layout.VBaseHolder;
+import com.example.interviewpractice.v_layout.VlayoutBaseHolder;
 
 import butterknife.BindView;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
@@ -20,7 +19,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
  * Created by Administrator on 2018/1/11.
  */
 
-public class TabHolder extends VBaseHolder<RankListBean> {
+public class TabHolder extends VlayoutBaseHolder<RankListBean> {
     @BindView(R.id.ranklisttablayout)
     TabLayout ranklisttablayout;
     @BindView(R.id.ranklistviewpager)
@@ -37,8 +36,8 @@ public class TabHolder extends VBaseHolder<RankListBean> {
     @Override
     public void setData(int ps, RankListBean mData) {
         super.setData(ps, mData);
-        android.app.FragmentManager fragmentManager = mC.getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        android.app.FragmentManager fragmentManager = mC.getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
 
 //        rankListFragmentAdapter = new RankListFragmentAdapter(fragmentTransaction);
@@ -55,5 +54,14 @@ public class TabHolder extends VBaseHolder<RankListBean> {
         ranklistviewpager.setOffscreenPageLimit(3);
         ranklisttablayout.setupWithViewPager(ranklistviewpager);
     }
-
+    @Override
+    public void init() {
+        super.init();
+        mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onItemClick(mView, position, mData);
+            }
+        });
+    }
 }

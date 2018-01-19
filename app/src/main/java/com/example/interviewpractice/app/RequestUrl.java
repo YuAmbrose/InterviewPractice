@@ -37,4 +37,14 @@ public class RequestUrl {
     //热门搜索词汇
     public static final  String queryWord=BaseUrl+"v3/queries/hot";
 
+    /**
+     * 知乎日报
+     */
+    public static final String ZHI_HU_BaseURL = "http://news-at.zhihu.com/api/4/";
+    // news/hot 热门
+    //知乎日报
+    //news/latest
+//    http://news-at.zhihu.com/api/4/news/9666744
+   // http://news-at.zhihu.com/api/4/section/86
+ //   http://news-at.zhihu.com/api/4/sections
 }

@@ -6,9 +6,10 @@ import android.view.View;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.enity.BannerBean;
 import com.example.interviewpractice.utils.helper.GlideImageLoader;
-import com.example.interviewpractice.v_layout.VBaseHolder;
+import com.example.interviewpractice.v_layout.VlayoutBaseHolder;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
+import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ import butterknife.BindView;
  * Created by Administrator on 2018/1/11.
  */
 
-public class BannerHolder extends VBaseHolder<BannerBean> {
+public class BannerHolder extends VlayoutBaseHolder<BannerBean> {
     @BindView(R.id.banner)
     Banner banner;
     private static final String TAG = "BannerHolder";
@@ -48,7 +49,19 @@ public class BannerHolder extends VBaseHolder<BannerBean> {
                     .setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE)
                     .setBannerTitles(listTitle)
                     .isAutoPlay(true);
+            banner.setOnBannerListener(new OnBannerListener() {
+                @Override
+                public void OnBannerClick(int position) {
+                    mListener.onItemClick(mView, position, mData);
+                }
+            });
             banner.start();
         }
+    }
+    @Override
+    public void init() {
+        super.init();
+
+
     }
 }

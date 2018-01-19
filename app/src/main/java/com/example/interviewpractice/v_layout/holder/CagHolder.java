@@ -14,7 +14,7 @@ import com.example.interviewpractice.adapter.adapter.CagegoryViewPagerAdapter;
 import com.example.interviewpractice.adapter.adapter.EntranceAdapter;
 import com.example.interviewpractice.enity.CategoryTab;
 import com.example.interviewpractice.utils.ScreenUtil;
-import com.example.interviewpractice.v_layout.VBaseHolder;
+import com.example.interviewpractice.v_layout.VlayoutBaseHolder;
 import com.example.interviewpractice.weight.IndicatorView;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ import butterknife.BindView;
  * Created by Administrator on 2018/1/11.
  */
 
-public class CagHolder extends VBaseHolder<CategoryTab> {
+public class CagHolder extends VlayoutBaseHolder<CategoryTab> {
     @BindView(R.id.main_home_entrance_vp)
     ViewPager entranceViewPager;
     @BindView(R.id.main_home_entrance_indicator)
@@ -84,6 +84,16 @@ public class CagHolder extends VBaseHolder<CategoryTab> {
             @Override
             public void onPageSelected(int position) {
                 entranceIndicatorView.setCurrentIndicator(position);
+            }
+        });
+    }
+    @Override
+    public void init() {
+        super.init();
+        mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onItemClick(mView, position, mData);
             }
         });
     }

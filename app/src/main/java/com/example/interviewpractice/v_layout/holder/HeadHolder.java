@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.enity.RankListBean;
-import com.example.interviewpractice.v_layout.VBaseHolder;
+import com.example.interviewpractice.v_layout.VlayoutBaseHolder;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 
 import butterknife.BindView;
@@ -16,7 +16,7 @@ import butterknife.BindView;
  * Created by Administrator on 2018/1/15.
  */
 
-public class HeadHolder extends VBaseHolder<RankListBean> {
+public class HeadHolder extends VlayoutBaseHolder<RankListBean> {
     private static final String TAG = "HeadHolder";
     @BindView(R.id.topbar)
     QMUITopBar mTopBar;
