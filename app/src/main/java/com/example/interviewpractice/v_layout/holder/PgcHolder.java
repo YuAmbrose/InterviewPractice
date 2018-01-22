@@ -42,11 +42,11 @@ public class PgcHolder extends VlayoutBaseHolder<PgcBean> {
     @Override
     public void init() {
         super.init();
-        mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onItemClick(mView, position, mData);
-            }
-        });
+//        pgcAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+//                mListener.onItemClick(mView, position, mData);
+//            }
+//        });
     }
 }
