@@ -17,6 +17,7 @@ import com.alibaba.android.vlayout.layout.ColumnLayoutHelper;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.ScrollFixLayoutHelper;
+import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.alibaba.android.vlayout.layout.StaggeredGridLayoutHelper;
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
@@ -40,6 +41,7 @@ import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.example.interviewpractice.v_layout.ItemListener;
 import com.example.interviewpractice.v_layout.VlayoutBaseAdapter;
 import com.example.interviewpractice.v_layout.holder.BannerHolder;
+import com.example.interviewpractice.v_layout.holder.EndHolder;
 import com.example.interviewpractice.v_layout.holder.GridHolder;
 import com.example.interviewpractice.v_layout.holder.HeadHolder;
 import com.example.interviewpractice.v_layout.holder.HotHeadHolder;
@@ -62,7 +64,7 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
     private Context mContext;
 
     private DelegateAdapter delegateAdapter;
-    private VlayoutBaseAdapter banneradapter, pAdapter,setlectAdapter, headAdapter, textAdapter, gridAdapter,zhotAdapter,pgcAdapter,selectheadAdapter,hotheadAdapter;
+    private VlayoutBaseAdapter banneradapter, pAdapter,setlectAdapter, headAdapter, textAdapter, gridAdapter,zhotAdapter,pgcAdapter,selectheadAdapter,hotheadAdapter,endAdapter;
 
     private List<BannerBean.IssueListBean> listBeansa;
     private List<RankListBean> itemListBeans = new ArrayList<>();
@@ -120,7 +122,7 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
         selectheadAdapter=new VlayoutBaseAdapter(mContext)
                 .setData(new ArrayList<BannerBean>())
                 .setLayout(R.layout.vlayout_home_selecthead)
-                .setLayoutHelper(new LinearLayoutHelper())
+                .setLayoutHelper(getLinearLayoutHelper())
                 .setHolder(PgcHeadHolder.class)
                 .setListener(new ItemListener() {
                     @Override
@@ -128,10 +130,15 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                         Toast.makeText(MyApplication.getContext(), "9998", Toast.LENGTH_SHORT).show();
                     }
                 });
+        endAdapter=new VlayoutBaseAdapter(mContext)
+                .setData(new ArrayList<BannerBean>())
+                .setLayout(R.layout.vlayout_home_end)
+                .setLayoutHelper(getSingleLayoutHelper())
+                .setHolder(EndHolder.class);
         hotheadAdapter=new VlayoutBaseAdapter(mContext)
                 .setData(new ArrayList<BannerBean>())
                 .setLayout(R.layout.vlayout_home_hothead)
-                .setLayoutHelper(new LinearLayoutHelper())
+                .setLayoutHelper(getLinearLayoutHelper())
                 .setHolder(HotHeadHolder.class);
         pAdapter = new VlayoutBaseAdapter(mContext)
                 .setData(new ArrayList<PgcBean>())
@@ -186,6 +193,7 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
         delegateAdapter.addAdapter(setlectAdapter);
         delegateAdapter.addAdapter(hotheadAdapter);
         delegateAdapter.addAdapter(zhotAdapter);
+        delegateAdapter.addAdapter(endAdapter);
         mRecycler.setAdapter(delegateAdapter);
     }
 
@@ -226,6 +234,17 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
         columnLayoutHelper.setWeights(new float[]{30, 40, 30});// 设置该行每个Item占该行总宽度的比例
         return columnLayoutHelper;
     }
+    private LayoutHelper getSingleLayoutHelper(){
+        SingleLayoutHelper singleLayoutHelper = new SingleLayoutHelper();
+        singleLayoutHelper.setItemCount(1);// 设置布局里Item个数
+        singleLayoutHelper.setPadding(0, 20, 0, 0);// 设置LayoutHelper的子元素相对LayoutHelper边缘的距离
+        return singleLayoutHelper;
+    }
+    private LayoutHelper getLinearLayoutHelper(){
+        LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
+        linearLayoutHelper.setPadding(0,25,0,15);
+        return linearLayoutHelper;
+    }
     private LayoutHelper getScrollLayoutHelper() {
         ScrollFixLayoutHelper scrollFixLayoutHelper = new ScrollFixLayoutHelper(0, 0);
         scrollFixLayoutHelper.setShowType(2);
@@ -234,7 +253,6 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
 //        scrollFixLayoutHelper.setFixViewAnimatorHelper(onGetFixViewAppearAnimator());
         return scrollFixLayoutHelper;
     }
-
     public ViewPropertyAnimator GetFixViewAppearAnimator(View fixView) {
         int height = fixView.getMeasuredHeight();
         fixView.setTranslationY(-height);
@@ -270,6 +288,8 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
         selectheadAdapter.notifyDataSetChanged();
         hotheadAdapter.setData(b);
         hotheadAdapter.notifyDataSetChanged();
+        endAdapter.setData(b);
+        endAdapter.notifyDataSetChanged();
     }
 
     /**

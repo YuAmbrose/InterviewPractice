@@ -14,8 +14,9 @@
         android:drawableLeft="@drawable/index_left"
         android:drawableRight="@drawable/index_right"
         android:drawablePadding="10dp"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:text="知乎日报"
-        android:textColor="#000"/>
+        android:textStyle="bold"
+        android:textColor="#fd000000"/>
 
 </LinearLayout>

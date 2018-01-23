@@ -39,7 +39,7 @@ public class HomeRecyclerViewHolder extends BaseViewHolder<RankListBean.ItemList
             timer.setText(d);
                 Glide.with(getContext())
                         .load(data.getData().getCover().getFeed())
-                        .transform(new GlideRoundTransform(getContext(), 15))
+                        .transform(new GlideRoundTransform(getContext(), 8))
                         .into(imageView);
     }
 }

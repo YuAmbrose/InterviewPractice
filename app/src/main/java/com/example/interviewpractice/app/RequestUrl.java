@@ -1,5 +1,7 @@
 package com.example.interviewpractice.app;
 
+import java.net.URL;
+
 /**
  * Created by Administrator on 2018/1/18.
  */
@@ -52,4 +54,17 @@ public class RequestUrl {
     public static  final String article="https://interface.meiriyiwen.com/article/random";
     //今日文章
     public static  final String todayarticle="https://interface.meiriyiwen.com/article/today";
+
+
+    //https://app.vmovier.com/apiv3/cate/getList
+    //https://app.vmovier.com/apiv3/index/index
+    //URL	https://app.vmovier.com/apiv3/post/getPostByTab
+    //URL	https://app.vmovier.com/apiv3/post/getPostInCate
+    //URL	https://app.vmovier.com/apiv3/index/getBanner
+
+    //URL	http://baobab.kaiyanapp.com/api/v5/index/tab/list?udid=5229c3d8b36345c5a63896eab40bb3f25fd15479&vc=254&vn=3.14&deviceModel=MI%204W&first_channel=eyepetizer_xiaomi_market&last_channel=eyepetizer_xiaomi_market&system_version_code=23
+    //URL	http://baobab.kaiyanapp.com/api/v5/index/tab/allRec?page=0&udid=5229c3d8b36345c5a63896eab40bb3f25fd15479&vc=254&vn=3.14&deviceModel=MI%204W&first_channel=eyepetizer_xiaomi_market&last_channel=eyepetizer_xiaomi_market&system_version_code=23
+    //URL	http://baobab.kaiyanapp.com/api/v2/notification?udid=5229c3d8b36345c5a63896eab40bb3f25fd15479&vc=254&vn=3.14&deviceModel=MI%204W&first_channel=eyepetizer_xiaomi_market&last_channel=eyepetizer_xiaomi_market&system_version_code=23
+//URL	http://baobab.kaiyanapp.com/api/v1/tag/videos?id=52&udid=5229c3d8b36345c5a63896eab40bb3f25fd15479&vc=254&vn=3.14&deviceModel=MI%204W&first_channel=eyepetizer_xiaomi_market&last_channel=eyepetizer_xiaomi_market&system_version_code=23
+    //URL	http://baobab.kaiyanapp.com/api/v1/tag/dynamics?id=52&udid=5229c3d8b36345c5a63896eab40bb3f25fd15479&vc=254&vn=3.14&deviceModel=MI%204W&first_channel=eyepetizer_xiaomi_market&last_channel=eyepetizer_xiaomi_market&system_version_code=23
 }
