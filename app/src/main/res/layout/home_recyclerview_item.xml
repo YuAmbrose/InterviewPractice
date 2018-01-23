@@ -31,7 +31,6 @@
                 android:layout_marginLeft="2dp"
             android:textStyle="normal"
             android:textColor="@color/white"
-            android:text="08:06"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         </LinearLayout>
@@ -46,7 +45,6 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="3dp"
             android:paddingTop="8dp"
-            android:text="888"
             android:id="@+id/title"
             android:maxLines="2"
             android:layout_width="match_parent"
@@ -55,7 +53,6 @@
             android:textColor="#878787"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="3dp"
-            android:text="6566"
             android:id="@+id/type"
             android:maxLines="1"
             android:layout_width="match_parent"

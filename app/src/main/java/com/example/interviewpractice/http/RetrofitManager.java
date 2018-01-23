@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.app.Api;
-import com.example.interviewpractice.app.Constans;
 import com.example.interviewpractice.utils.NetUtil;
 
 import java.io.File;
@@ -63,10 +62,10 @@ public class RetrofitManager {
         }
     };
 
-    private RetrofitManager() {
+    private RetrofitManager(String url) {
         initOkHttpClient();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constans.EyepetizerBaseUrl)
+                .baseUrl(url)
                 .client(mOkHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -77,8 +76,8 @@ public class RetrofitManager {
 
     }
 
-    public static RetrofitManager builder() {
-        return new RetrofitManager();
+    public static RetrofitManager builder(String url) {
+        return new RetrofitManager(url);
     }
 
     public Api getService() {

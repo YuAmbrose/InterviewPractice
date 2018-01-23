@@ -9,6 +9,7 @@ import com.example.interviewpractice.adapter.adapter.PgcAdapter;
 import com.example.interviewpractice.enity.PgcBean;
 import com.example.interviewpractice.v_layout.VlayoutBaseHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
+import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 
 import java.util.List;
 
@@ -29,24 +30,25 @@ public class PgcHolder extends VlayoutBaseHolder<PgcBean> {
     }
 
     @Override
-    public void setData(int ps, PgcBean mData) {
-        super.setData(ps, mData);
+    public void setData(int ps, PgcBean tData) {
+        super.setData(ps, tData);
         pgcAdapter=new PgcAdapter(MyApplication.getContext());
         LinearLayoutManager layoutManager=new LinearLayoutManager(MyApplication.getContext());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         pgcRecyclerview.setLayoutManager(layoutManager);
-        pgcBeans = mData.getItemList();
+        pgcBeans = tData.getItemList();
         pgcAdapter.addAll(pgcBeans);
         pgcRecyclerview.setAdapter(pgcAdapter);
+        pgcAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                mListener.onItemClick(mView, position, mData);
+            }
+        });
     }
     @Override
     public void init() {
         super.init();
-//        pgcAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(int position) {
-//                mListener.onItemClick(mView, position, mData);
-//            }
-//        });
+
     }
 }

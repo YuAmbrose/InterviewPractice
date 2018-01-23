@@ -47,4 +47,9 @@ public class RequestUrl {
 //    http://news-at.zhihu.com/api/4/news/9666744
    // http://news-at.zhihu.com/api/4/section/86
  //   http://news-at.zhihu.com/api/4/sections
+
+    //随机文章
+    public static  final String article="https://interface.meiriyiwen.com/article/random";
+    //今日文章
+    public static  final String todayarticle="https://interface.meiriyiwen.com/article/today";
 }
