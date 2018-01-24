@@ -27,9 +27,11 @@ public class HeadHolder extends VlayoutBaseHolder<RankListBean> {
     }
 
     @Override
-    public void setData(int ps, RankListBean mData) {
-        super.setData(ps, mData);
+    public void setData(int ps, RankListBean rData) {
+        super.setData(ps, rData);
+
         mTopBar.setTitle("主页");
+
         LinearLayout.LayoutParams params= (LinearLayout.LayoutParams) statebarHeight.getLayoutParams();//获取当前控件的布局对象
         params.height=getStatusBarHeight(MyApplication.getContext());//设置当前控件布局的高度
         statebarHeight.setLayoutParams(params);//将设置好的布局参数应用到控件中
@@ -37,5 +39,16 @@ public class HeadHolder extends VlayoutBaseHolder<RankListBean> {
     public int getStatusBarHeight(Context fragment) {
         double statusBarHeight = Math.ceil(25 * fragment.getResources().getDisplayMetrics().density);
         return (int) statusBarHeight;
+    }
+
+    @Override
+    public void init() {
+        super.init();
+        mTopBar.addRightImageButton(R.mipmap.search, R.id.topbar_right_about_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onItemClick(mView, position, mData);
+            }
+        });
     }
 }

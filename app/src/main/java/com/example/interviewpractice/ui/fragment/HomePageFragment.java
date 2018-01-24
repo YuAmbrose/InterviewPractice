@@ -3,11 +3,15 @@ package com.example.interviewpractice.ui.fragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
@@ -27,17 +31,18 @@ import com.example.interviewpractice.enity.CategoryTab;
 import com.example.interviewpractice.enity.PgcBean;
 import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.enity.ZhihuHotBean;
-import com.example.interviewpractice.mvp.presenter.BannerPresenterImp;
-import com.example.interviewpractice.mvp.presenter.CagPesenterImp;
-import com.example.interviewpractice.mvp.presenter.PgcPresenterImp;
-import com.example.interviewpractice.mvp.presenter.RankListPresenterImp;
-import com.example.interviewpractice.mvp.presenter.ZHotPresenterImp;
-import com.example.interviewpractice.mvp.view.BannerView;
-import com.example.interviewpractice.mvp.view.CategorytabView;
-import com.example.interviewpractice.mvp.view.PgcView;
-import com.example.interviewpractice.mvp.view.RankListView;
-import com.example.interviewpractice.mvp.view.ZHotView;
+import com.example.interviewpractice.mvp.homepage.presenter.BannerPresenterImp;
+import com.example.interviewpractice.mvp.homepage.presenter.CagPesenterImp;
+import com.example.interviewpractice.mvp.homepage.presenter.PgcPresenterImp;
+import com.example.interviewpractice.mvp.homepage.presenter.RankListPresenterImp;
+import com.example.interviewpractice.mvp.homepage.presenter.ZHotPresenterImp;
+import com.example.interviewpractice.mvp.homepage.view.BannerView;
+import com.example.interviewpractice.mvp.homepage.view.CategorytabView;
+import com.example.interviewpractice.mvp.homepage.view.PgcView;
+import com.example.interviewpractice.mvp.homepage.view.RankListView;
+import com.example.interviewpractice.mvp.homepage.view.ZHotView;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
+import com.example.interviewpractice.ui.fragment.childFragment.AuthorDetailFragment;
 import com.example.interviewpractice.v_layout.ItemListener;
 import com.example.interviewpractice.v_layout.VlayoutBaseAdapter;
 import com.example.interviewpractice.v_layout.holder.BannerHolder;
@@ -57,26 +62,29 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomePageFragment extends BaseFragment implements CategorytabView, BannerView, RankListView, PgcView,ZHotView{
+public class HomePageFragment extends BaseFragment implements CategorytabView, BannerView, RankListView, PgcView, ZHotView {
     private static final String TAG = "HomePageFragment";
     @BindView(R.id.recycler)
     FatRecyclerview mRecycler;
+    @BindView(R.id.home_fragment)
+    LinearLayout home_Fragment;
     private Context mContext;
 
     private DelegateAdapter delegateAdapter;
-    private VlayoutBaseAdapter banneradapter, pAdapter,setlectAdapter, headAdapter, textAdapter, gridAdapter,zhotAdapter,pgcAdapter,selectheadAdapter,hotheadAdapter,endAdapter;
+    private VlayoutBaseAdapter banneradapter, pAdapter, setlectAdapter, headAdapter, textAdapter, gridAdapter, zhotAdapter, pgcAdapter, selectheadAdapter, hotheadAdapter, endAdapter;
 
     private List<BannerBean.IssueListBean> listBeansa;
     private List<RankListBean> itemListBeans = new ArrayList<>();
     private List<PgcBean.ItemListBean> pgcBeans;
     private List<CategoryTab> cag = new ArrayList<>();
-    private List<ZhihuHotBean> zhihuHotBeans=new ArrayList<>();
+    private List<ZhihuHotBean> zhihuHotBeans = new ArrayList<>();
     private BannerPresenterImp bannerPresenterImp = new BannerPresenterImp(this, getContext());
     private RankListPresenterImp rankListPresenterImp = new RankListPresenterImp(this, getContext());
     private PgcPresenterImp pgcPresenterImp = new PgcPresenterImp(this, getContext());
     private CagPesenterImp cagPesenterImp = new CagPesenterImp(this, getContext());
-    private ZHotPresenterImp zHotPresenterImp=new ZHotPresenterImp(this,getContext());
-    private HomeRecyclervAdapter homeRecyclervAdapter=new HomeRecyclervAdapter(getContext());
+    private ZHotPresenterImp zHotPresenterImp = new ZHotPresenterImp(this, getContext());
+    private HomeRecyclervAdapter homeRecyclervAdapter = new HomeRecyclervAdapter(getContext());
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
@@ -108,7 +116,7 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                         Toast.makeText(MyApplication.getContext(), mData.getIssueList().get(0).getItemList().get(position + 1).getData().getTitle(), Toast.LENGTH_SHORT).show();
                     }
                 });
-        pgcAdapter=new VlayoutBaseAdapter(mContext)
+        pgcAdapter = new VlayoutBaseAdapter(mContext)
                 .setData(new ArrayList<BannerBean>())
                 .setLayout(R.layout.vlayout_home_pgchead)
                 .setLayoutHelper(new LinearLayoutHelper())
@@ -119,7 +127,7 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                         Toast.makeText(MyApplication.getContext(), "88898", Toast.LENGTH_SHORT).show();
                     }
                 });
-        selectheadAdapter=new VlayoutBaseAdapter(mContext)
+        selectheadAdapter = new VlayoutBaseAdapter(mContext)
                 .setData(new ArrayList<BannerBean>())
                 .setLayout(R.layout.vlayout_home_selecthead)
                 .setLayoutHelper(getLinearLayoutHelper())
@@ -130,12 +138,12 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                         Toast.makeText(MyApplication.getContext(), "9998", Toast.LENGTH_SHORT).show();
                     }
                 });
-        endAdapter=new VlayoutBaseAdapter(mContext)
+        endAdapter = new VlayoutBaseAdapter(mContext)
                 .setData(new ArrayList<BannerBean>())
                 .setLayout(R.layout.vlayout_home_end)
                 .setLayoutHelper(getSingleLayoutHelper())
                 .setHolder(EndHolder.class);
-        hotheadAdapter=new VlayoutBaseAdapter(mContext)
+        hotheadAdapter = new VlayoutBaseAdapter(mContext)
                 .setData(new ArrayList<BannerBean>())
                 .setLayout(R.layout.vlayout_home_hothead)
                 .setLayoutHelper(getLinearLayoutHelper())
@@ -156,7 +164,13 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setData(new ArrayList<String>())
                 .setLayout(R.layout.vlayout_home_head)
                 .setLayoutHelper(getScrollLayoutHelper())
-                .setHolder(HeadHolder.class);
+                .setHolder(HeadHolder.class)
+                .setListener(new ItemListener() {
+            @Override
+            public void onItemClick(View view, int position, Object mData) {
+                Toast.makeText(MyApplication.getContext(), "886668", Toast.LENGTH_SHORT).show();
+            }
+        });
         gridAdapter = new VlayoutBaseAdapter(mContext)
                 .setData(new ArrayList<CategoryTab>())
                 .setLayout(R.layout.vlayout_home_grid)
@@ -168,7 +182,7 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                         Toast.makeText(MyApplication.getContext(), mData.getType(), Toast.LENGTH_SHORT).show();
                     }
                 });
-        zhotAdapter=new VlayoutBaseAdapter(mContext)
+        zhotAdapter = new VlayoutBaseAdapter(mContext)
                 .setData(new ArrayList<ZhihuHotBean>())
                 .setLayoutHelper(new StaggeredGridLayoutHelper())
                 .setLayout(R.layout.vlayout_home_zhhot)
@@ -181,16 +195,17 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener<RankListBean>() {
                     @Override
                     public void onItemClick(View view, int position, RankListBean mData) {
-                        Toast.makeText(MyApplication.getContext(),"888", Toast.LENGTH_SHORT).show();
+                        replaceFragment(new AuthorDetailFragment());
+                        Toast.makeText(MyApplication.getContext(), "888", Toast.LENGTH_SHORT).show();
                     }
                 });
         delegateAdapter.addAdapter(banneradapter);
         delegateAdapter.addAdapter(headAdapter);
         delegateAdapter.addAdapter(gridAdapter);
-        delegateAdapter.addAdapter(pgcAdapter);
-        delegateAdapter.addAdapter(pAdapter);
         delegateAdapter.addAdapter(selectheadAdapter);
         delegateAdapter.addAdapter(setlectAdapter);
+        delegateAdapter.addAdapter(pgcAdapter);
+        delegateAdapter.addAdapter(pAdapter);
         delegateAdapter.addAdapter(hotheadAdapter);
         delegateAdapter.addAdapter(zhotAdapter);
         delegateAdapter.addAdapter(endAdapter);
@@ -222,7 +237,8 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
         gridHelper.setAutoExpand(true);
         return gridHelper;
     }
-    private LayoutHelper getColumnLayoutHelper(){
+
+    private LayoutHelper getColumnLayoutHelper() {
         ColumnLayoutHelper columnLayoutHelper = new ColumnLayoutHelper();
         columnLayoutHelper.setItemCount(3);// 设置布局里Item个数
         columnLayoutHelper.setPadding(20, 20, 20, 20);// 设置LayoutHelper的子元素相对LayoutHelper边缘的距离
@@ -234,17 +250,20 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
         columnLayoutHelper.setWeights(new float[]{30, 40, 30});// 设置该行每个Item占该行总宽度的比例
         return columnLayoutHelper;
     }
-    private LayoutHelper getSingleLayoutHelper(){
+
+    private LayoutHelper getSingleLayoutHelper() {
         SingleLayoutHelper singleLayoutHelper = new SingleLayoutHelper();
         singleLayoutHelper.setItemCount(1);// 设置布局里Item个数
         singleLayoutHelper.setPadding(0, 20, 0, 0);// 设置LayoutHelper的子元素相对LayoutHelper边缘的距离
         return singleLayoutHelper;
     }
-    private LayoutHelper getLinearLayoutHelper(){
-        LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
-        linearLayoutHelper.setPadding(0,25,0,15);
+
+    private LayoutHelper getLinearLayoutHelper() {
+        LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
+        linearLayoutHelper.setPadding(0, 25, 0, 15);
         return linearLayoutHelper;
     }
+
     private LayoutHelper getScrollLayoutHelper() {
         ScrollFixLayoutHelper scrollFixLayoutHelper = new ScrollFixLayoutHelper(0, 0);
         scrollFixLayoutHelper.setShowType(2);
@@ -253,16 +272,19 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
 //        scrollFixLayoutHelper.setFixViewAnimatorHelper(onGetFixViewAppearAnimator());
         return scrollFixLayoutHelper;
     }
-    public ViewPropertyAnimator GetFixViewAppearAnimator(View fixView) {
+
+    public ViewPropertyAnimator getFixViewAppearAnimator(View fixView) {
         int height = fixView.getMeasuredHeight();
         fixView.setTranslationY(-height);
         return fixView.animate().translationYBy(height).alpha(1.0f).setDuration(500);
     }
+
     private LayoutHelper getWaterHelper() {
         StaggeredGridLayoutHelper staggerHelper = new StaggeredGridLayoutHelper(2, 8);
         staggerHelper.setMargin(0, 20, 0, 10);
         return staggerHelper;
     }
+
     @Override
     public void loadDataError(Throwable throwable) {
         bannerPresenterImp.requestError(throwable);
@@ -313,7 +335,7 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
     }
 
@@ -322,7 +344,6 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
 //        banner.startAutoPlay();
         //开始轮播
     }
-
     @Override
     public void onStop() {
         super.onStop();
@@ -336,9 +357,10 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
         gridAdapter.notifyDataSetChanged();
 
     }
+
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(hidden){
+        if (hidden) {
 //            banner.stopAutoPlay();
         }
     }
@@ -348,5 +370,26 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
         zhihuHotBeans.add(tData);
         zhotAdapter.setData(zhihuHotBeans);
         zhotAdapter.notifyDataSetChanged();
+    }
+
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fm = getChildFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.home_fragment,fragment);
+        ft.addToBackStack(null);
+        ft.commit();
+
+
+//        FragmentManager fm = getChildFragmentManager();
+//        FragmentTransaction ft = fm.beginTransaction();
+//        HomePageFragment homePageFragment=new HomePageFragment();
+//        ft.hide(homePageFragment);
+//        if (fragment==null){
+//            ft.add(R.id.home_fragment, fragment);
+//        }else {
+//            ft.show(fragment);
+//        }
+//        ft.addToBackStack(null);
+//        ft.commit();
     }
 }

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 
 import com.example.interviewpractice.ui.baseView.BaseActivity;
@@ -46,8 +47,6 @@ public class MainActivity extends BaseActivity {
         FragmentManager fragmentManage = getSupportFragmentManager();
         fragmentManage.beginTransaction().add(R.id.fg,homepageFragemnt).commit();
         mFragment=homepageFragemnt;
-
-
     }
 
     /**
@@ -110,8 +109,15 @@ public class MainActivity extends BaseActivity {
         }
         super.onBackPressed();
     }
+    @Override
     protected void onPause() {
-        super.onPause();
         JCVideoPlayer.releaseAllVideos();
+        super.onPause();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+       
+        return super.onKeyDown(keyCode, event);
     }
 }

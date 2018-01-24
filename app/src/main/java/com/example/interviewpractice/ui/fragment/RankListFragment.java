@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.RankListAdapter;
 import com.example.interviewpractice.enity.RankListBean;
-import com.example.interviewpractice.mvp.presenter.RankListPresenterImp;
-import com.example.interviewpractice.mvp.view.RankListView;
+import com.example.interviewpractice.mvp.homepage.presenter.RankListPresenterImp;
+import com.example.interviewpractice.mvp.homepage.view.RankListView;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 

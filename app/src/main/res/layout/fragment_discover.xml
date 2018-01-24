@@ -11,6 +11,10 @@
         layout="@layout/top_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <com.example.interviewpractice.weight.FatRecyclerview
+        android:id="@+id/discover_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
     <!--<LinearLayout-->
     <!--android:orientation="vertical"-->
     <!--android:layout_width="match_parent"-->

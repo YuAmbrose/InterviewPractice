@@ -1,7 +1,5 @@
 package com.example.interviewpractice.app;
 
-import java.net.URL;
-
 /**
  * Created by Administrator on 2018/1/18.
  */
@@ -54,7 +52,18 @@ public class RequestUrl {
     public static  final String article="https://interface.meiriyiwen.com/article/random";
     //今日文章
     public static  final String todayarticle="https://interface.meiriyiwen.com/article/today";
+    //图片格式转换
+    //final String imgUrl = ImgSizeUtil.resetPicUrl(item.getImg(), ".webp@171w_240h_1e_1c_1l");
 
+    //http://api.maoyan.com/mmdb/movie/v3/list/hot.json  热门影片。有mp4，需要转换图片
+    //http://api.maoyan.com/mmdb/movie/lp/list.json  待映-预告片推荐  有mp4，不需要转换图片
+    //http://api.maoyan.com/mmdb/movieboard/fixedboard/7.json  每日热映口碑榜 没有mp4 需要转换图片
+    //http://api.maoyan.com/mmdb/movieboard/fixedboard/6.json   猫眼想看月度榜 没有mp4 需要转换图片
+    //http://api.maoyan.com/mmdb/movieboard/fixedboard/4.json   猫眼经典Top100 没有mp4 需要转换图片
+    //http://api.maoyan.com/mmdb/movieboard/fixedboard/1.json   "每日热映票房榜" 没有mp4 需要转换图片
+    //http://api.maoyan.com/mmdb/movie/v2/list/rt/order/coming.json  准备上映  有mp4，需要转换图片
+    //http://m.maoyan.com/cinemas.json  附近影院
+    //http://api.maoyan.com/mmdb/movie/v5/1199974.json  电影详细信息
 
     //https://app.vmovier.com/apiv3/cate/getList
     //https://app.vmovier.com/apiv3/index/index
@@ -62,9 +71,9 @@ public class RequestUrl {
     //URL	https://app.vmovier.com/apiv3/post/getPostInCate
     //URL	https://app.vmovier.com/apiv3/index/getBanner
 
-    //URL	http://baobab.kaiyanapp.com/api/v5/index/tab/list?udid=5229c3d8b36345c5a63896eab40bb3f25fd15479&vc=254&vn=3.14&deviceModel=MI%204W&first_channel=eyepetizer_xiaomi_market&last_channel=eyepetizer_xiaomi_market&system_version_code=23
-    //URL	http://baobab.kaiyanapp.com/api/v5/index/tab/allRec?page=0&udid=5229c3d8b36345c5a63896eab40bb3f25fd15479&vc=254&vn=3.14&deviceModel=MI%204W&first_channel=eyepetizer_xiaomi_market&last_channel=eyepetizer_xiaomi_market&system_version_code=23
-    //URL	http://baobab.kaiyanapp.com/api/v2/notification?udid=5229c3d8b36345c5a63896eab40bb3f25fd15479&vc=254&vn=3.14&deviceModel=MI%204W&first_channel=eyepetizer_xiaomi_market&last_channel=eyepetizer_xiaomi_market&system_version_code=23
-//URL	http://baobab.kaiyanapp.com/api/v1/tag/videos?id=52&udid=5229c3d8b36345c5a63896eab40bb3f25fd15479&vc=254&vn=3.14&deviceModel=MI%204W&first_channel=eyepetizer_xiaomi_market&last_channel=eyepetizer_xiaomi_market&system_version_code=23
-    //URL	http://baobab.kaiyanapp.com/api/v1/tag/dynamics?id=52&udid=5229c3d8b36345c5a63896eab40bb3f25fd15479&vc=254&vn=3.14&deviceModel=MI%204W&first_channel=eyepetizer_xiaomi_market&last_channel=eyepetizer_xiaomi_market&system_version_code=23
+    //URL	http://baobab.kaiyanapp.com/api/v5/index/tab/list?
+    //URL	http://baobab.kaiyanapp.com/api/v5/index/tab/allRec?page=0
+    //URL	http://baobab.kaiyanapp.com/api/v2/notification
+    //URL	http://baobab.kaiyanapp.com/api/v1/tag/videos?id=52
+    //URL	http://baobab.kaiyanapp.com/api/v1/tag/dynamics?
 }

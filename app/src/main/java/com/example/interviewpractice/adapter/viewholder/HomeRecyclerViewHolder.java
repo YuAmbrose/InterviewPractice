@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.utils.helper.GlideRoundTransform;
@@ -37,7 +38,7 @@ public class HomeRecyclerViewHolder extends BaseViewHolder<RankListBean.ItemList
             int t=time*1000;
             String d=format.format(t);
             timer.setText(d);
-                Glide.with(getContext())
+                Glide.with(MyApplication.getContext())
                         .load(data.getData().getCover().getFeed())
                         .transform(new GlideRoundTransform(getContext(), 8))
                         .into(imageView);

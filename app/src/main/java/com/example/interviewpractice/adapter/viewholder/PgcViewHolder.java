@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.enity.PgcBean;
 import com.example.interviewpractice.utils.helper.GlideRoundTransform;
@@ -35,13 +36,13 @@ public class PgcViewHolder extends BaseViewHolder<PgcBean.ItemListBean> {
     public void setData(PgcBean.ItemListBean data) {
         super.setData(data);
 
-        Glide.with(getContext())
+        Glide.with(MyApplication.getContext())
                 .load(data.getData().getIcon())
                 .transform(new GlideRoundTransform(getContext(), 3))
                 .bitmapTransform(new BlurTransformation(getContext(), 200, 3))
                 .into(bgVeiw);
 
-        Glide.with(getContext())
+        Glide.with(MyApplication.getContext())
                 .load(data.getData().getIcon())
                 .bitmapTransform(new CropCircleTransformation(getContext()))
                 .into(icon);

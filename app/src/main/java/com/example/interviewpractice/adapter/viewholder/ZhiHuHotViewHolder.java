@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.enity.ZhihuHotBean;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -25,7 +26,7 @@ public class ZhiHuHotViewHolder extends BaseViewHolder<ZhihuHotBean.RecentBean> 
     @Override
     public void setData(ZhihuHotBean.RecentBean data) {
         super.setData(data);
-        Glide.with(getContext()).load(data.getThumbnail()).into(imageView);
+        Glide.with(MyApplication.getContext()).load(data.getThumbnail()).into(imageView);
         textView.setText(data.getTitle());
     }
 }

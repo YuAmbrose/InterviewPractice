@@ -1,4 +1,4 @@
-package com.example.interviewpractice.ui.fragment;
+package com.example.interviewpractice.ui.fragment.childFragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,12 +9,13 @@ import com.example.interviewpractice.R;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
 
 
-public class ForumFragment extends BaseFragment{
-    private static final String TAG = "ForumFragment";
+public class AuthorDetailFragment extends BaseFragment {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-       View view=inflater.inflate(R.layout.fragment_forum, container, false);
+        View view= inflater.inflate(R.layout.fragment_author_detail, container, false);
         return view;
     }
+
 
 }
