@@ -9,7 +9,7 @@ import com.example.interviewpractice.R;
 import com.example.interviewpractice.enity.RankListBean;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+import cn.jzvd.JZVideoPlayerStandard;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
@@ -19,7 +19,7 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 public class RankListViewHolder extends BaseViewHolder<RankListBean.ItemListBean> {
     private ImageView iconhead;
     private TextView iconname,title;
-    private JCVideoPlayerStandard player;
+    private JZVideoPlayerStandard player;
 
     public RankListViewHolder(ViewGroup parent) {
         super(parent, R.layout.ranklist_item);
@@ -42,7 +42,7 @@ public class RankListViewHolder extends BaseViewHolder<RankListBean.ItemListBean
 //                "http://2449.vod.myqcloud.com/2449_43b6f696980311e59ed467f22794e792.f20.mp4",
 //                "http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640",
 //                "一行代码实现视频播放");
-        player.setUp(data.getData().getPlayUrl(),player.SCREEN_LAYOUT_NORMAL,"");
+        player.setUp(data.getData().getPlayUrl(),player.SCREEN_WINDOW_NORMAL,"");
         Glide.with(getContext())
                 .load(data.getData().getAuthor().getIcon())
                 .bitmapTransform(new CropCircleTransformation(getContext()))

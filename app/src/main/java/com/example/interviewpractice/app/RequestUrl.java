@@ -63,10 +63,14 @@ public class RequestUrl {
     //http://api.maoyan.com/mmdb/movieboard/fixedboard/1.json   "每日热映票房榜" 没有mp4 需要转换图片
     //http://api.maoyan.com/mmdb/movie/v2/list/rt/order/coming.json  准备上映  有mp4，需要转换图片
     //http://m.maoyan.com/cinemas.json  附近影院
-    //http://api.maoyan.com/mmdb/movie/v5/1199974.json  电影详细信息
+    //http://api.maoyan.com/mmdb/movie/v5/71946.json  电影详细信息
+    //http://api.maoyan.com/mmdb/movie/71946/feature/dialogues.json 电影经典台词
+    //http://api.maoyan.com/sns/movie/71946/filmReview/top.json  长评论
+    //http://api.maoyan.com/mmdb/v1/movie/71946/videos.json   更多预告片
 
-    //https://app.vmovier.com/apiv3/cate/getList
-    //https://app.vmovier.com/apiv3/index/index
+
+    //  https://app.vmovier.com/apiv3/cate/getList
+    //  https://app.vmovier.com/apiv3/index/index
     //URL	https://app.vmovier.com/apiv3/post/getPostByTab
     //URL	https://app.vmovier.com/apiv3/post/getPostInCate
     //URL	https://app.vmovier.com/apiv3/index/getBanner

@@ -18,7 +18,7 @@ import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import cn.jzvd.JZVideoPlayer;
 
 
 public class MainActivity extends BaseActivity {
@@ -104,14 +104,14 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (JCVideoPlayer.backPress()) {
+        if (JZVideoPlayer.backPress()) {
             return;
         }
         super.onBackPressed();
     }
     @Override
     protected void onPause() {
-        JCVideoPlayer.releaseAllVideos();
+        JZVideoPlayer.releaseAllVideos();
         super.onPause();
     }
 

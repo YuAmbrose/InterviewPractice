@@ -5,7 +5,7 @@ android {
     buildToolsVersion '27.0.1'
     defaultConfig {
         applicationId "com.example.interviewpractice"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -53,7 +53,8 @@ dependencies {
     compile 'com.youth.banner:banner:1.4.10'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile 'fm.jiecao:jiecaovideoplayer:4.8.3'
+//    compile 'fm.jiecao:jiecaovideoplayer:4.8.3'
+    compile 'cn.jzvd:jiaozivideoplayer:6.2.7'
     compile('com.alibaba.android:vlayout:1.2.8@aar') {
         transitive = true
     }

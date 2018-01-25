@@ -13,7 +13,7 @@ import com.example.interviewpractice.ui.fragment.HomePageFragment;
 import com.example.interviewpractice.v_layout.VlayoutBaseHolder;
 
 import butterknife.BindView;
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
 
 /**
  * Created by Administrator on 2018/1/11.
@@ -47,7 +47,7 @@ public class TabHolder extends VlayoutBaseHolder<RankListBean> {
         ranklistviewpager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
             @Override
             public void onPageSelected(int position) {
-                JCVideoPlayer.releaseAllVideos();
+//                JCVideoPlayer.releaseAllVideos();
             }
         });
         ranklistviewpager.setAdapter(rankListFragmentAdapter);

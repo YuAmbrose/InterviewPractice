@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp">
+    <cn.jzvd.JZVideoPlayerStandard
+    android:id="@+id/jzplayer"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"/>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:paddingTop="5dp"
+        android:id="@+id/des"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>
