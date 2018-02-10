@@ -1,4 +1,4 @@
-package com.example.interviewpractice.v_layout.holder;
+package com.example.interviewpractice.v_layout.holder.home;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;

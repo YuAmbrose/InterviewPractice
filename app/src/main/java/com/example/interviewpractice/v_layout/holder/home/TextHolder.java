@@ -1,4 +1,4 @@
-package com.example.interviewpractice.v_layout.holder;
+package com.example.interviewpractice.v_layout.holder.home;
 
 import android.view.View;
 

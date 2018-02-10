@@ -3,11 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.interviewpractice.ui.fragment.HomeMovieFragment">
-
-
-    <TextView
+    <com.example.interviewpractice.weight.FatRecyclerview
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="0000" />
-
+        android:layout_height="match_parent"/>
 </FrameLayout>

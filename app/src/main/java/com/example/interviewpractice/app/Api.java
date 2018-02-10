@@ -1,6 +1,7 @@
 package com.example.interviewpractice.app;
 
 import com.example.interviewpractice.enity.BannerBean;
+import com.example.interviewpractice.enity.HotMovieBean;
 import com.example.interviewpractice.enity.PgcBean;
 import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.enity.ZhihuHotBean;
@@ -48,4 +49,10 @@ public interface Api {
      */
     @GET("news/hot")
     Observable<ZhihuHotBean> getZHot();
+
+    /**
+     * 热门电影
+     */
+    @GET("movieboard/fixedboard/7.json")
+    Observable<HotMovieBean> getHotMovie();
 }

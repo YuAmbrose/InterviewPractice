@@ -8,10 +8,11 @@ import com.example.interviewpractice.app.Constans;
  */
 public class BaseModel{
     //retrofit请求数据的管理类
-    public RetrofitManager retrofitManager,zhRetrofitManager;
+    public RetrofitManager retrofitManager,zhRetrofitManager,maoyanRetrofitManager;
 
     public BaseModel() {
         retrofitManager = RetrofitManager.builder(Constans.EyepetizerBaseUrl);
         zhRetrofitManager=RetrofitManager.builder(Constans.ZhihuBaseURL);
+        maoyanRetrofitManager=RetrofitManager.builder(Constans.MaoYanBaseUrl);
     }
 }

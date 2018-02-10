@@ -7,10 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * 类名: {@link InflateConstants}
- * <br/> 功能描述: 存储全局数据的基本类
- * <br/> 作者: MouTao
- * <br/> 时间: 2017/5/19
+ * 功能描述: 存储全局数据的基本类
  */
 public class InflateConstants {
 
