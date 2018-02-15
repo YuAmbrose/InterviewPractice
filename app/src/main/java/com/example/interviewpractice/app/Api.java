@@ -1,6 +1,8 @@
 package com.example.interviewpractice.app;
 
 import com.example.interviewpractice.enity.BannerBean;
+import com.example.interviewpractice.enity.ComingMovieBean;
+import com.example.interviewpractice.enity.PrevueBean;
 import com.example.interviewpractice.enity.HotMovieBean;
 import com.example.interviewpractice.enity.PgcBean;
 import com.example.interviewpractice.enity.RankListBean;
@@ -55,4 +57,14 @@ public interface Api {
      */
     @GET("movieboard/fixedboard/7.json")
     Observable<HotMovieBean> getHotMovie();
+    /**
+     * 预告片
+     */
+    @GET("movie/lp/list.json")
+    Observable<PrevueBean> getComingMovie();
+    /**
+     * 即将上映
+     */
+    @GET("movie/v2/list/rt/order/coming.json")
+    Observable<ComingMovieBean> getComingList();
 }

@@ -1,12 +1,14 @@
 package com.example.interviewpractice.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.ScrollFixLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.alibaba.android.vlayout.layout.StaggeredGridLayoutHelper;
+import com.example.interviewpractice.MainActivity;
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.HomeRecyclervAdapter;
@@ -41,6 +44,7 @@ import com.example.interviewpractice.mvp.homepage.view.CategorytabView;
 import com.example.interviewpractice.mvp.homepage.view.PgcView;
 import com.example.interviewpractice.mvp.homepage.view.RankListView;
 import com.example.interviewpractice.mvp.homepage.view.ZHotView;
+import com.example.interviewpractice.ui.activity.RankActivity;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.example.interviewpractice.ui.fragment.childFragment.AuthorDetailFragment;
 import com.example.interviewpractice.v_layout.ItemListener;
@@ -113,7 +117,9 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener<BannerBean>() {
                     @Override
                     public void onItemClick(View view, int position, BannerBean mData) {
-                        Toast.makeText(MyApplication.getContext(), mData.getIssueList().get(0).getItemList().get(position + 1).getData().getTitle(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MyApplication.getContext(), mData.getIssueList().get(position).getItemList().get(position).getId(), Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "onItemClick: "+mData.getIssueList().get(0).getItemList().get(position + 1).getData().getId() );
+                        Toast.makeText(MyApplication.getContext(), mData.getIssueList().get(0).getItemList().get(position + 1).getData().getSlogan(), Toast.LENGTH_SHORT).show();
                     }
                 });
         pgcAdapter = new VlayoutBaseAdapter(mContext)
@@ -156,6 +162,7 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener<PgcBean>() {
                     @Override
                     public void onItemClick(View view, int position, PgcBean mData) {
+                        Log.e(TAG, "onItemClick: "+mData.getItemList().get(position).getData().getId() );
                         Toast.makeText(MyApplication.getContext(), "888", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -179,7 +186,24 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener<CategoryTab>() {
                     @Override
                     public void onItemClick(View view, int position, CategoryTab mData) {
-                        Toast.makeText(MyApplication.getContext(), mData.getType(), Toast.LENGTH_SHORT).show();
+                        switch (mData.getId()){
+                            case "0":
+                                Toast.makeText(MyApplication.getContext(), mData.getId(), Toast.LENGTH_SHORT).show();
+                                break;
+                            case "1":
+                                Toast.makeText(MyApplication.getContext(), mData.getId(), Toast.LENGTH_SHORT).show();
+                                break;
+                            case "2":
+                                Toast.makeText(MyApplication.getContext(), mData.getId(), Toast.LENGTH_SHORT).show();
+                                break;
+                            case "3":
+                                Intent intent=new Intent(MyApplication.getContext(), RankActivity.class);
+                                startActivity(intent);
+                                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_still);
+                                break;
+                                default:
+                        }
+
                     }
                 });
         zhotAdapter = new VlayoutBaseAdapter(mContext)
@@ -196,6 +220,7 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                     @Override
                     public void onItemClick(View view, int position, RankListBean mData) {
                         replaceFragment(new AuthorDetailFragment());
+                        Log.e(TAG, "onItemClick: "+mData.getItemList().get(position).getData().getId());
                         Toast.makeText(MyApplication.getContext(), "888", Toast.LENGTH_SHORT).show();
                     }
                 });
