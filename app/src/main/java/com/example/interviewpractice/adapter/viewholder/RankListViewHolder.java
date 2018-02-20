@@ -42,6 +42,7 @@ public class RankListViewHolder extends BaseViewHolder<RankListBean.ItemListBean
 //                "http://2449.vod.myqcloud.com/2449_43b6f696980311e59ed467f22794e792.f20.mp4",
 //                "http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640",
 //                "一行代码实现视频播放");
+
         player.setUp(data.getData().getPlayUrl(),player.SCREEN_WINDOW_NORMAL,"");
         Glide.with(getContext())
                 .load(data.getData().getAuthor().getIcon())

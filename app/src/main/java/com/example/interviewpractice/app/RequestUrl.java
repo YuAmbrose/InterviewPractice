@@ -20,7 +20,7 @@ public class RequestUrl {
     public static final  String videoDetail=BaseUrl+"v1/video/2492";
     //评论信息
     public static final  String replay="v1/replies/video?id=2492";
-
+    //http://baobab.kaiyanapp.com/api/v4/video/related?id=85176
     //根据分类id获取该分类的全部信息
     //http://baobab.kaiyanapp.com/api/v4/categories/detail/tab?id=2
     public static final  String cagDetail=BaseUrl+"v3/categories/detail?id=18";

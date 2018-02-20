@@ -44,6 +44,7 @@ import com.example.interviewpractice.mvp.homepage.view.CategorytabView;
 import com.example.interviewpractice.mvp.homepage.view.PgcView;
 import com.example.interviewpractice.mvp.homepage.view.RankListView;
 import com.example.interviewpractice.mvp.homepage.view.ZHotView;
+import com.example.interviewpractice.ui.activity.EDetailActivity;
 import com.example.interviewpractice.ui.activity.RankActivity;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.example.interviewpractice.ui.fragment.childFragment.AuthorDetailFragment;
@@ -117,6 +118,8 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener<BannerBean>() {
                     @Override
                     public void onItemClick(View view, int position, BannerBean mData) {
+                        Intent bannerIntent=new Intent(MyApplication.getContext(), EDetailActivity.class);
+                        startActivity(bannerIntent);
 //                        Toast.makeText(MyApplication.getContext(), mData.getIssueList().get(position).getItemList().get(position).getId(), Toast.LENGTH_SHORT).show();
                         Log.e(TAG, "onItemClick: "+mData.getIssueList().get(0).getItemList().get(position + 1).getData().getId() );
                         Toast.makeText(MyApplication.getContext(), mData.getIssueList().get(0).getItemList().get(position + 1).getData().getSlogan(), Toast.LENGTH_SHORT).show();
@@ -162,6 +165,8 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener<PgcBean>() {
                     @Override
                     public void onItemClick(View view, int position, PgcBean mData) {
+                        Intent bannerIntent=new Intent(MyApplication.getContext(), EDetailActivity.class);
+                        startActivity(bannerIntent);
                         Log.e(TAG, "onItemClick: "+mData.getItemList().get(position).getData().getId() );
                         Toast.makeText(MyApplication.getContext(), "888", Toast.LENGTH_SHORT).show();
                     }

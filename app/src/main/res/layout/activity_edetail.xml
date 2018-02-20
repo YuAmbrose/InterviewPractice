@@ -7,9 +7,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.interviewpractice.ui.activity.EDetailActivity">
-
-    <com.example.interviewpractice.weight.FatRecyclerview
-        android:id="@+id/pgc_recyclerview"
+    <com.example.interviewpractice.weight.JzPlayer
+        android:id="@+id/player"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.example.interviewpractice.weight.FatRecyclerview>
+        android:layout_height="220dp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<ImageView
+    android:scaleType="centerCrop"
+    android:id="@+id/imagebg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+        <com.example.interviewpractice.weight.FatRecyclerview
+            android:id="@+id/pgc_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.example.interviewpractice.weight.FatRecyclerview>
+    </FrameLayout>
+
 </LinearLayout>

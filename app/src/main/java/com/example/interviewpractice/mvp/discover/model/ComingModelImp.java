@@ -31,19 +31,19 @@ public class ComingModelImp extends BaseModel implements ComingModel<ComingMovie
     @Override
     public void loadSuccessComing(final  IBaseRequestCallBack<ComingMovieBean> iBaseRequestCallBack) {
         mcompositeDisposable.add(api.getComingList()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Consumer<ComingMovieBean>() {
-                    @Override
-                    public void accept(ComingMovieBean comingMovieBean) throws Exception {
-                        iBaseRequestCallBack.requestSuccess(comingMovieBean);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        iBaseRequestCallBack.requestError(throwable);
-                    }
-                }));
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(new Consumer<ComingMovieBean>() {
+        @Override
+        public void accept(ComingMovieBean comingMovieBean) throws Exception {
+            iBaseRequestCallBack.requestSuccess(comingMovieBean);
+        }
+    }, new Consumer<Throwable>() {
+        @Override
+        public void accept(Throwable throwable) throws Exception {
+            iBaseRequestCallBack.requestError(throwable);
+        }
+    }));
 
-    }
+}
 }

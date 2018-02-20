@@ -2,6 +2,7 @@ package com.example.interviewpractice.app;
 
 import com.example.interviewpractice.enity.BannerBean;
 import com.example.interviewpractice.enity.ComingMovieBean;
+import com.example.interviewpractice.enity.EyDetailBean;
 import com.example.interviewpractice.enity.PrevueBean;
 import com.example.interviewpractice.enity.HotMovieBean;
 import com.example.interviewpractice.enity.PgcBean;
@@ -10,6 +11,7 @@ import com.example.interviewpractice.enity.ZhihuHotBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -32,7 +34,11 @@ public interface Api {
     Observable<RankListBean> getRankList(@Query("strategy") String strategy,
                                          @Query("start")int start,
                                          @Query("num") int num);
-
+/**
+ * 该Id相似内容
+ */
+@GET("v4/video/related{id}")
+Observable<RankListBean> getRecomendar(@Path("id") String id);
     /**
      *开眼热门内容
      */
@@ -67,4 +73,9 @@ public interface Api {
      */
     @GET("movie/v2/list/rt/order/coming.json")
     Observable<ComingMovieBean> getComingList();
+    /**
+     * 开眼视频详细信息
+     */
+    @GET("v1/video/{id}" )
+    Observable<EyDetailBean> getEyDetail(@Path("id") String id);
 }

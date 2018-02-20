@@ -1,9 +1,10 @@
-package com.example.interviewpractice.mvp.discover;
+package com.example.interviewpractice.mvp.EyDetail;
 
 /**
- * Created by 鱼握拳 on 2018/1/27.
+ * @author 刘镓旗
+ * @date 2017/11/17
+ * @description 指定绑定的View必须继承自IMvpBaseView4
  */
-
 public abstract class AbstractMvpPersenter<V extends IMvpBaseView> {
 
     private V mMvpView;
