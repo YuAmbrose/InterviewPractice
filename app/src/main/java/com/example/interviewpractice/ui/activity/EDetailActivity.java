@@ -3,8 +3,10 @@ package com.example.interviewpractice.ui.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
@@ -13,11 +15,15 @@ import com.bumptech.glide.Glide;
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.enity.EyDetailBean;
+import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpActivity;
 import com.example.interviewpractice.mvp.EyDetail.RequestPresenter;
 import com.example.interviewpractice.mvp.EyDetail.RequestView;
+import com.example.interviewpractice.ui.fragment.childFragment.AuthorDetailFragment;
+import com.example.interviewpractice.v_layout.ItemListener;
 import com.example.interviewpractice.v_layout.VlayoutBaseAdapter;
 import com.example.interviewpractice.v_layout.holder.EyDetail.TextHolder;
+import com.example.interviewpractice.v_layout.holder.home.SelectHolder;
 import com.example.interviewpractice.weight.FatRecyclerview;
 import com.example.interviewpractice.weight.JzPlayer;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
@@ -41,10 +47,10 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
     @BindView(R.id.player)
     JzPlayer jzPlayer;
 
-
+    private List<RankListBean> itemListBeans = new ArrayList<>();
     private RequestPresenter requestPresenter;
     private DelegateAdapter delegateAdapter;
-    private VlayoutBaseAdapter jzAdapter, textAdapter;
+    private VlayoutBaseAdapter jzAdapter, textAdapter,setlectAdapter;
     private Context mContext;
     private List<EyDetailBean> detailBeans = new ArrayList<>();
     private static final String TAG = "EDetailActivity";
@@ -88,7 +94,21 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
                 .setLayout(R.layout.vlayout_ey_detail_text)
                 .setLayoutHelper(new LinearLayoutHelper())
                 .setHolder(TextHolder.class);
+        setlectAdapter = new VlayoutBaseAdapter(mContext)
+                .setData(new ArrayList<RankListBean>())
+                .setLayoutHelper(new LinearLayoutHelper())
+                .setLayout(R.layout.vlayout_eydetail_recyclerview)
+                .setHolder(SelectHolder.class)
+                .setListener(new ItemListener<RankListBean>() {
+                    @Override
+                    public void onItemClick(View view, int position, RankListBean mData) {
+                        getPresenter().clickRequest("35832");
+
+
+                    }
+                });
         delegateAdapter.addAdapter(textAdapter);
+        delegateAdapter.addAdapter(setlectAdapter);
         mRecycler.setAdapter(delegateAdapter);
     }
 
@@ -114,7 +134,7 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
         Glide.with(this)
                 .load(eyDetailBean.getCoverBlurred())
                 .crossFade(500)
-                .bitmapTransform(new BlurTransformation(getApplicationContext(), 140, 3))
+                .bitmapTransform(new BlurTransformation(getApplicationContext(), 140, 50))
                 .into(imagebg);
         detailBeans.add(eyDetailBean);
 //        jzAdapter.setData(detailBeans);
@@ -125,9 +145,22 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
 
     @Override
     public void resultFailure(String result) {
-//        tipDialog.dismiss();
+
     }
 
+    @Override
+    public void resultRecomendar(RankListBean rankListBean) {
+
+        for (int i = 0; i < rankListBean.getItemList().size(); i++) {
+            if (rankListBean.getItemList().get(i).getType().equals("textCard")) {
+                rankListBean.getItemList().remove(i);
+            } else {
+            }
+        }
+            itemListBeans.add(rankListBean);
+            setlectAdapter.setData(itemListBeans);
+            setlectAdapter.notifyDataSetChanged();
+    }
     @Override
     public void onBackPressed() {
         if (JZVideoPlayer.backPress()) {

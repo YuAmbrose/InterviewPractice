@@ -37,8 +37,8 @@ public interface Api {
 /**
  * 该Id相似内容
  */
-@GET("v4/video/related{id}")
-Observable<RankListBean> getRecomendar(@Path("id") String id);
+@GET("v4/video/related")
+Observable<RankListBean> getRecomendar(@Query("id") String id);
     /**
      *开眼热门内容
      */

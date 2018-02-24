@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.enity.EyDetailBean;
+import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.http.IBaseRequestCallBack;
 
 import retrofit2.Call;
@@ -35,6 +36,21 @@ public class RequestPresenter extends AbstractMvpPersenter<RequestView>{
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                mRequestMode.RequesetReComender(Id, new IBaseRequestCallBack<RankListBean>() {
+                    @Override
+                    public void requestError(Throwable throwable) {
+                        if(getmMvpView() != null){
+                            getmMvpView().resultFailure(Log.getStackTraceString(throwable));
+                        }
+                    }
+
+                    @Override
+                    public void requestSuccess(RankListBean rankListBean) {
+                        if(getmMvpView() != null){
+                            getmMvpView().resultRecomendar(rankListBean);
+                        }
+                    }
+                });
                 mRequestMode.request(Id, new IBaseRequestCallBack<EyDetailBean>() {
                     @Override
                     public void requestError(Throwable throwable) {

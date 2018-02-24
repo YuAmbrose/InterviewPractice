@@ -357,6 +357,7 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
 
         headAdapter.setData(itemListBeans);
         headAdapter.notifyDataSetChanged();
+
     }
 
     @Override

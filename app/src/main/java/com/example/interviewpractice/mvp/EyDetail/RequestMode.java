@@ -7,6 +7,7 @@ import android.content.Context;
 import com.example.interviewpractice.app.Api;
 import com.example.interviewpractice.enity.EyDetailBean;
 import com.example.interviewpractice.enity.HotMovieBean;
+import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.http.BaseModel;
 import com.example.interviewpractice.http.IBaseRequestCallBack;
 
@@ -48,8 +49,6 @@ public class RequestMode extends BaseModel {
 //        ApiService apiService = retrofit.create(ApiService.class);
 //        weatherBeanCall = apiService.requestWeather(cityId);
 //        weatherBeanCall.enqueue(callback);
-
-
         mcompositeDisposable.add(api.getEyDetail(Id)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -66,7 +65,23 @@ public class RequestMode extends BaseModel {
                     }
                 }));
     }
+    public  void  RequesetReComender(String id, final IBaseRequestCallBack<RankListBean> rankListBeanIBaseRequestCallBack){
+        mcompositeDisposable.add(api.getRecomendar(id)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Consumer<RankListBean>() {
+                    @Override
+                    public void accept(RankListBean rankListBean) throws Exception {
 
+                        rankListBeanIBaseRequestCallBack.requestSuccess(rankListBean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        rankListBeanIBaseRequestCallBack.requestError(throwable);
+                    }
+                }));
+    }
 
     public void interruptHttp(){
         if(weatherBeanCall != null && !weatherBeanCall.isCanceled()){
