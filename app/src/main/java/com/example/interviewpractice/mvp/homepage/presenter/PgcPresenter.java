@@ -5,5 +5,5 @@ package com.example.interviewpractice.mvp.homepage.presenter;
  */
 
 public interface PgcPresenter {
-    void loadPgc();
+    void loadPgc(int start,int num);
 }

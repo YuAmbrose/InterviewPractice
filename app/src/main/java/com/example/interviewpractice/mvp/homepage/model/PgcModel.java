@@ -7,5 +7,5 @@ import com.example.interviewpractice.http.IBaseRequestCallBack;
  */
 
 public interface PgcModel<T> {
-    void loadPgc(IBaseRequestCallBack<T> iBaseRequestCallBack);
+    void loadPgc(int start,int num,IBaseRequestCallBack<T> iBaseRequestCallBack);
 }

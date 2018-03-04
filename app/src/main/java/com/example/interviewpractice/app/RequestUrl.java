@@ -80,4 +80,5 @@ public class RequestUrl {
     //URL	http://baobab.kaiyanapp.com/api/v2/notification
     //URL	http://baobab.kaiyanapp.com/api/v1/tag/videos?id=52
     //URL	http://baobab.kaiyanapp.com/api/v1/tag/dynamics?
+    //http://baobab.kaiyanapp.com/api/v4/pgcs/videoList?start=10&num=10&id=2170&strategy=mostPopular
 }

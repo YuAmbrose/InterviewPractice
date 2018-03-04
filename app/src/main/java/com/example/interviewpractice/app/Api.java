@@ -51,8 +51,9 @@ Observable<RankListBean> getRecomendar(@Query("id") String id);
      * 开眼作者
      * @return
      */
-    @GET("v4/pgcs/all?start=10&num=10")
-    Observable<PgcBean> getPgc();
+    @GET("v4/pgcs/all")
+    Observable<PgcBean> getPgc( @Query("start")int start,
+                                @Query("num") int num);
     /**
      * 知乎日报
      */

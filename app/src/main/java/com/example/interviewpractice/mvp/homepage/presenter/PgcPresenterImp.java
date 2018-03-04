@@ -21,7 +21,7 @@ public class PgcPresenterImp extends PgcBasePrestener<PgcView,PgcBean> implement
     }
 
     @Override
-    public void loadPgc() {
-        pgcModelImp.loadPgc(this);
+    public void loadPgc(int start,int num) {
+        pgcModelImp.loadPgc(start,num,this);
     }
 }

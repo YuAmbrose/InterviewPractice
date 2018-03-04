@@ -45,6 +45,7 @@ import com.example.interviewpractice.mvp.homepage.view.PgcView;
 import com.example.interviewpractice.mvp.homepage.view.RankListView;
 import com.example.interviewpractice.mvp.homepage.view.ZHotView;
 import com.example.interviewpractice.ui.activity.EDetailActivity;
+import com.example.interviewpractice.ui.activity.MoreAuthorActivity;
 import com.example.interviewpractice.ui.activity.RankActivity;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.example.interviewpractice.ui.fragment.childFragment.AuthorDetailFragment;
@@ -96,7 +97,7 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
         ButterKnife.bind(this, view);
         cagPesenterImp.categoryTabPes();
         bannerPresenterImp.loadBanner();
-        pgcPresenterImp.loadPgc();
+        pgcPresenterImp.loadPgc(10,10);
         rankListPresenterImp.loadSelect(10, 20);
         zHotPresenterImp.loadZhiHuNews();
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(mContext);
@@ -146,7 +147,9 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener() {
                     @Override
                     public void onItemClick(View view, int position, Object mData) {
-                        Toast.makeText(MyApplication.getContext(), "9998", Toast.LENGTH_SHORT).show();
+                      Intent intent=new Intent(MyApplication.getContext(), MoreAuthorActivity.class);
+                      startActivity(intent);
+                        getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_still);
                     }
                 });
         endAdapter = new VlayoutBaseAdapter(mContext)
