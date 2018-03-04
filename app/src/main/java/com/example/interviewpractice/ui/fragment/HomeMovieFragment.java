@@ -1,6 +1,7 @@
 package com.example.interviewpractice.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,6 +26,7 @@ import com.example.interviewpractice.mvp.discover.presenter.HotMoviePresenterImp
 import com.example.interviewpractice.mvp.discover.view.ComingView;
 import com.example.interviewpractice.mvp.discover.view.PrevueView;
 import com.example.interviewpractice.mvp.discover.view.HotMovieView;
+import com.example.interviewpractice.ui.activity.MovieDetailActivity;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.example.interviewpractice.v_layout.ItemListener;
 import com.example.interviewpractice.v_layout.VlayoutBaseAdapter;
@@ -53,6 +55,7 @@ public class HomeMovieFragment extends BaseFragment  implements HotMovieView,Pre
     private List<HotMovieBean> hotMovieBeans=new ArrayList<>();
     private List<PrevueBean> prevueBeans =new ArrayList<>();
     private List<ComingMovieBean> comingMovieBeans=new ArrayList<>();
+    private static final String TAG = "HomeMovieFragment";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_home_movie, container, false);
@@ -64,7 +67,7 @@ public class HomeMovieFragment extends BaseFragment  implements HotMovieView,Pre
 
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(mContext);
         mRecycler.setLayoutManager(virtualLayoutManager);
-        final RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
+       RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
         mRecycler.setRecycledViewPool(viewPool);
         viewPool.setMaxRecycledViews(5, 20);
         delegateAdapter = new DelegateAdapter(virtualLayoutManager, false);
@@ -81,7 +84,12 @@ public class HomeMovieFragment extends BaseFragment  implements HotMovieView,Pre
                 .setListener(new ItemListener<HotMovieBean>() {
                     @Override
                     public void onItemClick(View view, int position, HotMovieBean mData) {
-                        Toast.makeText(MyApplication.getContext(), "88", Toast.LENGTH_SHORT).show();
+                        int id=mData.getData().getMovies().get(position).getId();
+                        Log.e(TAG, "onItemClick: "+ mData.getData().getMovies().get(position).getId());
+                        Intent hotIntent=new Intent(MyApplication.getContext(), MovieDetailActivity.class);
+                        hotIntent.putExtra("id",String.valueOf(id));
+                        startActivity(hotIntent);
+//                        Toast.makeText(MyApplication.getContext(), "88", Toast.LENGTH_SHORT).show();
                     }
                 });
         prevueAdapter=new VlayoutBaseAdapter(mContext)
@@ -92,6 +100,7 @@ public class HomeMovieFragment extends BaseFragment  implements HotMovieView,Pre
                 .setListener(new ItemListener<PrevueBean>() {
                     @Override
                     public void onItemClick(View view, int position, PrevueBean mData) {
+
                         Toast.makeText(MyApplication.getContext(), "88", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -103,7 +112,11 @@ public class HomeMovieFragment extends BaseFragment  implements HotMovieView,Pre
                 .setListener(new ItemListener<ComingMovieBean>() {
                     @Override
                     public void onItemClick(View view, int position, ComingMovieBean mData) {
-                        Toast.makeText(MyApplication.getContext(), "889999", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "onItemClick: "+mData.getData().getComing().get(position).getId() );
+                        int id=mData.getData().getComing().get(position).getId();
+                        Intent comingMovieIntent=new Intent(MyApplication.getContext(), MovieDetailActivity.class);
+                        comingMovieIntent.putExtra("id",String.valueOf(id));
+                        startActivity(comingMovieIntent);
                     }
                 });
         delegateAdapter.addAdapter(hotMovieAdapter);

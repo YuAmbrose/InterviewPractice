@@ -1,6 +1,7 @@
 package com.example.interviewpractice.ui.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -59,13 +60,11 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edetail);
-        tipDialog = new QMUITipDialog.Builder(this)
-                .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
-                .setTipWord("正在加载")
-                .create();
-
         ButterKnife.bind(this);
-        getPresenter().clickRequest("83495");
+        jzPlayer.setVisibility(View.GONE);
+        Intent intent=getIntent();
+        String id=intent.getStringExtra("id");
+        getPresenter().clickRequest(id);
         QMUIStatusBarHelper.translucent(this); // 沉浸式状态栏
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(this);
         mRecycler.setLayoutManager(virtualLayoutManager);
@@ -119,15 +118,17 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
 
     @Override
     public void requestLoading() {
-//        tipDialog = new QMUITipDialog.Builder(MyApplication.getContext())
-//                .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
-//                .setTipWord("正在加载")
-//                .create();
+        tipDialog = new QMUITipDialog.Builder(this)
+                .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
+                .setTipWord("正在加载")
+                .create();
+        tipDialog.show();
     }
 
     @Override
     public void resultSuccess(EyDetailBean eyDetailBean) {
-//        tipDialog.dismiss();
+        tipDialog.dismiss();
+        jzPlayer.setVisibility(View.VISIBLE);
         jzPlayer.setUp(eyDetailBean.getPlayUrl(), jzPlayer.SCREEN_WINDOW_NORMAL, "");
         Glide.with(this).load(eyDetailBean.getCoverForDetail()).into(jzPlayer.thumbImageView);
 //        GlideManager.loadImage(this,eyDetailBean.getCoverBlurred(),imagebg);

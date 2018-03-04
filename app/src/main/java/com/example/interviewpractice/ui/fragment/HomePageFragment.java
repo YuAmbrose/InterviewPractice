@@ -118,11 +118,13 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener<BannerBean>() {
                     @Override
                     public void onItemClick(View view, int position, BannerBean mData) {
+                        int id=mData.getIssueList().get(0).getItemList().get(position + 1).getData().getId();
                         Intent bannerIntent=new Intent(MyApplication.getContext(), EDetailActivity.class);
+                        bannerIntent.putExtra("id",String.valueOf(id));
                         startActivity(bannerIntent);
 //                        Toast.makeText(MyApplication.getContext(), mData.getIssueList().get(position).getItemList().get(position).getId(), Toast.LENGTH_SHORT).show();
                         Log.e(TAG, "onItemClick: "+mData.getIssueList().get(0).getItemList().get(position + 1).getData().getId() );
-                        Toast.makeText(MyApplication.getContext(), mData.getIssueList().get(0).getItemList().get(position + 1).getData().getSlogan(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MyApplication.getContext(), mData.getIssueList().get(0).getItemList().get(position + 1).getData().getSlogan(), Toast.LENGTH_SHORT).show();
                     }
                 });
         pgcAdapter = new VlayoutBaseAdapter(mContext)
@@ -224,9 +226,13 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener<RankListBean>() {
                     @Override
                     public void onItemClick(View view, int position, RankListBean mData) {
-                        replaceFragment(new AuthorDetailFragment());
-                        Log.e(TAG, "onItemClick: "+mData.getItemList().get(position).getData().getId());
-                        Toast.makeText(MyApplication.getContext(), "888", Toast.LENGTH_SHORT).show();
+                        Intent selectIntent=new Intent(MyApplication.getContext(), EDetailActivity.class);
+                        int id=mData.getItemList().get(position).getData().getId();
+                        selectIntent.putExtra("id",String.valueOf(id));
+                        startActivity(selectIntent);
+//                        replaceFragment(new AuthorDetailFragment());
+//                        Log.e(TAG, "onItemClick: "+mData.getItemList().get(position).getData().getId());
+//                        Toast.makeText(MyApplication.getContext(), "888", Toast.LENGTH_SHORT).show();
                     }
                 });
         delegateAdapter.addAdapter(banneradapter);

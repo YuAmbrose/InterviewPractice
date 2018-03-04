@@ -30,8 +30,9 @@ public class JzPlayer extends JZVideoPlayerStandard {
         }else {
             backButton.setVisibility(View.VISIBLE);
         }
-
     }
+
+
 
     @Override
     public void onStatePlaying() {

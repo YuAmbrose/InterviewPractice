@@ -19,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
+import cn.jzvd.JZVideoPlayerStandard;
 
 public class StartFragment extends BaseFragment {
 

@@ -41,7 +41,7 @@ public class HotMovieViewHolder extends BaseViewHolder<HotMovieBean.DataBean.Mov
         String imgUrl = ImgSizeUtil.resetPicUrl(data.getImg(), ".webp@321w_447h_1e_1c_1l");
         GlideManager.loadImage(MyApplication.getContext(),imgUrl,bgPic);
         name.setText(data.getNm());
-//        sc.setText((int) data.getSc());
+        sc.setText(String.format("%s", data.getSc()));//评分
         pubDesc.setText(data.getPubDesc());
         star.setText("主演："+data.getStar());
     }

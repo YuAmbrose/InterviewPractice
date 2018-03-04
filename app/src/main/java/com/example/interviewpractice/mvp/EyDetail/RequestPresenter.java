@@ -66,7 +66,7 @@ public class RequestPresenter extends AbstractMvpPersenter<RequestView>{
                     }
                 });
             }
-        },1000);
+        },1);
     }
 
     public void interruptHttp(){

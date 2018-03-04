@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RequestMode extends BaseModel {
 
-    private Call<EyDetailBean> weatherBeanCall;
+    private Call<EyDetailBean> eyDetailBeanCall;
     private CompositeDisposable mcompositeDisposable;
     private Context context;
     private Api api;
@@ -84,8 +84,8 @@ public class RequestMode extends BaseModel {
     }
 
     public void interruptHttp(){
-        if(weatherBeanCall != null && !weatherBeanCall.isCanceled()){
-            weatherBeanCall.cancel();
+        if(eyDetailBeanCall != null && !eyDetailBeanCall.isCanceled()){
+            eyDetailBeanCall.cancel();
         }
     }
 }

@@ -1,9 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.interviewpractice.ui.activity.MovieDetailActivity">
+    <com.example.interviewpractice.weight.JzPlayer
+        android:id="@+id/player"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"/>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_weight="3.5"
+            android:layout_margin="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_margin="2dp"
+                android:id="@+id/bgPic"
+                android:layout_width="150dp"
+                android:layout_height="150dp" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="3dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:id="@+id/name"
+                android:layout_width="match_parent" />
+            <TextView
+                android:textSize="12dp"
+                android:textColor="#878787"
+                android:text="egname"
+                android:id="@+id/egname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textSize="14dp"
+                android:textColor="#878787"
+                android:text="猫眼评分："
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/sc"
+                    android:textStyle="bold"
+                    android:textColor="#bc9b4e"
+                    android:text="9.5"
+                    android:textSize="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:textSize="10dp"
+                    android:textColor="#878787"
+                    android:text="egname"
+                    android:id="@+id/snum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                android:text="阿888维贾"
+                android:textSize="14dp"
+                android:textColor="#878787"
+                android:id="@+id/src"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+                <TextView
+                    android:text="阿米尔·汗"
+                    android:textSize="14dp"
+                    android:textColor="#878787"
+                    android:id="@+id/dur"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:text="2018-01-19大陆上映"
+                android:textSize="14dp"
+                android:textColor="#878787"
+                android:id="@+id/pubDesc"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_marginTop="1dp"
+        android:background="#aea0a2"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"/>
+    <com.hymane.expandtextview.ExpandTextView
+        android:id="@+id/dra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="4dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="4dp"
+        app:contentTextSize="14sp"
+        app:expandHint="点击展开"
+        app:foldHint="点击收回"
+        app:textContentColor="?android:attr/textColorPrimary"
+        app:textHintColor="?android:attr/textColorPrimary"
+        app:textTitleColor="?android:attr/textColorSecondary"
+        app:titleTextSize="16sp"/>
+</LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

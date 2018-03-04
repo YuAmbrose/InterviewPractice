@@ -32,7 +32,7 @@ public class HotMovieHolder extends VlayoutBaseHolder<HotMovieBean> {
 
     @Override
     public void setData(int ps, HotMovieBean rData) {
-        super.setData(ps, mData);
+        super.setData(ps, rData);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         easyrecycler.setLayoutManager(staggeredGridLayoutManager);
         hotMovieAdapter=new HotMovieAdapter(getContext());

@@ -31,5 +31,6 @@ public class StartViewHolder extends BaseViewHolder<RecomendarMovie> {
 //                .load(data.getImageUrl().getUrl())
 //                .into(jzVideo.thumbImageView);
         jzVideo.setUp(data.getMovieUrl(),jzVideo.SCREEN_WINDOW_NORMAL,"");
+        jzVideo.startWindowTiny();
     }
 }

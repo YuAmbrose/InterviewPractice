@@ -3,6 +3,7 @@ package com.example.interviewpractice.app;
 import com.example.interviewpractice.enity.BannerBean;
 import com.example.interviewpractice.enity.ComingMovieBean;
 import com.example.interviewpractice.enity.EyDetailBean;
+import com.example.interviewpractice.enity.MovieDetailBean;
 import com.example.interviewpractice.enity.PrevueBean;
 import com.example.interviewpractice.enity.HotMovieBean;
 import com.example.interviewpractice.enity.PgcBean;
@@ -78,4 +79,9 @@ Observable<RankListBean> getRecomendar(@Query("id") String id);
      */
     @GET("v1/video/{id}" )
     Observable<EyDetailBean> getEyDetail(@Path("id") String id);
+    /**
+     * 猫眼详细视频
+     */
+    @GET("movie/v5/{id}.json")
+    Observable<MovieDetailBean> getMovieDetai(@Path("id") String  id);
 }
