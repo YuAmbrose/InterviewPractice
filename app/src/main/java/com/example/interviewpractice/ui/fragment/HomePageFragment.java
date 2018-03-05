@@ -44,11 +44,11 @@ import com.example.interviewpractice.mvp.homepage.view.CategorytabView;
 import com.example.interviewpractice.mvp.homepage.view.PgcView;
 import com.example.interviewpractice.mvp.homepage.view.RankListView;
 import com.example.interviewpractice.mvp.homepage.view.ZHotView;
+import com.example.interviewpractice.ui.activity.AuthorDetailActivity;
 import com.example.interviewpractice.ui.activity.EDetailActivity;
 import com.example.interviewpractice.ui.activity.MoreAuthorActivity;
 import com.example.interviewpractice.ui.activity.RankActivity;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
-import com.example.interviewpractice.ui.fragment.childFragment.AuthorDetailFragment;
 import com.example.interviewpractice.v_layout.ItemListener;
 import com.example.interviewpractice.v_layout.VlayoutBaseAdapter;
 import com.example.interviewpractice.v_layout.holder.home.BannerHolder;
@@ -136,7 +136,9 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener() {
                     @Override
                     public void onItemClick(View view, int position, Object mData) {
-                        Toast.makeText(MyApplication.getContext(), "88898", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(MyApplication.getContext(), MoreAuthorActivity.class);
+                        startActivity(intent);
+                        getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_still);
                     }
                 });
         selectheadAdapter = new VlayoutBaseAdapter(mContext)
@@ -147,9 +149,7 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener() {
                     @Override
                     public void onItemClick(View view, int position, Object mData) {
-                      Intent intent=new Intent(MyApplication.getContext(), MoreAuthorActivity.class);
-                      startActivity(intent);
-                        getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_still);
+
                     }
                 });
         endAdapter = new VlayoutBaseAdapter(mContext)
@@ -170,10 +170,11 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener<PgcBean>() {
                     @Override
                     public void onItemClick(View view, int position, PgcBean mData) {
-                        Intent bannerIntent=new Intent(MyApplication.getContext(), EDetailActivity.class);
-                        startActivity(bannerIntent);
-                        Log.e(TAG, "onItemClick: "+mData.getItemList().get(position).getData().getId() );
-                        Toast.makeText(MyApplication.getContext(), "888", Toast.LENGTH_SHORT).show();
+                        Intent anthorIntent=new Intent(MyApplication.getContext(), AuthorDetailActivity.class);
+                        int id=mData.getItemList().get(position).getData().getId();
+                        anthorIntent.putExtra("id",String.valueOf(id));
+                        startActivity(anthorIntent);
+                        getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_still);
                     }
                 });
 

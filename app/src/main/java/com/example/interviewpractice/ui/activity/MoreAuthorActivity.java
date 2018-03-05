@@ -1,11 +1,14 @@
 package com.example.interviewpractice.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 
+import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.PgcMoreAdapter;
 import com.example.interviewpractice.enity.PgcBean;
@@ -32,7 +35,7 @@ public class MoreAuthorActivity extends AppCompatActivity implements PgcView,Rec
     private PgcMoreAdapter pgcMoreAdapter;
     private List<PgcBean.ItemListBean> itemListBeans;
     private PgcPresenterImp pgcPresenterImp = new PgcPresenterImp(this, this);
-
+    private static final String TAG = "MoreAuthorActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,7 @@ public class MoreAuthorActivity extends AppCompatActivity implements PgcView,Rec
                 overridePendingTransition(R.anim.slide_still, R.anim.slide_out_right);
             }
         });
+
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recycleview.setLayoutManager(staggeredGridLayoutManager);
         pgcMoreAdapter = new PgcMoreAdapter(this);
@@ -54,7 +58,11 @@ public class MoreAuthorActivity extends AppCompatActivity implements PgcView,Rec
         pgcMoreAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                Intent anthorIntent=new Intent(MyApplication.getContext(), AuthorDetailActivity.class);
+                int id=pgcMoreAdapter.getItem(position).getData().getId();
+                anthorIntent.putExtra("id",String.valueOf(id));
+                startActivity(anthorIntent);
+               overridePendingTransition(R.anim.slide_in_right, R.anim.slide_still);
             }
         });
         pgcMoreAdapter.setMore(R.layout.load_more_layout,this);

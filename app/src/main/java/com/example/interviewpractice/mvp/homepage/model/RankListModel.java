@@ -9,4 +9,5 @@ import com.example.interviewpractice.http.IBaseRequestCallBack;
 public interface RankListModel<T> {
     void loadRankList(String strategy,int start,int num,IBaseRequestCallBack<T> iBaseRequestCallBack);
     void loadSelected(int start,int num,IBaseRequestCallBack<T> iBaseRequestCallBack);
+    void loadListAuthor(String strategy,String id,int start,int num,IBaseRequestCallBack<T> iBaseRequestCallBack);
 }

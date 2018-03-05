@@ -1,5 +1,6 @@
 package com.example.interviewpractice.app;
 
+import com.example.interviewpractice.enity.AuthorDetailBean;
 import com.example.interviewpractice.enity.BannerBean;
 import com.example.interviewpractice.enity.ComingMovieBean;
 import com.example.interviewpractice.enity.EyDetailBean;
@@ -80,6 +81,19 @@ Observable<RankListBean> getRecomendar(@Query("id") String id);
      */
     @GET("v1/video/{id}" )
     Observable<EyDetailBean> getEyDetail(@Path("id") String id);
+
+    /**
+     * 作者详情信息
+     */
+    @GET("v4/pgcs/detail/tab")
+    Observable<AuthorDetailBean> getAuthor(@Query("id") String id);
+
+    @GET("v4/pgcs/videoList")
+    Observable<RankListBean> getAuthorList( @Query("strategy") String strategy,
+                                            @Query("id") String id,
+                                           @Query("start")int start,
+                                           @Query("num") int num);
+
     /**
      * 猫眼详细视频
      */

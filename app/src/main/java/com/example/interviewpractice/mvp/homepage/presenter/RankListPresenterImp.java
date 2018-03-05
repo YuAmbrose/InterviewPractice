@@ -11,7 +11,7 @@ import com.example.interviewpractice.mvp.homepage.view.RankListView;
  * Created by Administrator on 2018/1/5.
  */
 
-public class RankListPresenterImp extends RankListBasePresenterImp<RankListView,RankListBean> implements RankListPresenter {
+public class  RankListPresenterImp extends RankListBasePresenterImp<RankListView,RankListBean> implements RankListPresenter {
     private RankListModelImp rankListModelImp=null;
     private Context context;
     /**
@@ -32,6 +32,11 @@ public class RankListPresenterImp extends RankListBasePresenterImp<RankListView,
     @Override
     public void loadSelect(int start,int num) {
         rankListModelImp.loadSelected(start,num,this);
+    }
+
+    @Override
+    public void loadListAuthor(String strategy, String id, int start, int num) {
+        rankListModelImp.loadListAuthor(strategy,id,start,num,this);
     }
 
 

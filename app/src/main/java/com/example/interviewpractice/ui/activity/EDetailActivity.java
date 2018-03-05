@@ -20,7 +20,7 @@ import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpActivity;
 import com.example.interviewpractice.mvp.EyDetail.RequestPresenter;
 import com.example.interviewpractice.mvp.EyDetail.RequestView;
-import com.example.interviewpractice.ui.fragment.childFragment.AuthorDetailFragment;
+
 import com.example.interviewpractice.v_layout.ItemListener;
 import com.example.interviewpractice.v_layout.VlayoutBaseAdapter;
 import com.example.interviewpractice.v_layout.holder.EyDetail.TextHolder;
