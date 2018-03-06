@@ -20,32 +20,32 @@ public class AuthorRequestPresenter  extends AbstractMvpPersenter<AuthorRequestV
         authorRequestModel=new AuthorRequestModel(MyApplication.getContext());
     }
     public void clickRequest(final String Id){
-        //获取View
-        if(getmMvpView() != null){
-            getmMvpView().requestLoading();
-        }
-        //模拟网络延迟，可以显示出加载中
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                authorRequestModel.RequestAuthoretail(Id, new IBaseRequestCallBack<AuthorDetailBean>() {
-                    @Override
-                    public void requestError(Throwable throwable) {
-                        if(getmMvpView() != null){
-                            getmMvpView().resultFailure(Log.getStackTraceString(throwable));
-                        }
-                    }
-                    @Override
-                    public void requestSuccess(AuthorDetailBean movieDetailBean) {
-                        if(getmMvpView() != null){
-                            getmMvpView().resultSuccess(movieDetailBean);
-                        }
-                    }
-                });
-
-            }
-        },1);
+    //获取View
+    if(getmMvpView() != null){
+        getmMvpView().requestLoading();
     }
+    //模拟网络延迟，可以显示出加载中
+    new Handler().postDelayed(new Runnable() {
+        @Override
+        public void run() {
+            authorRequestModel.RequestAuthoretail(Id, new IBaseRequestCallBack<AuthorDetailBean>() {
+                @Override
+                public void requestError(Throwable throwable) {
+                    if(getmMvpView() != null){
+                        getmMvpView().resultFailure(Log.getStackTraceString(throwable));
+                    }
+                }
+                @Override
+                public void requestSuccess(AuthorDetailBean movieDetailBean) {
+                    if(getmMvpView() != null){
+                        getmMvpView().resultSuccess(movieDetailBean);
+                    }
+                }
+            });
+
+        }
+    },1);
+}
 
     public void interruptHttp(){
         authorRequestModel.interruptHttp();

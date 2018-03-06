@@ -2,6 +2,7 @@ package com.example.interviewpractice.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.AuthorListFragmentAdapter;
 import com.example.interviewpractice.adapter.adapter.HomeRecyclervAdapter;
@@ -23,6 +25,7 @@ import com.example.interviewpractice.mvp.authorDetail.AuthorRequestView;
 import com.example.interviewpractice.mvp.homepage.presenter.RankListPresenterImp;
 import com.example.interviewpractice.mvp.homepage.view.RankListView;
 import com.jude.easyrecyclerview.EasyRecyclerView;
+import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.QMUIAppBarLayout;
 import com.qmuiteam.qmui.widget.QMUICollapsingTopBarLayout;
@@ -34,7 +37,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AuthorDetailActivity extends AbstractMvpActivity<AuthorRequestView, AuthorRequestPresenter> implements AuthorRequestView,RankListView {
+public class AuthorDetailActivity extends AbstractMvpActivity<AuthorRequestView, AuthorRequestPresenter> implements AuthorRequestView,RankListView,RecyclerArrayAdapter.OnLoadMoreListener {
     @BindView(R.id.collapsing_topbar_layout) QMUICollapsingTopBarLayout mCollapsingTopBarLayout;
     @BindView(R.id.topbar) QMUITopBar mTopBar;
     @BindView(R.id.iv_cover_bg) ImageView ivCoverBg;
@@ -46,14 +49,26 @@ public class AuthorDetailActivity extends AbstractMvpActivity<AuthorRequestView,
     @BindView(R.id.tv_share_num) TextView tvShareNum;
     @BindView(R.id.iv_head) CircleImageView ivHead;
     @BindView(R.id.appbar) QMUIAppBarLayout appBar;
-    @BindView(R.id.select_recycler)
-    EasyRecyclerView rankListRecyclerview;
-
+    @BindView(R.id.select_recycler) EasyRecyclerView rankListRecyclerview;
+    private int start=1;
+    private Handler handler = new Handler();
     private static final String TAG = "AuthorDetailActivity";
     private AppBarState mState;
     private RankListPresenterImp rankListPresenterImp = new RankListPresenterImp(this, this);
     private HomeRecyclervAdapter homeRecyclervAdapter;
     private List<RankListBean.ItemListBean> itemListBeans;
+    private String id;
+    @Override
+    public void onLoadMore() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                rankListPresenterImp.loadListAuthor("date",id,start*10,10);
+                start++;
+            }
+        },100);
+    }
+
     private enum AppBarState {EXPANDED, COLLAPSED, MIDDLE}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,14 +77,25 @@ public class AuthorDetailActivity extends AbstractMvpActivity<AuthorRequestView,
         ButterKnife.bind(this);
         QMUIStatusBarHelper.translucent(this); // 沉浸式状态栏
         Intent intent = getIntent();
-        String id = intent.getStringExtra("id");
+        id = intent.getStringExtra("id");
         getPresenter().clickRequest(id);
-
-        rankListPresenterImp.loadListAuthor("date","2170",0,10);
+        rankListPresenterImp.loadListAuthor("date",id,0,10);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         homeRecyclervAdapter=new HomeRecyclervAdapter(this);
+        homeRecyclervAdapter.setMore(R.layout.load_more_layout,this);
         rankListRecyclerview.setLayoutManager(staggeredGridLayoutManager);
         rankListRecyclerview.setAdapter(homeRecyclervAdapter);
+
+        homeRecyclervAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent=new Intent(MyApplication.getContext(),EDetailActivity.class);
+                int id=homeRecyclervAdapter.getItem(position).getData().getId();
+                intent.putExtra("id",String.valueOf(id));
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_still);
+            }
+        });
 
         mTopBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
             @Override

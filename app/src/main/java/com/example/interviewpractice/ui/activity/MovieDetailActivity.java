@@ -88,6 +88,7 @@ public class MovieDetailActivity extends AbstractMvpActivity<MovieRequestView, M
         dra.setContent(movieDetailBean.getData().getMovie().getDra());
         dra.setTitleTextSize(0);
         dra.setTitle("");
+        dra.setAnimationDuration(60);
 
         jzPlayer.setUp(movieDetailBean.getData().getMovie().getVd(), jzPlayer.SCREEN_WINDOW_NORMAL, "");
         Glide.with(this).load(movieDetailBean.getData().getMovie().getVideoImg()).into(jzPlayer.thumbImageView);

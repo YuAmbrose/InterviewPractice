@@ -3,6 +3,7 @@ package com.example.interviewpractice.app;
 import com.example.interviewpractice.enity.AuthorDetailBean;
 import com.example.interviewpractice.enity.BannerBean;
 import com.example.interviewpractice.enity.ComingMovieBean;
+import com.example.interviewpractice.enity.EyCategoryBean;
 import com.example.interviewpractice.enity.EyDetailBean;
 import com.example.interviewpractice.enity.MovieDetailBean;
 import com.example.interviewpractice.enity.PrevueBean;
@@ -93,7 +94,12 @@ Observable<RankListBean> getRecomendar(@Query("id") String id);
                                             @Query("id") String id,
                                            @Query("start")int start,
                                            @Query("num") int num);
-
+    /**
+     * 开眼分类内容
+     */
+    @GET("v2/categories")
+    Observable<EyCategoryBean> getCategories();
+    /**
     /**
      * 猫眼详细视频
      */

@@ -9,9 +9,8 @@ import com.example.interviewpractice.mvp.EyDetail.IMvpBaseView;
  */
 
 public interface AuthorRequestView extends IMvpBaseView {
-    void requestLoading();
-    void resultSuccess(AuthorDetailBean result);
-    void resultFailure(String result);
-
-}
+        void requestLoading();
+        void resultSuccess(AuthorDetailBean result);
+        void resultFailure(String result);
+        }
 

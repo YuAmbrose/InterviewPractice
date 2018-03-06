@@ -45,6 +45,7 @@ import com.example.interviewpractice.mvp.homepage.view.PgcView;
 import com.example.interviewpractice.mvp.homepage.view.RankListView;
 import com.example.interviewpractice.mvp.homepage.view.ZHotView;
 import com.example.interviewpractice.ui.activity.AuthorDetailActivity;
+import com.example.interviewpractice.ui.activity.CategoryActivity;
 import com.example.interviewpractice.ui.activity.EDetailActivity;
 import com.example.interviewpractice.ui.activity.MoreAuthorActivity;
 import com.example.interviewpractice.ui.activity.RankActivity;
@@ -205,7 +206,9 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                                 Toast.makeText(MyApplication.getContext(), mData.getId(), Toast.LENGTH_SHORT).show();
                                 break;
                             case "2":
-                                Toast.makeText(MyApplication.getContext(), mData.getId(), Toast.LENGTH_SHORT).show();
+                            Intent cagIntent =new Intent(MyApplication.getContext(), CategoryActivity.class);
+                                startActivity(cagIntent);
+                                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_still);
                                 break;
                             case "3":
                                 Intent intent=new Intent(MyApplication.getContext(), RankActivity.class);
@@ -234,6 +237,7 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                         int id=mData.getItemList().get(position).getData().getId();
                         selectIntent.putExtra("id",String.valueOf(id));
                         startActivity(selectIntent);
+                        getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_still);
 //                        replaceFragment(new AuthorDetailFragment());
 //                        Log.e(TAG, "onItemClick: "+mData.getItemList().get(position).getData().getId());
 //                        Toast.makeText(MyApplication.getContext(), "888", Toast.LENGTH_SHORT).show();
