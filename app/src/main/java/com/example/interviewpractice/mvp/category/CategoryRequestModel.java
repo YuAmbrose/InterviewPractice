@@ -1,6 +1,7 @@
 package com.example.interviewpractice.mvp.category;
 
 import android.content.Context;
+import android.util.Log;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -28,6 +29,7 @@ public class CategoryRequestModel extends BaseModel {
     private CompositeDisposable mcompositeDisposable;
     private Context context;
     private Api api;
+    private static final String TAG = "CategoryRequestModel";
     public CategoryRequestModel(Context mContext){
         super();
         context = mContext;
@@ -48,6 +50,7 @@ public class CategoryRequestModel extends BaseModel {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
+                        Log.e(TAG, "accept:88888888888888888888 "+throwable );
                         iBaseRequestCallBack.requestError(throwable);
                     }
                 }));

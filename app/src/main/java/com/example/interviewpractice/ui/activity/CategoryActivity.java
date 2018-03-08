@@ -13,15 +13,14 @@ import com.example.interviewpractice.mvp.EyDetail.AbstractMvpActivity;
 import com.example.interviewpractice.mvp.category.CategoryRequestPresenter;
 import com.example.interviewpractice.mvp.category.CategoryRequestView;
 import com.jude.easyrecyclerview.EasyRecyclerView;
-import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.QMUITopBar;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Predicate;
 
 public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, CategoryRequestPresenter> implements CategoryRequestView {
 
@@ -29,7 +28,7 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
     QMUITopBar mTopBar;
     @BindView(R.id.recycleview)
     EasyRecyclerView recycleview;
-    private List<EyCategoryBean> eyCategoryBeans;
+    private List<EyCategoryBean.ItemListBean> itemListBeans;
     private CategoryAdapter categoryAdapter;
     private static final String TAG = "CategoryActivity";
     @Override
@@ -66,11 +65,27 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
 
     @Override
     public void resultSuccess(EyCategoryBean categoryBean) {
-        Log.e(TAG, "*********************88888888888888888888888888888" );
-        eyCategoryBeans=new ArrayList<>();
-        eyCategoryBeans.add(categoryBean);
-        categoryAdapter.addAll(eyCategoryBeans);
-        categoryAdapter.notifyDataSetChanged();
+        itemListBeans=categoryBean.getItemList();
+        Observable.just(itemListBeans)
+               .filter(new Predicate<List<EyCategoryBean.ItemListBean>>() {
+                   @Override
+                   public boolean test(List<EyCategoryBean.ItemListBean> itemListBeans) throws Exception {
+                       for (int i = 0; i <itemListBeans.size() ; i++) {
+                                if (itemListBeans.get(i).getData().isShade()){
+
+                                }else {
+                                   itemListBeans.remove(i);
+                                }
+                       }
+                       return true;
+                   }
+               })
+                .subscribe(new Consumer<List<EyCategoryBean.ItemListBean>>() {
+                    @Override
+                    public void accept(List<EyCategoryBean.ItemListBean> itemListBeans) throws Exception {
+                        categoryAdapter.addAll(itemListBeans);
+                    }
+                });
     }
 
 

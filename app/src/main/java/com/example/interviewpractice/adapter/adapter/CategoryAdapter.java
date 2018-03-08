@@ -15,7 +15,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
  * Created by 鱼握拳 on 2018/3/6.
  */
 
-public class CategoryAdapter extends RecyclerArrayAdapter<EyCategoryBean> {
+public class CategoryAdapter extends RecyclerArrayAdapter<EyCategoryBean.ItemListBean> {
 public CategoryAdapter(Context context) {
         super(context);
         }

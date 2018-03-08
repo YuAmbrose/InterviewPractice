@@ -97,7 +97,7 @@ Observable<RankListBean> getRecomendar(@Query("id") String id);
     /**
      * 开眼分类内容
      */
-    @GET("v2/categories")
+    @GET("v4/categories/all")
     Observable<EyCategoryBean> getCategories();
     /**
     /**
