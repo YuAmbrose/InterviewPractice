@@ -44,6 +44,7 @@ import com.example.interviewpractice.mvp.homepage.view.CategorytabView;
 import com.example.interviewpractice.mvp.homepage.view.PgcView;
 import com.example.interviewpractice.mvp.homepage.view.RankListView;
 import com.example.interviewpractice.mvp.homepage.view.ZHotView;
+import com.example.interviewpractice.ui.activity.ArticleActivity;
 import com.example.interviewpractice.ui.activity.AuthorDetailActivity;
 import com.example.interviewpractice.ui.activity.CategoryActivity;
 import com.example.interviewpractice.ui.activity.EDetailActivity;
@@ -200,7 +201,8 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                     public void onItemClick(View view, int position, CategoryTab mData) {
                         switch (mData.getId()){
                             case "0":
-                                Toast.makeText(MyApplication.getContext(), mData.getId(), Toast.LENGTH_SHORT).show();
+                             Intent artIntent=new Intent(MyApplication.getContext(), ArticleActivity.class);
+                             startActivity(artIntent);
                                 break;
                             case "1":
                                 Toast.makeText(MyApplication.getContext(), mData.getId(), Toast.LENGTH_SHORT).show();
