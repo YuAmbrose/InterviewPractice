@@ -11,7 +11,10 @@ import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
+import com.alibaba.android.vlayout.layout.ColumnLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
+import com.alibaba.android.vlayout.layout.StaggeredGridLayoutHelper;
+import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
 import com.bumptech.glide.Glide;
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
@@ -42,7 +45,7 @@ import jp.wasabeef.glide.transformations.BlurTransformation;
 
 public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPresenter> implements RequestView {
     @BindView(R.id.pgc_recyclerview)
-    FatRecyclerview mRecycler;
+    RecyclerView mRecycler;
     @BindView(R.id.imagebg)
     ImageView imagebg;
     @BindView(R.id.player)
@@ -67,10 +70,12 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
         getPresenter().clickRequest(id);
         QMUIStatusBarHelper.translucent(this); // 沉浸式状态栏
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(this);
+        virtualLayoutManager.setRecycleOffset(0);
         mRecycler.setLayoutManager(virtualLayoutManager);
-        final RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
+       RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
+
         mRecycler.setRecycledViewPool(viewPool);
-        viewPool.setMaxRecycledViews(5, 20);
+        viewPool.setMaxRecycledViews(2, 20);
         delegateAdapter = new DelegateAdapter(virtualLayoutManager, false);
         jzPlayer.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +96,7 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
         textAdapter = new VlayoutBaseAdapter(mContext)
                 .setData(new ArrayList<EyDetailBean>())
                 .setLayout(R.layout.vlayout_ey_detail_text)
-                .setLayoutHelper(new LinearLayoutHelper())
+                .setLayoutHelper(new ColumnLayoutHelper())
                 .setHolder(TextHolder.class);
         setlectAdapter = new VlayoutBaseAdapter(mContext)
                 .setData(new ArrayList<RankListBean>())
@@ -102,8 +107,6 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
                     @Override
                     public void onItemClick(View view, int position, RankListBean mData) {
                         getPresenter().clickRequest("35832");
-
-
                     }
                 });
         delegateAdapter.addAdapter(textAdapter);
@@ -138,8 +141,6 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
                 .bitmapTransform(new BlurTransformation(getApplicationContext(), 140, 50))
                 .into(imagebg);
         detailBeans.add(eyDetailBean);
-//        jzAdapter.setData(detailBeans);
-//        jzAdapter.notifyDataSetChanged();
         textAdapter.setData(detailBeans);
         textAdapter.notifyDataSetChanged();
     }

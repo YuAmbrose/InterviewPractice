@@ -3,8 +3,10 @@ package com.example.interviewpractice.app;
 import com.example.interviewpractice.enity.ArticleBean;
 import com.example.interviewpractice.enity.AuthorDetailBean;
 import com.example.interviewpractice.enity.BannerBean;
+import com.example.interviewpractice.enity.CagAuthorBean;
+import com.example.interviewpractice.enity.CategoryDetailInfo;
 import com.example.interviewpractice.enity.ComingMovieBean;
-import com.example.interviewpractice.enity.EyCategoryBean;
+import com.example.interviewpractice.enity.Cag;
 import com.example.interviewpractice.enity.EyDetailBean;
 import com.example.interviewpractice.enity.MovieDetailBean;
 import com.example.interviewpractice.enity.PrevueBean;
@@ -109,7 +111,7 @@ public interface Api {
      * 开眼分类内容
      */
     @GET("v4/categories/all")
-    Observable<EyCategoryBean> getCategories();
+    Observable<Cag> getCategories();
 
     /**
      * /**
@@ -124,4 +126,23 @@ public interface Api {
     @Headers("User-Agent: Your-App-Name")
     @GET("{type}")
     Observable<ArticleBean> getArt(@Path("type") String type);
+    /**
+     * 分类详情页面
+     */
+    @GET("v4/categories/detail/tab")
+    Observable<CategoryDetailInfo> getCagDetail(@Query("id") String id);
+    /**
+     * 分类全部
+     */
+    @GET("v4/categories/videoList")
+    Observable<RankListBean> getCagAll(@Query("id") String id,
+                                         @Query("start") int start,
+                                         @Query("num") int num);
+    /**
+     * 分类作者
+     */
+    @GET("v4/categories/detail/pgcs")
+    Observable<CagAuthorBean> getCagAuthor(@Query("id") String id,
+                                           @Query("start") int start,
+                                           @Query("num") int num);
 }

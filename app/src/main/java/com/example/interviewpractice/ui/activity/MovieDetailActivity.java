@@ -92,9 +92,6 @@ public class MovieDetailActivity extends AbstractMvpActivity<MovieRequestView, M
 
         jzPlayer.setUp(movieDetailBean.getData().getMovie().getVd(), jzPlayer.SCREEN_WINDOW_NORMAL, "");
         Glide.with(this).load(movieDetailBean.getData().getMovie().getVideoImg()).into(jzPlayer.thumbImageView);
-        String iUrl = ImgSizeUtil.resetPicUrl(movieDetailBean.getData().getMovie().getAlbumImg(), ".webp@321w_447h_1e_1c_1l");
-        Log.e(TAG, "~~~~~~~~~~`" + iUrl);
-        Glide.with(this).load(iUrl).into(bgPic);
         name.setText(movieDetailBean.getData().getMovie().getNm());
         egname.setText(movieDetailBean.getData().getMovie().getEnm());
         sc.setText(String.format("%s", movieDetailBean.getData().getMovie().getSc()));
@@ -102,6 +99,7 @@ public class MovieDetailActivity extends AbstractMvpActivity<MovieRequestView, M
         src.setText(movieDetailBean.getData().getMovie().getSrc());
         dur.setText(" /" + movieDetailBean.getData().getMovie().getDur() + "分钟");
         pubDesc.setText(movieDetailBean.getData().getMovie().getPubDesc());
+
         //listview添加按钮
         View.OnClickListener onClickListener = null;
         QMUICommonListItemView itemWithChevron1 = mGroupListView.createItemView("查看电影长评");
@@ -133,6 +131,16 @@ public class MovieDetailActivity extends AbstractMvpActivity<MovieRequestView, M
                 .addItemView(itemWithChevron2, onClickListener)
                 .addItemView(itemWithChevron3, onClickListener)
                 .addTo(mGroupListView);
+
+        String iUrl = ImgSizeUtil.resetPicUrl(movieDetailBean.getData().getMovie().getAlbumImg(), ".webp@321w_447h_1e_1c_1l");
+        Log.e(TAG, "~~~~~~~~~~`" + movieDetailBean.getData().getMovie().getAlbumImg());
+        String bgUrl=ImgSizeUtil.resetPicUrl(movieDetailBean.getData().getMovie().getImg(),".webp@321w_447h_1e_1c_1l");
+        Glide.with(this).load(bgUrl).into(bgPic);
+//        if (movieDetailBean.getData().getMovie().getAlbumImg()!=null){
+//            Glide.with(this).load(iUrl).into(bgPic);
+//        }else {
+//            Glide.with(this).load(bgUrl).into(bgPic);
+//        }
     }
 
 
@@ -155,7 +163,7 @@ public class MovieDetailActivity extends AbstractMvpActivity<MovieRequestView, M
 
     @Override
     public void resultFailure(String result) {
-
+        Log.e(TAG, "水水水水水水水水水水水水水e: "+result );
     }
 
     @Override

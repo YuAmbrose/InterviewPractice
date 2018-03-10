@@ -1,18 +1,21 @@
 package com.example.interviewpractice.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.CategoryAdapter;
-import com.example.interviewpractice.adapter.adapter.PgcMoreAdapter;
-import com.example.interviewpractice.enity.EyCategoryBean;
+import com.example.interviewpractice.enity.Cag;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpActivity;
 import com.example.interviewpractice.mvp.category.CategoryRequestPresenter;
 import com.example.interviewpractice.mvp.category.CategoryRequestView;
 import com.jude.easyrecyclerview.EasyRecyclerView;
+import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import java.util.List;
 
@@ -28,7 +31,7 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
     QMUITopBar mTopBar;
     @BindView(R.id.recycleview)
     EasyRecyclerView recycleview;
-    private List<EyCategoryBean.ItemListBean> itemListBeans;
+    private List<Cag> itemListBeans;
     private CategoryAdapter categoryAdapter;
     private static final String TAG = "CategoryActivity";
     @Override
@@ -42,7 +45,15 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
         recycleview.setLayoutManager(staggeredGridLayoutManager);
         categoryAdapter = new CategoryAdapter(this);
         recycleview.setAdapter(categoryAdapter);
-        Log.e(TAG, "onCreate: 66666666666666666666666666" );
+        categoryAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent=new Intent(CategoryActivity.this,CagDetailActivity.class);
+                String id=categoryAdapter.getItem(position).getId();
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+        });
         mTopBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,29 +75,36 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
     }
 
     @Override
-    public void resultSuccess(EyCategoryBean categoryBean) {
-        itemListBeans=categoryBean.getItemList();
-        Observable.just(itemListBeans)
-               .filter(new Predicate<List<EyCategoryBean.ItemListBean>>() {
-                   @Override
-                   public boolean test(List<EyCategoryBean.ItemListBean> itemListBeans) throws Exception {
-                       for (int i = 0; i <itemListBeans.size() ; i++) {
-                                if (itemListBeans.get(i).getData().isShade()){
+    public void resultSuccess(List<Cag> list) {
 
-                                }else {
-                                   itemListBeans.remove(i);
-                                }
-                       }
-                       return true;
-                   }
-               })
-                .subscribe(new Consumer<List<EyCategoryBean.ItemListBean>>() {
-                    @Override
-                    public void accept(List<EyCategoryBean.ItemListBean> itemListBeans) throws Exception {
-                        categoryAdapter.addAll(itemListBeans);
-                    }
-                });
+        categoryAdapter.addAll(list);
+
     }
+
+//    @Override
+//    public void resultSuccess(Cag categoryBean) {
+//        itemListBeans=categoryBean.getItemList();
+//        Observable.just(itemListBeans)
+//               .filter(new Predicate<List<Cag.ItemListBean>>() {
+//                   @Override
+//                   public boolean test(List<Cag.ItemListBean> itemListBeans) throws Exception {
+//                       for (int i = 0; i <itemListBeans.size() ; i++) {
+//                                if (itemListBeans.get(i).getData().isShade()){
+//
+//                                }else {
+//                                   itemListBeans.remove(i);
+//                                }
+//                       }
+//                       return true;
+//                   }
+//               })
+//                .subscribe(new Consumer<List<Cag.ItemListBean>>() {
+//                    @Override
+//                    public void accept(List<Cag.ItemListBean> itemListBeans) throws Exception {
+//                        categoryAdapter.addAll(itemListBeans);
+//                    }
+//                });
+//    }
 
 
 

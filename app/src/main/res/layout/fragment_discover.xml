@@ -23,9 +23,9 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMode="fixed"
-            app:tabGravity="center"
-            app:tabIndicatorHeight="0dp"/>
+            app:tabIndicatorHeight="3dp"
+            app:tabSelectedTextColor="#498e79"
+        />
     </android.support.v7.widget.Toolbar>
 
     <android.support.v4.view.ViewPager

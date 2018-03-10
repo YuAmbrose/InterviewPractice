@@ -38,15 +38,9 @@ public class DiscoverFragment extends BaseFragment {
     private List<String> titles;
     private List<Fragment> fragments;
     private int[] tabIcons = {R.drawable.select_movie, R.drawable.select_start};
-//    @BindView(R.id.topbar)
-//    QMUITopBar mTopBar;
     @BindView(R.id.statebar)
     View statebarHeight;
 
-//    @BindView(R.id.ranklisttablayou)
-//    TabLayout ranklisttablayout;
-//    @BindView(R.id.ranklistviewpage)
-//    ViewPager ranklistviewpager;
 
     private RankListFragmentAdapter rankListFragmentAdapter;
 

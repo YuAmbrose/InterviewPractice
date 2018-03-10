@@ -1,6 +1,5 @@
 package com.example.interviewpractice.adapter.viewholder;
 
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -9,14 +8,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
-import com.example.interviewpractice.enity.EyCategoryBean;
+import com.example.interviewpractice.enity.Cag;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
 /**
  * Created by 鱼握拳 on 2018/3/6.
  */
 
-public class CategoryViewHolder extends BaseViewHolder<EyCategoryBean.ItemListBean> {
+public class CategoryViewHolder extends BaseViewHolder<Cag> {
     private TextView name;
     private ImageView imageView;
     private FrameLayout frameLayout;
@@ -31,11 +30,11 @@ public class CategoryViewHolder extends BaseViewHolder<EyCategoryBean.ItemListBe
     }
 
     @Override
-    public void setData(EyCategoryBean.ItemListBean data) {
+    public void setData(Cag data) {
         super.setData(data);
 //        if (data.getData().getId()>=2){
-            name.setText(data.getData().getTitle());
-            Glide.with(MyApplication.getContext()).load(data.getData().getImage()).into(imageView);
+            name.setText("#"+data.getName());
+            Glide.with(MyApplication.getContext()).load(data.getBgPicture()).into(imageView);
 //        }else {
 //            frameLayout.setVisibility(View.GONE);
 //        }

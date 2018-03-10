@@ -4,14 +4,11 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.example.interviewpractice.MyApplication;
-import com.example.interviewpractice.enity.AuthorDetailBean;
-import com.example.interviewpractice.enity.EyCategoryBean;
+import com.example.interviewpractice.enity.Cag;
 import com.example.interviewpractice.http.IBaseListCallBack;
 import com.example.interviewpractice.http.IBaseRequestCallBack;
-import com.example.interviewpractice.http.IBaseRequestListCallBack;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpPersenter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +30,7 @@ public class CategoryRequestPresenter extends AbstractMvpPersenter<CategoryReque
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                categoryRequestModel.RequestCategory(new IBaseRequestCallBack<EyCategoryBean>() {
+                categoryRequestModel.RequestCategory(new IBaseListCallBack<Cag>() {
                     @Override
                     public void requestError(Throwable throwable) {
                         if(getmMvpView() != null){
@@ -42,11 +39,13 @@ public class CategoryRequestPresenter extends AbstractMvpPersenter<CategoryReque
                     }
 
                     @Override
-                    public void requestSuccess(EyCategoryBean eyCategoryBean) {
+                    public void requestSuccess(List<Cag> callBack) {
                         if(getmMvpView() != null){
-                            getmMvpView().resultSuccess(eyCategoryBean);
+                            getmMvpView().resultSuccess(callBack);
                         }
                     }
+
+
                 });
 
             }

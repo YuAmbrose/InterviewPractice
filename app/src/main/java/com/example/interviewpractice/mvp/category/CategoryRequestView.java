@@ -1,8 +1,9 @@
 package com.example.interviewpractice.mvp.category;
 
-import com.example.interviewpractice.enity.AuthorDetailBean;
-import com.example.interviewpractice.enity.EyCategoryBean;
+import com.example.interviewpractice.enity.Cag;
 import com.example.interviewpractice.mvp.EyDetail.IMvpBaseView;
+
+import java.util.List;
 
 /**
  * Created by 鱼握拳 on 2018/3/6.
@@ -10,7 +11,7 @@ import com.example.interviewpractice.mvp.EyDetail.IMvpBaseView;
 
 public interface CategoryRequestView extends IMvpBaseView {
     void requestLoading();
-    void resultSuccess(EyCategoryBean result);
+    void resultSuccess(List<Cag> result);
     void resultFailure(String result);
 
 }

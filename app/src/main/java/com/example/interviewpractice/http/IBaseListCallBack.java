@@ -1,6 +1,6 @@
 package com.example.interviewpractice.http;
 
-import com.example.interviewpractice.enity.EyCategoryBean;
+import com.example.interviewpractice.enity.Cag;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public interface IBaseListCallBack<T> {
     /**
      * @descriptoin	请求成功
      */
-//    void requestSuccess(List<T> callBack);
+    void requestSuccess(List<Cag> callBack);
 
-    void requestSuccess(EyCategoryBean eyCategoryBean);
+//    void requestSuccess(Cag cag);
 }
