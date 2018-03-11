@@ -3,6 +3,7 @@ package com.example.interviewpractice.v_layout.holder.EyDetail;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +26,8 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 public class TextHolder extends VlayoutBaseHolder<EyDetailBean> {
     @BindView(R.id.title)
     TextView title;
+    @BindView(R.id.layout)
+    LinearLayout linearLayout;
     @BindView(R.id.titleDescription)
     TextView titleDescription;
     @BindView(R.id.iconhead)
@@ -48,7 +51,11 @@ public class TextHolder extends VlayoutBaseHolder<EyDetailBean> {
             titleDescription.setText(cData.getDescription());
             name.setText(cData.getAuthor().getName());
             description.setText(cData.getAuthor().getDescription());
-
-
+            linearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mListener.onItemClick(mView, position, mData);
+                }
+            });
     }
 }

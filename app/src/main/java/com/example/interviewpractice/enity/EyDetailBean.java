@@ -1,5 +1,6 @@
 package com.example.interviewpractice.enity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -732,7 +733,7 @@ public class EyDetailBean {
         }
     }
 
-    public static class TagsBean {
+    public static class TagsBean implements Serializable{
         /**
          * id : 122
          * name : 科幻

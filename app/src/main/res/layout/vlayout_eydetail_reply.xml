@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/title"
+        android:layout_margin="8dp"
+        android:text="热门评论"
+        android:textColor="#060202"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+<com.jude.easyrecyclerview.EasyRecyclerView
+    android:id="@+id/recycleview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"></com.jude.easyrecyclerview.EasyRecyclerView>
+
+</LinearLayout>

@@ -1,18 +1,22 @@
 package com.example.interviewpractice.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.RankListAdapter;
 import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.mvp.homepage.presenter.RankListPresenterImp;
 import com.example.interviewpractice.mvp.homepage.view.RankListView;
+import com.example.interviewpractice.ui.activity.AuthorDetailActivity;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.jude.easyrecyclerview.EasyRecyclerView;
+import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 
 import java.util.List;
 
@@ -54,6 +58,16 @@ public class RankListFragment extends BaseFragment implements RankListView {
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         rankListRecyclerview.setLayoutManager(staggeredGridLayoutManager);
         rankListRecyclerview.setAdapter(rankListAdapter);
+        rankListAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent anthorIntent=new Intent(MyApplication.getContext(), AuthorDetailActivity.class);
+                int id=rankListAdapter.getItem(position).getData().getAuthor().getId();
+                anthorIntent.putExtra("id",String.valueOf(id));
+                startActivity(anthorIntent);
+                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_still);
+            }
+        });
         return view;
     }
 

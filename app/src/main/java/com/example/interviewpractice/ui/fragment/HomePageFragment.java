@@ -49,6 +49,7 @@ import com.example.interviewpractice.ui.activity.AuthorDetailActivity;
 import com.example.interviewpractice.ui.activity.CategoryActivity;
 import com.example.interviewpractice.ui.activity.EDetailActivity;
 import com.example.interviewpractice.ui.activity.MoreAuthorActivity;
+import com.example.interviewpractice.ui.activity.MoreEyActivity;
 import com.example.interviewpractice.ui.activity.RankActivity;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.example.interviewpractice.v_layout.ItemListener;
@@ -151,7 +152,8 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener() {
                     @Override
                     public void onItemClick(View view, int position, Object mData) {
-
+                            Intent more=new Intent(MyApplication.getContext(), MoreEyActivity.class);
+                            startActivity(more);
                     }
                 });
         endAdapter = new VlayoutBaseAdapter(mContext)
@@ -248,10 +250,10 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
         delegateAdapter.addAdapter(banneradapter);
         delegateAdapter.addAdapter(headAdapter);
         delegateAdapter.addAdapter(gridAdapter);
-        delegateAdapter.addAdapter(selectheadAdapter);
-        delegateAdapter.addAdapter(setlectAdapter);
         delegateAdapter.addAdapter(pgcAdapter);
         delegateAdapter.addAdapter(pAdapter);
+        delegateAdapter.addAdapter(setlectAdapter);
+        delegateAdapter.addAdapter(selectheadAdapter);
         delegateAdapter.addAdapter(hotheadAdapter);
         delegateAdapter.addAdapter(zhotAdapter);
         delegateAdapter.addAdapter(endAdapter);

@@ -6,6 +6,7 @@ import android.content.Context;
 
 import com.example.interviewpractice.app.Api;
 import com.example.interviewpractice.enity.EyDetailBean;
+import com.example.interviewpractice.enity.EyReplyBean;
 import com.example.interviewpractice.enity.HotMovieBean;
 import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.http.BaseModel;
@@ -74,6 +75,23 @@ public class RequestMode extends BaseModel {
                     public void accept(RankListBean rankListBean) throws Exception {
 
                         rankListBeanIBaseRequestCallBack.requestSuccess(rankListBean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        rankListBeanIBaseRequestCallBack.requestError(throwable);
+                    }
+                }));
+    }
+    public  void  RequestReply(String id, final IBaseRequestCallBack<EyReplyBean> rankListBeanIBaseRequestCallBack){
+        mcompositeDisposable.add(api.getReply(id)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Consumer<EyReplyBean>() {
+                    @Override
+                    public void accept(EyReplyBean eyReplyBean) throws Exception {
+
+                        rankListBeanIBaseRequestCallBack.requestSuccess(eyReplyBean);
                     }
                 }, new Consumer<Throwable>() {
                     @Override

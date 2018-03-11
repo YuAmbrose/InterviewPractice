@@ -8,6 +8,7 @@ import com.example.interviewpractice.enity.CategoryDetailInfo;
 import com.example.interviewpractice.enity.ComingMovieBean;
 import com.example.interviewpractice.enity.Cag;
 import com.example.interviewpractice.enity.EyDetailBean;
+import com.example.interviewpractice.enity.EyReplyBean;
 import com.example.interviewpractice.enity.MovieDetailBean;
 import com.example.interviewpractice.enity.PrevueBean;
 import com.example.interviewpractice.enity.HotMovieBean;
@@ -106,6 +107,11 @@ public interface Api {
                                            @Query("id") String id,
                                            @Query("start") int start,
                                            @Query("num") int num);
+    /**
+     * 开眼评论
+     */
+    @GET("v1/replies/video")
+    Observable<EyReplyBean> getReply(@Query("id") String id);
 
     /**
      * 开眼分类内容

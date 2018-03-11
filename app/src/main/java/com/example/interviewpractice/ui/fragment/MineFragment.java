@@ -12,6 +12,8 @@ import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.QMUIAppBarLayout;
 import com.qmuiteam.qmui.widget.QMUITopBar;
+import com.qmuiteam.qmui.widget.grouplist.QMUICommonListItemView;
+import com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,8 +32,9 @@ public class MineFragment extends BaseFragment {
     QMUITopBar mTopBar;
     @BindView(R.id.appbar)
     QMUIAppBarLayout appbar;
+//    @BindView(R.id.groupListView)
+//    QMUIGroupListView mGroupListView;
     Unbinder unbinder;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
@@ -46,7 +49,25 @@ public class MineFragment extends BaseFragment {
 
                     }
                 });
+        initListView();
         return view;
+    }
+
+    private void initListView() {
+//        View.OnClickListener onClickListener = null;
+//        QMUICommonListItemView itemWithChevron = mGroupListView.createItemView("Item 4");
+//        itemWithChevron.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_CHEVRON);
+////        itemWithChevron.setOrientation(QMUICommonListItemView.VERTICAL);
+////        itemWithChevron.setDetailText("当前版本V 1.0.1");
+//        itemWithChevron.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+//        QMUIGroupListView.newSection(MyApplication.getContext())
+//                .addItemView(itemWithChevron, onClickListener)
+//                .addTo(mGroupListView);
     }
 
 
