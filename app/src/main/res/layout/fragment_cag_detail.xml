@@ -1,13 +1,15 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.interviewpractice.ui.fragment.childFragment.CagDetailFragment">
+    tools:context="com.example.interviewpractice.ui.fragment.childFragment.CagPopularFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.jude.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/select_recycler"
+        android:nestedScrollingEnabled="false"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent"/>
 
-</FrameLayout>
+</LinearLayout>

@@ -13,6 +13,7 @@
         android:layout_height="220dp"/>
 
     <FrameLayout
+        android:background="#8000"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 <ImageView

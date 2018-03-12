@@ -49,36 +49,36 @@ public class CagDetailPresenter extends AbstractMvpPersenter<CagDetailView> {
                         }
                     }
                 });
-                cagDetailModel.RequestAll(id, 0, 10, new IBaseRequestCallBack<RankListBean>() {
-                    @Override
-                    public void requestError(Throwable throwable) {
-                        if(getmMvpView() != null){
-                            getmMvpView().resultFailure(Log.getStackTraceString(throwable));
-                        }
-                    }
-
-                    @Override
-                    public void requestSuccess(RankListBean rankListBean) {
-                        if(getmMvpView() != null){
-                            getmMvpView().AllSuccess(rankListBean);
-                        }
-                    }
-                });
-                cagDetailModel.RequestAuthor(id,0,5, new IBaseRequestCallBack<CagAuthorBean>() {
-                    @Override
-                    public void requestError(Throwable throwable) {
-                        if(getmMvpView() != null){
-                            getmMvpView().resultFailure(Log.getStackTraceString(throwable));
-                        }
-                    }
-
-                    @Override
-                    public void requestSuccess(CagAuthorBean callBack) {
-                        if(getmMvpView() != null){
-                            getmMvpView().AuthorSuccess(callBack);
-                        }
-                    }
-                });
+//                cagDetailModel.RequestAll(id, 0, 10, new IBaseRequestCallBack<RankListBean>() {
+//                    @Override
+//                    public void requestError(Throwable throwable) {
+//                        if(getmMvpView() != null){
+//                            getmMvpView().resultFailure(Log.getStackTraceString(throwable));
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void requestSuccess(RankListBean rankListBean) {
+//                        if(getmMvpView() != null){
+//                            getmMvpView().AllSuccess(rankListBean);
+//                        }
+//                    }
+//                });
+//                cagDetailModel.RequestAuthor(id,0,5, new IBaseRequestCallBack<CagAuthorBean>() {
+//                    @Override
+//                    public void requestError(Throwable throwable) {
+//                        if(getmMvpView() != null){
+//                            getmMvpView().resultFailure(Log.getStackTraceString(throwable));
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void requestSuccess(CagAuthorBean callBack) {
+//                        if(getmMvpView() != null){
+//                            getmMvpView().AuthorSuccess(callBack);
+//                        }
+//                    }
+//                });
 
             }
         },1);

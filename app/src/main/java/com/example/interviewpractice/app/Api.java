@@ -39,11 +39,18 @@ public interface Api {
     /**
      * 开眼排行榜
      */
+    @GET("v3/categories/videoList")
+    Observable<RankListBean> getPopular(@Query("strategy") String strategy,
+                                        @Query("id") String id,
+                                         @Query("start") int start,
+                                         @Query("num") int num);
+    /**
+     * 开眼排行榜
+     */
     @GET("v3/ranklist")
     Observable<RankListBean> getRankList(@Query("strategy") String strategy,
                                          @Query("start") int start,
                                          @Query("num") int num);
-
     /**
      * 该Id相似内容
      */

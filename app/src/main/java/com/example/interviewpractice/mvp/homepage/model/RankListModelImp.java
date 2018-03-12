@@ -79,4 +79,22 @@ public class RankListModelImp extends BaseModel implements  RankListModel<RankLi
                     }
                 }));
     }
+
+    @Override
+    public void loadPopular(String strategy,String  id, int start, int num, final IBaseRequestCallBack<RankListBean> iBaseRequestCallBack) {
+        mcompositeDisposable.add(api.getPopular(strategy,id,start,num)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Consumer<RankListBean>() {
+                    @Override
+                    public void accept(RankListBean rankListBean) throws Exception {
+                        iBaseRequestCallBack.requestSuccess(rankListBean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        iBaseRequestCallBack.requestError(throwable);
+                    }
+                }));
+    }
 }

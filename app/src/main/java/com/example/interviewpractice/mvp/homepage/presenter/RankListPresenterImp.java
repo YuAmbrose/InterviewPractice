@@ -39,5 +39,10 @@ public class  RankListPresenterImp extends RankListBasePresenterImp<RankListView
         rankListModelImp.loadListAuthor(strategy,id,start,num,this);
     }
 
+    @Override
+    public void loadPopular(String strategy, String  id, int start, int num) {
+        rankListModelImp.loadPopular(strategy,id,start,num,this);
+    }
+
 
 }

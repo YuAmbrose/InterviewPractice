@@ -4,13 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-/**
- * @author 刘镓旗
- * @date 2017/11/17
- * @description MvpActivity
- * 指定子类具体的View必须继承自IMvpBaseView4
- * 指定子类具体的Presenter必须继承自AbstractMvpPersenter4
- */
+
 public abstract class AbstractMvpActivity<V extends IMvpBaseView, P extends AbstractMvpPersenter<V>> extends AppCompatActivity implements IMvpBaseView {
 
     private P presenter;

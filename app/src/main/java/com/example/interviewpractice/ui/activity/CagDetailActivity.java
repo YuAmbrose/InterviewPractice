@@ -29,6 +29,9 @@ import com.example.interviewpractice.ui.fragment.HomeMovieFragment;
 import com.example.interviewpractice.ui.fragment.StartFragment;
 import com.example.interviewpractice.ui.fragment.childFragment.AuthorFragment;
 import com.example.interviewpractice.ui.fragment.childFragment.CagAllFragment;
+import com.example.interviewpractice.ui.fragment.childFragment.CagPopularFragment;
+import com.example.interviewpractice.utils.rxbus.MessageEvent;
+import com.example.interviewpractice.utils.rxbus.RxBus;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.QMUIAppBarLayout;
 import com.qmuiteam.qmui.widget.QMUICollapsingTopBarLayout;
@@ -36,6 +39,8 @@ import com.qmuiteam.qmui.widget.QMUIPagerAdapter;
 import com.qmuiteam.qmui.widget.QMUITabSegment;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.QMUIViewPager;
+
+import org.reactivestreams.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,11 +63,9 @@ public class CagDetailActivity extends AbstractMvpActivity<CagDetailView, CagDet
     @BindView(R.id.viewpager)
     ViewPager viewPager;
     private String id;
-
     private AppBarState mState;
     private List<String> titles;
     private List<Fragment> fragments;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +76,7 @@ public class CagDetailActivity extends AbstractMvpActivity<CagDetailView, CagDet
         Intent intent=getIntent();
         id=intent.getStringExtra("id");
         getPresenter().clickRequest(id);
+        RxBus.getInstance().post("666");
         mTopBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,20 +85,17 @@ public class CagDetailActivity extends AbstractMvpActivity<CagDetailView, CagDet
             }
         });
         fragments = new ArrayList<>();
-        fragments.add(new HomeMovieFragment());
-        fragments.add(new StartFragment());
+        fragments.add(new CagPopularFragment());
+        fragments.add(new CagAllFragment());
         titles = new ArrayList<>();
-        titles.add("One");
-        titles.add("Two");
+        titles.add("最受欢迎内容");
+        titles.add("全部作品");
         FragmentViewPagerAdapter adapter = new FragmentViewPagerAdapter(getSupportFragmentManager(), fragments, titles);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-//        setupTabIcons();
         viewPager.setCurrentItem(1);
         viewPager.setCurrentItem(0);//直接设置0的话竟然不起作用,好吧.就这样迂回一下吧
-//        LinearLayout.LayoutParams params= (LinearLayout.LayoutParams) statebarHeight.getLayoutParams();//获取当前控件的布局对象
-//        params.height=getStatusBarHeight(this);//设置当前控件布局的高度
-//        statebarHeight.setLayoutParams(params);//将设置好的布局参数应用到控件中
+
 
     }
 
@@ -118,12 +119,12 @@ public class CagDetailActivity extends AbstractMvpActivity<CagDetailView, CagDet
 
     @Override
     public void AuthorSuccess(CagAuthorBean authorBean) {
-        Log.e(TAG, "AuthorSuccess: " + authorBean.getCount());
+
     }
 
     @Override
     public void AllSuccess(RankListBean rankListBean) {
-        Log.e(TAG, "AllSuccess: " + rankListBean.getCount());
+
     }
 
     @Override
