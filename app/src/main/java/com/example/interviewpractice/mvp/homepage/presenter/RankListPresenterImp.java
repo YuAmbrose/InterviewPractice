@@ -44,5 +44,10 @@ public class  RankListPresenterImp extends RankListBasePresenterImp<RankListView
         rankListModelImp.loadPopular(strategy,id,start,num,this);
     }
 
+    @Override
+    public void loadCagAll(String id, int start, int num) {
+        rankListModelImp.loadCagList(id,start,num,this);
+    }
+
 
 }

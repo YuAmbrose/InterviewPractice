@@ -11,4 +11,5 @@ public interface RankListModel<T> {
     void loadSelected(int start,int num,IBaseRequestCallBack<T> iBaseRequestCallBack);
     void loadListAuthor(String strategy,String id,int start,int num,IBaseRequestCallBack<T> iBaseRequestCallBack);
     void loadPopular(String strategy,String id,int start,int num,IBaseRequestCallBack<T> iBaseRequestCallBack);
+    void loadCagList(String id,int start,int num,IBaseRequestCallBack<T> iBaseRequestCallBack);
 }

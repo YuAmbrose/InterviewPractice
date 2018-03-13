@@ -39,6 +39,7 @@ import com.qmuiteam.qmui.widget.QMUIPagerAdapter;
 import com.qmuiteam.qmui.widget.QMUITabSegment;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.QMUIViewPager;
+import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 
 import org.reactivestreams.Subscriber;
 
@@ -66,6 +67,7 @@ public class CagDetailActivity extends AbstractMvpActivity<CagDetailView, CagDet
     private AppBarState mState;
     private List<String> titles;
     private List<Fragment> fragments;
+    private QMUITipDialog tipDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +110,11 @@ public class CagDetailActivity extends AbstractMvpActivity<CagDetailView, CagDet
 
     @Override
     public void requestLoading() {
-
+        tipDialog = new QMUITipDialog.Builder(this)
+                .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
+                .setTipWord("正在加载")
+                .create();
+        tipDialog.show();
     }
 
     @Override
@@ -117,6 +123,7 @@ public class CagDetailActivity extends AbstractMvpActivity<CagDetailView, CagDet
         tvName.setText(categoryDetailInfo.getCategoryInfo().getName());
         tvDescription.setText(categoryDetailInfo.getCategoryInfo().getDescription());
         initAppBar(categoryDetailInfo.getCategoryInfo().getName());
+        tipDialog.dismiss();
     }
 
     @Override

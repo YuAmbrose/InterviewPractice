@@ -5,20 +5,25 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.CategoryAdapter;
 import com.example.interviewpractice.enity.Cag;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpActivity;
 import com.example.interviewpractice.mvp.category.CategoryRequestPresenter;
 import com.example.interviewpractice.mvp.category.CategoryRequestView;
+import com.example.interviewpractice.utils.TipDialogUtil;
 import com.example.interviewpractice.utils.rxbus.MessageEvent;
 import com.example.interviewpractice.utils.rxbus.RxBus;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.qmuiteam.qmui.widget.QMUITopBar;
+import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -35,6 +40,7 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
     EasyRecyclerView recycleview;
     private List<Cag> itemListBeans;
     private CategoryAdapter categoryAdapter;
+    private QMUITipDialog tipDialog;
     private static final String TAG = "CategoryActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,14 +79,18 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
 
     @Override
     public void requestLoading() {
-
+        tipDialog = new QMUITipDialog.Builder(this)
+                .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
+                .setTipWord("正在加载")
+                .create();
+        tipDialog.show();
     }
 
     @Override
     public void resultSuccess(List<Cag> list) {
 
         categoryAdapter.addAll(list);
-
+        tipDialog.dismiss();
     }
 
 //    @Override
@@ -113,6 +123,7 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
 
     @Override
     public void resultFailure(String result) {
-        Log.e(TAG, "resultFailure: 8889999999999999999999999999"+result);
+
     }
+
 }

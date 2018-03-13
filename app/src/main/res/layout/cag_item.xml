@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<RelativeLayout
+    android:layout_margin="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="220dp">
+    <ImageView
+        android:id="@+id/bgPic"
+        android:layout_width="match_parent"
+        android:layout_height="220dp" />
+
+    <LinearLayout
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="18dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
+        android:background="#88101010">
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:textColor="@color/white"
+            android:textStyle="normal" />
+    </LinearLayout>
+</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_margin="6dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_marginLeft="15dp"
+            android:id="@+id/iconhead"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="16sp"
+                android:textColor="#0d0c0c"
+                android:textStyle="bold"
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:id="@+id/description"
+                android:textSize="14sp"
+                android:textColor="#4d4c4c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="#b3b1b2"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"/>
+</LinearLayout>

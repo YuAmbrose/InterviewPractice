@@ -9,4 +9,5 @@ public interface RankListPresenter{
         void loadSelect(int start,int num);
         void loadListAuthor(String strategy,String id,int start,int num);
         void loadPopular(String strategy,String id,int start,int num);
+        void loadCagAll(String id,int start,int num);
 }
