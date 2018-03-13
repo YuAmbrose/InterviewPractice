@@ -87,8 +87,8 @@ public class CagDetailActivity extends AbstractMvpActivity<CagDetailView, CagDet
         });
 
         fragments = new ArrayList<>();
-        fragments.add(new CagPopularFragment());
-        fragments.add(new CagAllFragment());
+        fragments.add(new CagPopularFragment(id));
+        fragments.add(new CagAllFragment(id));
         titles = new ArrayList<>();
         titles.add("最受欢迎内容");
         titles.add("全部作品");

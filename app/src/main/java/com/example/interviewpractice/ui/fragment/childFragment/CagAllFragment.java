@@ -1,5 +1,6 @@
 package com.example.interviewpractice.ui.fragment.childFragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,25 +20,24 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.functions.Consumer;
 
-
+@SuppressLint("ValidFragment")
 public class CagAllFragment extends BaseFragment {
 
 
     @BindView(R.id.textview)
     TextView textview;
+    private String cos;
     private static final String TAG = "CagAllFragment";
+    @SuppressLint("ValidFragment")
+    public CagAllFragment(String id) {
+        super();
+        cos=id;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cag_all, container, false);
         ButterKnife.bind(this, view);
-        RxBus.getInstance().register(MessageEvent.class).subscribe(new Consumer<MessageEvent>() {
-            @Override
-            public void accept(MessageEvent messageEvent) throws Exception {
-                Toast.makeText(MyApplication.getContext(), messageEvent.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "accept:顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶 "+messageEvent.getMessage());
-                textview.setText(messageEvent.getMessage());
-            }
-        });
         return view;
     }
 

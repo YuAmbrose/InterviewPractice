@@ -1,5 +1,6 @@
 package com.example.interviewpractice.ui.fragment.childFragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -30,6 +31,7 @@ import butterknife.ButterKnife;
 import io.reactivex.functions.Consumer;
 
 
+@SuppressLint("ValidFragment")
 public class CagPopularFragment extends BaseFragment implements RankListView {
     @BindView(R.id.select_recycler)
     EasyRecyclerView easyrecycler;
@@ -38,27 +40,21 @@ public class CagPopularFragment extends BaseFragment implements RankListView {
     private static final String TAG = "CagPopularFragment";
     private List<RankListBean.ItemListBean> itemListBeans;
     private HomeRecyclervAdapter homeRecyclervAdapter;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    private String cos;
+    @SuppressLint("ValidFragment")
+    public CagPopularFragment(String id) {
+        super();
+        cos=id;
 
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cag_detail, container, false);
         ButterKnife.bind(this, view);
-        RxBus.getInstance().register(MessageEvent.class).subscribe(new Consumer<MessageEvent>() {
-            @Override
-            public void accept(MessageEvent messageEvent) throws Exception {
-              String  id=messageEvent.getMessage();
-                rankListPresenterImp.loadPopular("mostPopular", id, 0, 10);
-                Log.e(TAG, "水水水水水水水水水水水水水水 "+id );
-            }
-        });
-
-
+        rankListPresenterImp.loadPopular("mostPopular", cos, 0, 10);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         easyrecycler.setLayoutManager(staggeredGridLayoutManager);
         homeRecyclervAdapter = new HomeRecyclervAdapter(getContext());

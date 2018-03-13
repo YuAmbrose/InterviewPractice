@@ -52,7 +52,6 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
             public void onItemClick(int position) {
                 Intent intent=new Intent(CategoryActivity.this,CagDetailActivity.class);
                 String id=categoryAdapter.getItem(position).getId();
-                RxBus.getInstance().post(new MessageEvent(id));
                 intent.putExtra("id",id);
                 startActivity(intent);
             }
