@@ -16,11 +16,6 @@ public class RankListFragmentAdapter extends FragmentPagerAdapter {
     public RankListFragmentAdapter(FragmentManager fm) {
         super(fm);
     }
-
-//    public RankListFragmentAdapter(FragmentManager fragmentManager) {
-//        super();
-//    }
-
     @Override
     public Fragment getItem(int position) {
         return RankListFragment.newInstance(position);

@@ -14,6 +14,8 @@ import com.example.interviewpractice.enity.Cag;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpActivity;
 import com.example.interviewpractice.mvp.category.CategoryRequestPresenter;
 import com.example.interviewpractice.mvp.category.CategoryRequestView;
+import com.example.interviewpractice.utils.rxbus.MessageEvent;
+import com.example.interviewpractice.utils.rxbus.RxBus;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.qmuiteam.qmui.widget.QMUITopBar;
@@ -50,6 +52,7 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
             public void onItemClick(int position) {
                 Intent intent=new Intent(CategoryActivity.this,CagDetailActivity.class);
                 String id=categoryAdapter.getItem(position).getId();
+                RxBus.getInstance().post(new MessageEvent(id));
                 intent.putExtra("id",id);
                 startActivity(intent);
             }
@@ -71,7 +74,7 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
 
     @Override
     public void requestLoading() {
-        Log.e(TAG, "requestLoading: 8888888888888888888888888888" );
+
     }
 
     @Override

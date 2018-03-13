@@ -75,8 +75,9 @@ public class CagDetailActivity extends AbstractMvpActivity<CagDetailView, CagDet
         //        initPagers();
         Intent intent=getIntent();
         id=intent.getStringExtra("id");
+
+        String co="2";
         getPresenter().clickRequest(id);
-        RxBus.getInstance().post("666");
         mTopBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +85,7 @@ public class CagDetailActivity extends AbstractMvpActivity<CagDetailView, CagDet
                 overridePendingTransition(R.anim.slide_still, R.anim.slide_out_right);
             }
         });
+
         fragments = new ArrayList<>();
         fragments.add(new CagPopularFragment());
         fragments.add(new CagAllFragment());

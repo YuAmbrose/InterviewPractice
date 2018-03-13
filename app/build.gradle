@@ -61,4 +61,6 @@ dependencies {
     }
     compile 'com.qmuiteam:qmui:1.0.6'
     compile 'com.hymane.expandtextview:library:1.0.2'
+    compile 'com.qmuiteam:qmuilint:1.0.1'
+    compile 'com.qmuiteam:arch:0.0.1'
 }

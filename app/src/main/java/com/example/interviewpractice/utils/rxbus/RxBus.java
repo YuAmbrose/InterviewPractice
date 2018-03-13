@@ -1,6 +1,8 @@
 package com.example.interviewpractice.utils.rxbus;
 
-
+/**
+ * Created by Administrator on 2017/9/28 0028.
+ */
 
 import io.reactivex.Flowable;
 import io.reactivex.processors.FlowableProcessor;

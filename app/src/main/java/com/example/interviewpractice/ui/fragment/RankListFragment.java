@@ -71,6 +71,7 @@ public class RankListFragment extends BaseFragment implements RankListView {
         return view;
     }
 
+
     @Override
     public void rankSuccess(RankListBean rData) {
         listBeans = rData.getItemList();
