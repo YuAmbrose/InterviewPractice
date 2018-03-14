@@ -242,9 +242,6 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                         selectIntent.putExtra("id",String.valueOf(id));
                         startActivity(selectIntent);
                         getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_still);
-//                        replaceFragment(new AuthorDetailFragment());
-//                        Log.e(TAG, "onItemClick: "+mData.getItemList().get(position).getData().getId());
-//                        Toast.makeText(MyApplication.getContext(), "888", Toast.LENGTH_SHORT).show();
                     }
                 });
         delegateAdapter.addAdapter(banneradapter);
