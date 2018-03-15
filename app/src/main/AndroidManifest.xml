@@ -45,7 +45,8 @@
         <activity android:name=".ui.activity.CategoryActivity" />
         <activity android:name=".ui.activity.ArticleActivity" />
         <activity android:name=".ui.activity.CagDetailActivity" />
-        <activity android:name=".ui.activity.MoreEyActivity"></activity>
+        <activity android:name=".ui.activity.MoreEyActivity" />
+        <activity android:name=".ui.activity.SearchActivity"></activity>
     </application>
 
 </manifest>

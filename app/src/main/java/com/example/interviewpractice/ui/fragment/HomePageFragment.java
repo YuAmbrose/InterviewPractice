@@ -51,6 +51,7 @@ import com.example.interviewpractice.ui.activity.EDetailActivity;
 import com.example.interviewpractice.ui.activity.MoreAuthorActivity;
 import com.example.interviewpractice.ui.activity.MoreEyActivity;
 import com.example.interviewpractice.ui.activity.RankActivity;
+import com.example.interviewpractice.ui.activity.SearchActivity;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.example.interviewpractice.v_layout.ItemListener;
 import com.example.interviewpractice.v_layout.VlayoutBaseAdapter;
@@ -190,7 +191,8 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener() {
             @Override
             public void onItemClick(View view, int position, Object mData) {
-                Toast.makeText(MyApplication.getContext(), "886668", Toast.LENGTH_SHORT).show();
+                Intent search=new Intent(MyApplication.getContext(), SearchActivity.class);
+                startActivity(search);
             }
         });
         gridAdapter = new VlayoutBaseAdapter(mContext)
