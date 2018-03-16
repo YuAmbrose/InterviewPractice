@@ -16,6 +16,9 @@ import com.example.interviewpractice.enity.PgcBean;
 import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.enity.ZhihuHotBean;
 
+import java.util.List;
+
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -63,7 +66,18 @@ public interface Api {
     @GET("v4/discovery/hot")
     Observable<RankListBean> getSelected(@Query("start") int start,
                                          @Query("num") int num);
-
+/**
+ * 热门搜索
+ */
+    @GET("v3/queries/hot")
+    Observable<List<String>> getQueriesHotData();
+    /**
+     * 搜索
+     */
+    @GET("v1/search")
+    Observable<RankListBean> getQuery(@Query("start") int start,
+                                         @Query("num") int num,
+                                        @Query("query") String search);
     /**
      * 开眼作者
      *

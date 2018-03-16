@@ -38,6 +38,7 @@
         </LinearLayout>
     </LinearLayout>
     <TextView
+        android:textColor="#FFFFFF"
         android:layout_marginLeft="88dp"
         android:id="@+id/description"
         android:layout_width="match_parent"

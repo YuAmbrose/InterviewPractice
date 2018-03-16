@@ -59,6 +59,7 @@ dependencies {
     compile('com.alibaba.android:vlayout:1.2.8@aar') {
         transitive = true
     }
+    compile 'co.lujun:androidtagview:1.1.4'
     compile 'com.qmuiteam:qmui:1.0.6'
     compile 'com.hymane.expandtextview:library:1.0.2'
 //    compile 'com.qmuiteam:qmuilint:1.0.1'

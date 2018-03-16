@@ -17,7 +17,7 @@ public interface IBaseListCallBack<T> {
     /**
      * @descriptoin	请求成功
      */
-    void requestSuccess(List<Cag> callBack);
-
+    void requestSuccess(List<T> callBack);
+    void  requestList(List<String> callBack);
 //    void requestSuccess(Cag cag);
 }

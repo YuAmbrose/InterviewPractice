@@ -45,6 +45,11 @@ public class CategoryRequestPresenter extends AbstractMvpPersenter<CategoryReque
                         }
                     }
 
+                    @Override
+                    public void requestList(List<String> callBack) {
+
+                    }
+
 
                 });
 
