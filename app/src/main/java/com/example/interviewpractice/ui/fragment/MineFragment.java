@@ -50,12 +50,14 @@ public class MineFragment extends BaseFragment implements UpdateView {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         ButterKnife.bind(this, view);
         QMUIStatusBarHelper.translucent(getActivity()); // 沉浸式状态栏
+
         PackageManager packageManager =MyApplication.getContext().getPackageManager();
         try {
             packInfo = packageManager.getPackageInfo(MyApplication.getContext().getPackageName(), 0);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+        updateModelImp.loadUpdateApp();
         initListView();
         return view;
     }
@@ -68,12 +70,6 @@ public class MineFragment extends BaseFragment implements UpdateView {
         itemWithChevron.setImageDrawable(getResources().getDrawable(R.drawable.undate));
         itemWithChevron.setDetailText("V"+packInfo.versionName);
 
-        itemWithChevron.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-             updateModelImp.loadUpdateApp();
-            }
-        });
 
         QMUICommonListItemView itemWithChevron1 = mGroupListView.createItemView("修改个人信息");
         itemWithChevron1.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_CHEVRON);
@@ -125,14 +121,22 @@ public class MineFragment extends BaseFragment implements UpdateView {
     }
 
     @Override
-    public void UpdateApp(UpdateAppInfo updateAppInfo) {
-        int localVersion  = packInfo.versionCode;
-        int newVersion = Integer.valueOf(updateAppInfo.getVersion());
+    public void UpdateApp(final UpdateAppInfo updateAppInfo) {
+        final int localVersion  = packInfo.versionCode;
+        final int newVersion = Integer.valueOf(updateAppInfo.getVersion());
                 if (newVersion > localVersion){
-                 startUpdateApp(updateAppInfo);
-        }else {
-                    Toast.makeText(MyApplication.getContext(), "当前已是最新版本。", Toast.LENGTH_SHORT).show();
+                    itemWithChevron.showNewTip(true);
+        }
+        itemWithChevron.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (newVersion > localVersion){
+                    startUpdateApp(updateAppInfo);
+                }else {
+                    Toast.makeText(MyApplication.getContext(), "目前已是最新版本"+"V-"+packInfo.versionName, Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
     }
 
     private void startUpdateApp(final UpdateAppInfo updateAppInfo) {
@@ -142,7 +146,6 @@ public class MineFragment extends BaseFragment implements UpdateView {
                 .addAction("取消", new QMUIDialogAction.ActionListener() {
                     @Override
                     public void onClick(QMUIDialog dialog, int index) {
-                        itemWithChevron.showNewTip(true);
                         dialog.dismiss();
                     }
                 })
