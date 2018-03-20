@@ -1,7 +1,9 @@
 package com.example.interviewpractice.adapter.viewholder;
 
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -12,25 +14,32 @@ import com.example.interviewpractice.utils.helper.GlideRoundTransform;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/1/5.
  */
 
 public class HomeRecyclerViewHolder extends BaseViewHolder<RankListBean.ItemListBean> {
-    private ImageView imageView;
-    private TextView timer,title,type;
-    public HomeRecyclerViewHolder(ViewGroup parent) {
+private ImageView imageView;
+private TextView timer,title,type;
+private LinearLayout linearLayout;
+private List<RankListBean.ItemListBean> itemListBeans=new ArrayList<>();
+public HomeRecyclerViewHolder(ViewGroup parent) {
         super(parent, R.layout.home_recyclerview_item);
         imageView=$(R.id.bgPic);
         timer=$(R.id.timer);
         title=$(R.id.title);
         type=$(R.id.type);
-    }
+        linearLayout=$(R.id.linear);
+        }
 
-    @Override
-    public void setData(RankListBean.ItemListBean data) {
+@Override
+public void setData(RankListBean.ItemListBean data) {
         super.setData(data);
+
+        if (data.getType().equals("video")){
             title.setText(data.getData().getTitle());
             type.setText("#"+data.getData().getCategory());
             SimpleDateFormat format=new SimpleDateFormat("mm:ss");
@@ -38,9 +47,14 @@ public class HomeRecyclerViewHolder extends BaseViewHolder<RankListBean.ItemList
             int t=time*1000;
             String d=format.format(t);
             timer.setText(d);
-                Glide.with(MyApplication.getContext())
-                        .load(data.getData().getCover().getFeed())
-                        .transform(new GlideRoundTransform(getContext(), 8))
-                        .into(imageView);
-    }
+            Glide.with(MyApplication.getContext())
+            .load(data.getData().getCover().getFeed())
+            .transform(new GlideRoundTransform(getContext(), 8))
+            .into(imageView);
+        }else {
+//            linearLayout.setVisibility(View.GONE);
+         return ;
+        }
+}
+
 }

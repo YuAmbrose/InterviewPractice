@@ -1,6 +1,8 @@
 package com.example.interviewpractice.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -12,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.interviewpractice.MainActivity;
+import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.HomeRecyclervAdapter;
 import com.example.interviewpractice.enity.RankListBean;
@@ -19,8 +22,11 @@ import com.example.interviewpractice.mvp.EyDetail.AbstractMvpActivity;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpFragment;
 import com.example.interviewpractice.mvp.search.SearchRequestPresenter;
 import com.example.interviewpractice.mvp.search.SearchRequestView;
+import com.example.interviewpractice.utils.UtilsHelp;
 import com.jude.easyrecyclerview.EasyRecyclerView;
+import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.qmuiteam.qmui.widget.QMUITopBar;
+import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +35,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import co.lujun.androidtagview.TagContainerLayout;
 import co.lujun.androidtagview.TagView;
+import co.lujun.androidtagview.Utils;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Predicate;
@@ -37,7 +44,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.example.interviewpractice.MyApplication.getContext;
 
-public class SearchActivity extends AbstractMvpActivity<SearchRequestView,SearchRequestPresenter> implements SearchRequestView {
+public class SearchActivity extends AbstractMvpActivity<SearchRequestView,SearchRequestPresenter> implements SearchRequestView,RecyclerArrayAdapter.OnLoadMoreListener {
 
 
     @BindView(R.id.searchEdit)
@@ -53,6 +60,9 @@ public class SearchActivity extends AbstractMvpActivity<SearchRequestView,Search
     private List<RankListBean.ItemListBean> itemListBeans;
     private HomeRecyclervAdapter homeRecyclervAdapter;
     private String WORD;
+    private Handler handler = new Handler();
+    private int num=10;
+    private int start=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +81,18 @@ public class SearchActivity extends AbstractMvpActivity<SearchRequestView,Search
         easyrecycler.setLayoutManager(staggeredGridLayoutManager);
         homeRecyclervAdapter=new HomeRecyclervAdapter(getContext());
         easyrecycler.setAdapter(homeRecyclervAdapter);
+        homeRecyclervAdapter.setMore(R.layout.load_more_layout,this);
+        homeRecyclervAdapter.setNoMore(R.layout.no_more_layout);
+        homeRecyclervAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                int id=homeRecyclervAdapter.getItem(position).getData().getId();
+                Intent selectIntent=new Intent(MyApplication.getContext(), EDetailActivity.class);
+                selectIntent.putExtra("id",String.valueOf(id));
+                startActivity(selectIntent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_still);
+            }
+        });
     }
 
     private void initView() {
@@ -95,11 +117,14 @@ public class SearchActivity extends AbstractMvpActivity<SearchRequestView,Search
             //输入完成后，提交时触发的方法，一般情况是点击输入法中的搜索按钮才会触发，表示现在正式提交了
             public boolean onQueryTextSubmit(String query)
             {
+                easyrecycler.setRefreshing(true);
+                homeRecyclervAdapter.removeAll();
                 WORD=query;
-                getPresenter().clickRequest(0,10,query);
-                ClearBean();
+                getPresenter().clickRequest(0,num,query);
+                UtilsHelp.setSoftInputActive(SearchActivity.this, mSearchView, false);
                 tagContainerLayout.setVisibility(View.GONE);
                 return true;
+
             }
 
             @Override
@@ -111,39 +136,32 @@ public class SearchActivity extends AbstractMvpActivity<SearchRequestView,Search
 
     @Override
     public void requestLoading() {
-
     }
-    private  void ClearBean(){
-//       itemListBeans=new ArrayList<>();
-//
-//        if (itemListBeans.size()==0){
-//
-//        }else {
-//           itemListBeans.clear();
-//        }
 
-    }
     @Override
     public void resultSuccess(RankListBean rankListBean) {
+        for (int i = 0; i < rankListBean.getItemList().size(); i++) {
+            if (rankListBean.getItemList().get(i).getType().equals("video")) {
 
-
-
+            } else {
+                rankListBean.getItemList().remove(i);
+            }
+        }
         itemListBeans = rankListBean.getItemList();
         homeRecyclervAdapter.addAll(itemListBeans);
+
+
     }
 
     @Override
     public void hotSuccess(List<String> list) {
+
         tagContainerLayout.setTags(list);
         tagContainerLayout.setOnTagClickListener(new TagView.OnTagClickListener() {
             @Override
             public void onTagClick(int position, String text) {
 
-//                etSearch.setSelection(text.length());
-//
-//                startSearch(text);
             }
-
             @Override
             public void onTagLongClick(int position, String text) {
 
@@ -158,11 +176,28 @@ public class SearchActivity extends AbstractMvpActivity<SearchRequestView,Search
 
     @Override
     public void resultFailure(String result) {
-
+        Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected SearchRequestPresenter createPresenter() {
         return new SearchRequestPresenter();
+    }
+    @Override
+    public void onLoadMore() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                getPresenter().clickRequest(start*num,num,WORD);
+                start++;
+            }
+        },100);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        UtilsHelp.setSoftInputActive(SearchActivity.this, mSearchView, false);
     }
 }

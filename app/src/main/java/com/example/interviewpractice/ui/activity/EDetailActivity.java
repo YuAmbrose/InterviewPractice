@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.a.a.I;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
@@ -30,6 +31,7 @@ import com.example.interviewpractice.mvp.EyDetail.RequestView;
 
 import com.example.interviewpractice.v_layout.ItemListener;
 import com.example.interviewpractice.v_layout.VlayoutBaseAdapter;
+import com.example.interviewpractice.v_layout.holder.EyDetail.RecomdHolder;
 import com.example.interviewpractice.v_layout.holder.EyDetail.ReplyHolder;
 import com.example.interviewpractice.v_layout.holder.EyDetail.TagsHolder;
 import com.example.interviewpractice.v_layout.holder.EyDetail.TextHolder;
@@ -130,7 +132,7 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
                 .setData(new ArrayList<RankListBean>())
                 .setLayoutHelper(new LinearLayoutHelper())
                 .setLayout(R.layout.vlayout_eydetail_recyclerview)
-                .setHolder(SelectHolder.class)
+                .setHolder(RecomdHolder.class)
                 .setListener(new ItemListener<RankListBean>() {
                     @Override
                     public void onItemClick(View view, int position, RankListBean mData) {
@@ -143,7 +145,6 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
                 });
         delegateAdapter.addAdapter(textAdapter);
         delegateAdapter.addAdapter(replyAdapter);
-//        delegateAdapter.addAdapter(tagsAdapter);
         delegateAdapter.addAdapter(setlectAdapter);
         mRecycler.setAdapter(delegateAdapter);
     }
@@ -177,11 +178,9 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
 
     @Override
     public void resultSuccess(EyDetailBean eyDetailBean) {
-
         jzPlayer.setVisibility(View.VISIBLE);
         jzPlayer.setUp(eyDetailBean.getPlayUrl(), jzPlayer.SCREEN_WINDOW_NORMAL, "");
         Glide.with(this).load(eyDetailBean.getCoverForDetail()).into(jzPlayer.thumbImageView);
-//        GlideManager.loadImage(this,eyDetailBean.getCoverBlurred(),imagebg);
         Glide.with(this)
                 .load(eyDetailBean.getCoverBlurred())
                 .crossFade(10)
@@ -193,9 +192,6 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
         detailBeans.add(eyDetailBean);
         textAdapter.setData(detailBeans);
         textAdapter.notifyDataSetChanged();
-
-//        tagsAdapter.setData(detailBeans);
-//        tagsAdapter.notifyDataSetChanged();
         tipDialog.dismiss();
     }
 
