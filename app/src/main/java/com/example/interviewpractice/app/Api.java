@@ -14,6 +14,7 @@ import com.example.interviewpractice.enity.PrevueBean;
 import com.example.interviewpractice.enity.HotMovieBean;
 import com.example.interviewpractice.enity.PgcBean;
 import com.example.interviewpractice.enity.RankListBean;
+import com.example.interviewpractice.enity.UpdateAppInfo;
 import com.example.interviewpractice.enity.ZhihuHotBean;
 
 import java.util.List;
@@ -172,4 +173,9 @@ public interface Api {
     Observable<CagAuthorBean> getCagAuthor(@Query("id") String id,
                                            @Query("start") int start,
                                            @Query("num") int num);
+    /**
+     * 更新App接口
+     */
+    @GET("5aa409d0ca87a87c64766e8b?")
+    Observable<UpdateAppInfo> getUpdateInfo(@Query("api_token") String api_token);
 }
