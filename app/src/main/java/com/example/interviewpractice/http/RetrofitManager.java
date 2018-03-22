@@ -105,6 +105,9 @@ public class RetrofitManager {
                             .addInterceptor(interceptor)
                             .retryOnConnectionFailure(true)
                             .connectTimeout(15, TimeUnit.SECONDS)
+                            .readTimeout(20, TimeUnit.SECONDS)
+                            .writeTimeout(20, TimeUnit.SECONDS)
+                            .retryOnConnectionFailure(true)
                             .build();
                 }
             }
