@@ -15,6 +15,7 @@ import com.example.interviewpractice.R;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Handler;
 
+import cn.bmob.v3.BmobUser;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -31,7 +32,12 @@ public class WelcomeActivity extends AppCompatActivity {
                     .subscribe(new Consumer<Long>() {
                         @Override
                         public void accept(Long aLong) throws Exception {
-                            startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
+                            BmobUser bmobUser = BmobUser.getCurrentUser(WelcomeActivity.this);
+                            if(bmobUser != null){
+                                startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
+                            }else{
+                                startActivity(new Intent(WelcomeActivity.this,LoginActivity.class));
+                            }
 
                             finish();
                         }

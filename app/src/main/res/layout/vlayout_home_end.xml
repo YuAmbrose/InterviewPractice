@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 <TextView
-    android:textColor="#9c9797"
-    android:text="-----我可是一个有底线的人-----"
-    android:textStyle="italic"
+    android:textSize="10dp"
+    android:textColor="#c1bfbf"
+    android:text="- - - - -我可是一个有底线的人- - - - -"
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />

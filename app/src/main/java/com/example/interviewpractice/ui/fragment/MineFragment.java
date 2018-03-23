@@ -10,12 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.interviewpractice.MainActivity;
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.enity.UpdateAppInfo;
-import com.example.interviewpractice.mvp.homepage.presenter.BannerPresenterImp;
-import com.example.interviewpractice.mvp.mine.model.UpdateModelImp;
 import com.example.interviewpractice.mvp.mine.presenter.UpdatePresenterImp;
 import com.example.interviewpractice.mvp.mine.view.UpdateView;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
@@ -26,9 +23,11 @@ import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
 import com.qmuiteam.qmui.widget.grouplist.QMUICommonListItemView;
 import com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView;
+import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.bmob.v3.BmobUser;
 
 
 public class MineFragment extends BaseFragment implements UpdateView {
@@ -42,16 +41,20 @@ public class MineFragment extends BaseFragment implements UpdateView {
     QMUIRadiusImageView ivHead;
     @BindView(R.id.name)
     TextView name;
-    private UpdatePresenterImp updateModelImp= new UpdatePresenterImp(this,getContext());
-    private  PackageInfo packInfo = null;
-    private  QMUICommonListItemView itemWithChevron;
+    @BindView(R.id.exit)
+    QMUIRoundButton exit;
+    private UpdatePresenterImp updateModelImp = new UpdatePresenterImp(this, getContext());
+    private PackageInfo packInfo = null;
+    private QMUICommonListItemView itemWithChevron;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         ButterKnife.bind(this, view);
         QMUIStatusBarHelper.translucent(getActivity()); // 沉浸式状态栏
-
-        PackageManager packageManager =MyApplication.getContext().getPackageManager();
+        String username = (String) BmobUser.getObjectByKey(MyApplication.getContext(),"username");
+        name.setText(username);
+        PackageManager packageManager = MyApplication.getContext().getPackageManager();
         try {
             packInfo = packageManager.getPackageInfo(MyApplication.getContext().getPackageName(), 0);
         } catch (PackageManager.NameNotFoundException e) {
@@ -59,7 +62,18 @@ public class MineFragment extends BaseFragment implements UpdateView {
         }
         updateModelImp.loadUpdateApp();
         initListView();
+        initExit();
         return view;
+    }
+
+    private void initExit() {
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BmobUser.logOut(MyApplication.getContext());   //清除缓存用户对象
+                BmobUser currentUser = BmobUser.getCurrentUser(MyApplication.getContext()); // 现在的currentUser是null了
+            }
+        });
     }
 
     private void initListView() {
@@ -68,7 +82,7 @@ public class MineFragment extends BaseFragment implements UpdateView {
         itemWithChevron.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_CHEVRON);
         itemWithChevron.setOrientation(QMUICommonListItemView.VERTICAL);
         itemWithChevron.setImageDrawable(getResources().getDrawable(R.drawable.undate));
-        itemWithChevron.setDetailText("V"+packInfo.versionName);
+        itemWithChevron.setDetailText("V" + packInfo.versionName);
 
 
         QMUICommonListItemView itemWithChevron1 = mGroupListView.createItemView("修改个人信息");
@@ -115,25 +129,25 @@ public class MineFragment extends BaseFragment implements UpdateView {
                 .addItemView(itemWithChevron1, onClickListener)
                 .addItemView(itemWithChevron4, onClickListener)
                 .addItemView(itemWithChevron2, onClickListener)
-                .addItemView(itemWithChevron3,onClickListener)
+                .addItemView(itemWithChevron3, onClickListener)
                 .addItemView(itemWithChevron, onClickListener)
                 .addTo(mGroupListView);
     }
 
     @Override
     public void UpdateApp(final UpdateAppInfo updateAppInfo) {
-        final int localVersion  = packInfo.versionCode;
+        final int localVersion = packInfo.versionCode;
         final int newVersion = Integer.valueOf(updateAppInfo.getVersion());
-                if (newVersion > localVersion){
-                    itemWithChevron.showNewTip(true);
+        if (newVersion > localVersion) {
+            itemWithChevron.showNewTip(true);
         }
         itemWithChevron.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (newVersion > localVersion){
+                if (newVersion > localVersion) {
                     startUpdateApp(updateAppInfo);
-                }else {
-                    Toast.makeText(MyApplication.getContext(), "目前已是最新版本"+"V-"+packInfo.versionName, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MyApplication.getContext(), "目前已是最新版本" + "V-" + packInfo.versionName, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -158,5 +172,11 @@ public class MineFragment extends BaseFragment implements UpdateView {
                     }
                 })
                 .show();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
     }
 }

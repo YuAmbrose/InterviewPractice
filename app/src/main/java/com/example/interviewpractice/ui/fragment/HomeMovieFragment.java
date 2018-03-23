@@ -42,7 +42,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class HomeMovieFragment extends BaseFragment  implements HotMovieView,PrevueView ,ComingView{
+public class HomeMovieFragment extends BaseFragment  implements HotMovieView,ComingView{
 
     private Context mContext;
     @BindView(R.id.recycler)
@@ -50,7 +50,7 @@ public class HomeMovieFragment extends BaseFragment  implements HotMovieView,Pre
     private DelegateAdapter delegateAdapter;
     private VlayoutBaseAdapter hotMovieAdapter,comingMovieAdapter,prevueAdapter;
     private HotMoviePresenterImp hotMoviePresenterImp=new HotMoviePresenterImp(this,getContext());
-    private PrevuePresenterImp prevuePresenterImp =new PrevuePresenterImp(this,getContext());
+//    private PrevuePresenterImp prevuePresenterImp =new PrevuePresenterImp(this,getContext());
     private ComingPresenterImp comingPresenterImp=new ComingPresenterImp(this,getContext());
     private List<HotMovieBean> hotMovieBeans=new ArrayList<>();
     private List<PrevueBean> prevueBeans =new ArrayList<>();
@@ -62,7 +62,7 @@ public class HomeMovieFragment extends BaseFragment  implements HotMovieView,Pre
         ButterKnife.bind(this, view);
 
         hotMoviePresenterImp.loadHotMovie();
-        prevuePresenterImp.loadComingSuccess();
+//        prevuePresenterImp.loadComingSuccess();
         comingPresenterImp.loadComingListMovie();
 
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(mContext);
@@ -92,18 +92,18 @@ public class HomeMovieFragment extends BaseFragment  implements HotMovieView,Pre
 //                        Toast.makeText(MyApplication.getContext(), "88", Toast.LENGTH_SHORT).show();
                     }
                 });
-        prevueAdapter=new VlayoutBaseAdapter(mContext)
-                .setData(new ArrayList<PrevueBean>())
-                .setLayout(R.layout.vlayout_forum_comingmovie)
-                .setLayoutHelper(new LinearLayoutHelper())
-                .setHolder(PrevueHolder.class)
-                .setListener(new ItemListener<PrevueBean>() {
-                    @Override
-                    public void onItemClick(View view, int position, PrevueBean mData) {
-
-                        Toast.makeText(MyApplication.getContext(), "88", Toast.LENGTH_SHORT).show();
-                    }
-                });
+//        prevueAdapter=new VlayoutBaseAdapter(mContext)
+//                .setData(new ArrayList<PrevueBean>())
+//                .setLayout(R.layout.vlayout_forum_comingmovie)
+//                .setLayoutHelper(new LinearLayoutHelper())
+//                .setHolder(PrevueHolder.class)
+//                .setListener(new ItemListener<PrevueBean>() {
+//                    @Override
+//                    public void onItemClick(View view, int position, PrevueBean mData) {
+//
+//                        Toast.makeText(MyApplication.getContext(), "88", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
         comingMovieAdapter=new VlayoutBaseAdapter(mContext)
                 .setData(new ArrayList<ComingMovieBean>())
                 .setLayout(R.layout.vlayout_forum_cmcy)
@@ -122,7 +122,7 @@ public class HomeMovieFragment extends BaseFragment  implements HotMovieView,Pre
         delegateAdapter.addAdapter(hotMovieAdapter);
 
         delegateAdapter.addAdapter(comingMovieAdapter);
-        delegateAdapter.addAdapter(prevueAdapter);
+//        delegateAdapter.addAdapter(prevueAdapter);
         mRecycler.setAdapter(delegateAdapter);
     }
     private LayoutHelper getGridLayoutHelper() {
@@ -168,13 +168,13 @@ public class HomeMovieFragment extends BaseFragment  implements HotMovieView,Pre
         hotMovieAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void loadMovieSuccess(PrevueBean tData) {
-        prevueBeans.add(tData);
-        prevueAdapter.setData(prevueBeans);
-        prevueAdapter.notifyDataSetChanged();
-
-    }
+//    @Override
+//    public void loadMovieSuccess(PrevueBean tData) {
+//        prevueBeans.add(tData);
+//        prevueAdapter.setData(prevueBeans);
+//        prevueAdapter.notifyDataSetChanged();
+//
+//    }
 
     @Override
     public void loadComingMovie(ComingMovieBean tData) {

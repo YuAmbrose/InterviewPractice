@@ -46,22 +46,27 @@
         <activity android:name=".ui.activity.ArticleActivity" />
         <activity android:name=".ui.activity.CagDetailActivity" />
         <activity android:name=".ui.activity.MoreEyActivity" />
-        <activity android:name=".ui.activity.SearchActivity"></activity>
-        <receiver android:name=".utils.update.UpdateReceiver" >
+        <activity android:name=".ui.activity.SearchActivity" />
+
+        <receiver android:name=".utils.update.UpdateReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED" />
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
             </intent-filter>
         </receiver>
+
         <provider
-            android:authorities="com.example.interviewpractice.fileProvider"
             android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.interviewpractice.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
-            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths">
-            </meta-data>
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
         </provider>
+
+        <activity android:name=".ui.activity.PrevueActivity" />
+        <activity android:name=".ui.activity.LoginActivity"></activity>
     </application>
 
 </manifest>

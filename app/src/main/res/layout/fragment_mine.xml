@@ -77,6 +77,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+        android:id="@+id/exit"
        app:qmui_radiusBottomLeft="5dp"
         app:qmui_radiusBottomRight="5dp"
         app:qmui_radiusTopLeft="5dp"
