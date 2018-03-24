@@ -3,8 +3,8 @@ package com.example.interviewpractice;
 import android.app.Application;
 import android.content.Context;
 
-import com.example.interviewpractice.utils.AppContextUtil;
-import com.example.interviewpractice.utils.ScreenUtil;
+import com.example.interviewpractice.utils.util.AppContextUtil;
+import com.example.interviewpractice.utils.util.ScreenUtil;
 import com.tencent.smtt.sdk.QbSdk;
 
 import cn.bmob.v3.Bmob;

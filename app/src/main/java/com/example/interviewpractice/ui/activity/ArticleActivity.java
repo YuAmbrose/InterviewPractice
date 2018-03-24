@@ -12,7 +12,7 @@ import com.example.interviewpractice.enity.ArticleBean;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpActivity;
 import com.example.interviewpractice.mvp.article.ArticlePresenter;
 import com.example.interviewpractice.mvp.article.ArticleView;
-import com.example.interviewpractice.utils.HtmlUtil;
+import com.example.interviewpractice.utils.util.HtmlUtil;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.tencent.smtt.sdk.WebChromeClient;

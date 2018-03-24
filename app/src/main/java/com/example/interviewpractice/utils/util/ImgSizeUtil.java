@@ -1,4 +1,4 @@
-package com.example.interviewpractice.utils;
+package com.example.interviewpractice.utils.util;
 
 import android.support.annotation.NonNull;
 

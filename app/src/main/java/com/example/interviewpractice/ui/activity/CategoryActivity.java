@@ -2,23 +2,15 @@ package com.example.interviewpractice.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.CategoryAdapter;
 import com.example.interviewpractice.enity.Cag;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpActivity;
 import com.example.interviewpractice.mvp.category.CategoryRequestPresenter;
 import com.example.interviewpractice.mvp.category.CategoryRequestView;
-import com.example.interviewpractice.utils.TipDialogUtil;
-import com.example.interviewpractice.utils.rxbus.MessageEvent;
-import com.example.interviewpractice.utils.rxbus.RxBus;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.qmuiteam.qmui.widget.QMUITopBar;
@@ -28,9 +20,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Predicate;
 
 public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, CategoryRequestPresenter> implements CategoryRequestView {
 

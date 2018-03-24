@@ -13,7 +13,7 @@ import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.CagegoryViewPagerAdapter;
 import com.example.interviewpractice.adapter.adapter.EntranceAdapter;
 import com.example.interviewpractice.enity.CategoryTab;
-import com.example.interviewpractice.utils.ScreenUtil;
+import com.example.interviewpractice.utils.util.ScreenUtil;
 import com.example.interviewpractice.v_layout.VlayoutBaseHolder;
 import com.example.interviewpractice.weight.IndicatorView;
 

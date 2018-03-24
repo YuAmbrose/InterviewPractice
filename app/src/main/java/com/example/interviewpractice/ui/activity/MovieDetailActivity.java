@@ -13,8 +13,8 @@ import com.example.interviewpractice.enity.MovieDetailBean;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpActivity;
 import com.example.interviewpractice.mvp.movieDetail.MovieRequestPresenter;
 import com.example.interviewpractice.mvp.movieDetail.MovieRequestView;
-import com.example.interviewpractice.utils.ImgSizeUtil;
-import com.example.interviewpractice.utils.StringUtil;
+import com.example.interviewpractice.utils.util.ImgSizeUtil;
+import com.example.interviewpractice.utils.util.StringUtil;
 import com.example.interviewpractice.weight.JzPlayer;
 import com.hymane.expandtextview.ExpandTextView;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
@@ -26,7 +26,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import jp.wasabeef.glide.transformations.BlurTransformation;
 
 public class MovieDetailActivity extends AbstractMvpActivity<MovieRequestView, MovieRequestPresenter> implements MovieRequestView {
     private static final String TAG = "MovieDetailActivity";

@@ -1,18 +1,11 @@
 package com.example.interviewpractice.v_layout.holder.discover;
 
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.ComingMovieAdapter;
-import com.example.interviewpractice.adapter.adapter.PrevueMovieAdapter;
 import com.example.interviewpractice.enity.ComingMovieBean;
-import com.example.interviewpractice.utils.GlideManager;
-import com.example.interviewpractice.utils.ImgSizeUtil;
 import com.example.interviewpractice.v_layout.VlayoutBaseHolder;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;

@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.app.Api;
-import com.example.interviewpractice.utils.NetUtil;
+import com.example.interviewpractice.utils.util.NetUtil;
 
 import java.io.File;
 import java.io.IOException;

@@ -11,7 +11,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.interviewpractice.MyApplication;
-import com.example.interviewpractice.utils.SpUtils;
+import com.example.interviewpractice.utils.util.SpUtils;
 
 import java.io.File;
 

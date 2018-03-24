@@ -3,44 +3,31 @@ package com.example.interviewpractice.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.interviewpractice.MainActivity;
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.HomeRecyclervAdapter;
 import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpActivity;
-import com.example.interviewpractice.mvp.EyDetail.AbstractMvpFragment;
 import com.example.interviewpractice.mvp.search.SearchRequestPresenter;
 import com.example.interviewpractice.mvp.search.SearchRequestView;
-import com.example.interviewpractice.utils.UtilsHelp;
+import com.example.interviewpractice.utils.util.UtilsHelp;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.qmuiteam.qmui.widget.QMUITopBar;
-import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import co.lujun.androidtagview.TagContainerLayout;
 import co.lujun.androidtagview.TagView;
-import co.lujun.androidtagview.Utils;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Predicate;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
 
 import static com.example.interviewpractice.MyApplication.getContext;
 

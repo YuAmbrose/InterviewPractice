@@ -12,7 +12,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.example.interviewpractice.R;
-import com.example.interviewpractice.utils.ScreenUtil;
+import com.example.interviewpractice.utils.util.ScreenUtil;
 
 /**
  * Author: Mr.xiao on 2017/5/23

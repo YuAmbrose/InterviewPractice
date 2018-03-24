@@ -9,7 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.example.interviewpractice.utils.SpUtils;
+import com.example.interviewpractice.utils.util.SpUtils;
 
 /**
  * Created by ccc on 2017/10/30.

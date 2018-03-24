@@ -4,16 +4,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.enity.ComingMovieBean;
-import com.example.interviewpractice.enity.PrevueBean;
-import com.example.interviewpractice.utils.GlideManager;
-import com.example.interviewpractice.utils.ImgSizeUtil;
+import com.example.interviewpractice.utils.util.GlideManager;
+import com.example.interviewpractice.utils.util.ImgSizeUtil;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
-
-import cn.jzvd.JZVideoPlayerStandard;
 
 /**
  * Created by 鱼握拳 on 2018/2/13.

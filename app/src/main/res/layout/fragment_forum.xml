@@ -1,29 +1,26 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         tools:context="com.example.interviewpractice.ui.fragment.ForumFragment">
-    <!--<LinearLayout-->
-        <!--android:id="@+id/home_entrance"-->
-        <!--android:orientation="vertical"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--<android.support.v4.view.ViewPager-->
-            <!--android:id="@+id/main_home_entrance_vp"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"/>-->
-        <!--<com.example.interviewpractice.weight.IndicatorView-->
-            <!--android:id="@+id/main_home_entrance_indicator"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="32dp"-->
-            <!--android:layout_gravity="bottom"-->
-            <!--android:layout_marginLeft="16dp"-->
-            <!--android:layout_marginRight="16dp"-->
-            <!--app:gravity="0"-->
-            <!--app:indicatorColor="#668b8989"-->
-            <!--app:indicatorColorSelected="#FF5722"-->
-            <!--app:indicatorWidth="6"/>-->
-    <!--</LinearLayout>-->
-</LinearLayout>
+<include
+    layout="@layout/top_bar_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+   <com.jude.easyrecyclerview.EasyRecyclerView
+       android:id="@+id/recycleview"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
+   <android.support.design.widget.FloatingActionButton
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_gravity="bottom|right"
+       android:layout_margin="17dp"
+       android:id="@+id/btn"
+       android:elevation="8dp"
+       app:layout_anchor="@id/recycleview"
+       app:layout_anchorGravity="bottom|right|end" />
+</android.support.design.widget.CoordinatorLayout>
+

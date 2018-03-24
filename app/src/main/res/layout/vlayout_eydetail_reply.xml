@@ -7,7 +7,7 @@
         android:id="@+id/title"
         android:layout_margin="8dp"
         android:text="热门评论"
-        android:textColor="#060202"
+        android:textColor="#f9f7f7"
         android:textStyle="bold"
         android:textSize="15dp"
         android:layout_width="wrap_content"

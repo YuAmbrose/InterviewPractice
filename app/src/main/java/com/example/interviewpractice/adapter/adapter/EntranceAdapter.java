@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.enity.CategoryTab;
-import com.example.interviewpractice.utils.ScreenUtil;
+import com.example.interviewpractice.utils.util.ScreenUtil;
 
 import java.util.List;
 
