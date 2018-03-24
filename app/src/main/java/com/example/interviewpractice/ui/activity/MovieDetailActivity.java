@@ -102,7 +102,8 @@ public class MovieDetailActivity extends AbstractMvpActivity<MovieRequestView, M
         //listview添加按钮
         View.OnClickListener onClickListener = null;
         QMUICommonListItemView itemWithChevron1 = mGroupListView.createItemView("查看电影长评");
-        itemWithChevron1.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_CHEVRON);
+        itemWithChevron1.setImageDrawable(getResources().getDrawable(R.drawable.content));
+        itemWithChevron1.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_NONE);
         itemWithChevron1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,7 +111,8 @@ public class MovieDetailActivity extends AbstractMvpActivity<MovieRequestView, M
             }
         });
         QMUICommonListItemView itemWithChevron2 = mGroupListView.createItemView("查看更多电影预告片");
-        itemWithChevron2.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_CHEVRON);
+        itemWithChevron2.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_NONE);
+        itemWithChevron2.setImageDrawable(getResources().getDrawable(R.drawable.pre));
         itemWithChevron2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,7 +120,8 @@ public class MovieDetailActivity extends AbstractMvpActivity<MovieRequestView, M
             }
         });
         QMUICommonListItemView itemWithChevron3 = mGroupListView.createItemView("查看电影专业评论");
-        itemWithChevron3.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_CHEVRON);
+        itemWithChevron3.setImageDrawable(getResources().getDrawable(R.drawable.psacton));
+        itemWithChevron3.setAccessoryType(QMUICommonListItemView.ACCESSORY_TYPE_NONE);
         itemWithChevron3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

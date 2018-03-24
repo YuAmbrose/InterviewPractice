@@ -21,6 +21,24 @@ public class Post extends BmobObject {
 
     private String phoneType; //手机型号
 
+    private String name;
+    public String getPhoneType() {
+        return phoneType;
+    }
+
+    public void setPhoneType(String phoneType) {
+        this.phoneType = phoneType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
     public String getContent() {
         return content;
     }

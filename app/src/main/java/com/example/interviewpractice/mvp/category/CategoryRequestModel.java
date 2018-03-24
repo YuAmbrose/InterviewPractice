@@ -35,6 +35,7 @@ public class CategoryRequestModel {
     public void  RequestCategory(final IBaseListCallBack<Cag> iBaseRequestCallBack){
         BmobQuery<Cag> query = new BmobQuery<>();
         query.order("-createdAt");
+        query.setCachePolicy(BmobQuery.CachePolicy.CACHE_ELSE_NETWORK);
         query.setLimit(20);
         query.findObjects(MyApplication.getContext(), new FindListener<Cag>() {
             @Override

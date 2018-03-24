@@ -29,6 +29,7 @@ public class CagModelImp implements CagModel<CategoryTab> {
     public void loadCategoryTab(final IBaseRequestListCallBack<CategoryTab> iBaseRequestCallBack) {
         BmobQuery<CategoryTab> query = new BmobQuery<>();
         query.order("-createdAt");
+        query.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query.findObjects(MyApplication.getContext(), new FindListener<CategoryTab>() {
             @Override
             public void onSuccess(List<CategoryTab> list) {

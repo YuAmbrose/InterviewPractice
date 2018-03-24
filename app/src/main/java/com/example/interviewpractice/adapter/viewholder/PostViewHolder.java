@@ -1,5 +1,6 @@
 package com.example.interviewpractice.adapter.viewholder;
 
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
  */
 
 public class PostViewHolder extends BaseViewHolder<Post> {
+    private static final String TAG = "PostViewHolder";
     private ImageView iconhead;
     private TextView iconname,mainContent,time;
     public PostViewHolder(ViewGroup parent) {
@@ -34,9 +36,8 @@ public class PostViewHolder extends BaseViewHolder<Post> {
                 .load(R.mipmap.skybg)
                 .bitmapTransform(new CropCircleTransformation(getContext()))
                 .into(iconhead);
-        iconname.setText(data.getAuthor().getUsername());
+        iconname.setText(data.getName());
         mainContent.setText(data.getContent());
         time.setText(TimeUtils.format(data.getCreatedAt()));
-        //        text.setText(TimeUtils.format("2018-03-23 19:21:43"));
     }
 }
