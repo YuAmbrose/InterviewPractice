@@ -1,36 +1,34 @@
 package com.example.interviewpractice.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.PostAdapter;
-import com.example.interviewpractice.enity.MyUser;
 import com.example.interviewpractice.enity.Post;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpFragment;
 import com.example.interviewpractice.mvp.forum.PostPresenter;
 import com.example.interviewpractice.mvp.forum.PostView;
-import com.example.interviewpractice.utils.util.TimeUtils;
+import com.example.interviewpractice.ui.activity.PostActivity;
 import com.jude.easyrecyclerview.EasyRecyclerView;
+import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.listener.SaveListener;
 
 
-public class ForumFragment extends AbstractMvpFragment<PostView, PostPresenter> implements PostView {
+public class ForumFragment extends AbstractMvpFragment<PostView, PostPresenter> implements PostView,SwipeRefreshLayout.OnRefreshListener  {
     private static final String TAG = "ForumFragment";
     @BindView(R.id.topbar)
     QMUITopBar mTopBar;
@@ -38,13 +36,15 @@ public class ForumFragment extends AbstractMvpFragment<PostView, PostPresenter> 
     View statebarHeight;
     @BindView(R.id.recycleview)
     EasyRecyclerView recycleview;
-
+    @BindView(R.id.btn)
+    FloatingActionButton btn;
+    private android.os.Handler handler = new android.os.Handler();
     private List<Post> itemListBeans;
     private PostAdapter postAdapter;
-    @BindView(R.id.edit_query)
-    EditText editContent;
-    @BindView(R.id.push)
-    Button push;
+    private static final int STATE_REFRESH = 0;
+    private static final int STATE_MORE = 1;
+    private int limit = 10;
+    private int curPage = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
@@ -54,13 +54,23 @@ public class ForumFragment extends AbstractMvpFragment<PostView, PostPresenter> 
         recycleview.setLayoutManager(staggeredGridLayoutManager);
         postAdapter = new PostAdapter(MyApplication.getContext());
         recycleview.setAdapter(postAdapter);
-         push.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            pushText();
-        }
-    });
-        getPresenter().clickPost();
+        getPresenter().clickPost(0,STATE_REFRESH);
+        postAdapter.setNoMore(R.layout.vlayout_home_end);
+        postAdapter.setMore(R.layout.load_more, new RecyclerArrayAdapter.OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                getPresenter().clickPost(curPage,STATE_MORE);
+            }
+        });
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MyApplication.getContext(), PostActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_still, R.anim.slide_out_right);
+            }
+        });
         return view;
     }
 
@@ -71,30 +81,6 @@ public class ForumFragment extends AbstractMvpFragment<PostView, PostPresenter> 
         statebarHeight.setLayoutParams(params);
     }
 
-    private void pushText() {
-        MyUser user = BmobUser.getCurrentUser(MyApplication.getContext(),MyUser.class);
-        Post post = new Post();
-        String   model= android.os.Build.MODEL;   //手机信号
-        String carrier= android.os.Build.MANUFACTURER;   //手机牌子
-        post.setAuthor(user);
-        post.setName((String) BmobUser.getObjectByKey(MyApplication.getContext(),"username"));
-        post.setPhoneType(carrier+"-"+model);
-        post.setContent(editContent.getText().toString());
-        post.save(MyApplication.getContext(),new SaveListener() {
-
-            @Override
-            public void onSuccess() {
-                Toast.makeText(MyApplication.getContext(), "成功了", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(int i, String s) {
-                Toast.makeText(MyApplication.getContext(), "失败了", Toast.LENGTH_SHORT).show();
-            }
-
-        });
-
-    }
 
     @Override
     public void requestLoading() {
@@ -114,5 +100,20 @@ public class ForumFragment extends AbstractMvpFragment<PostView, PostPresenter> 
     @Override
     public PostPresenter createPresenter() {
         return new PostPresenter();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onRefresh() {
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                postAdapter.clear();
+                getPresenter().clickPost(0, STATE_REFRESH);
+            }
+        },100);
     }
 }

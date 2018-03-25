@@ -22,7 +22,7 @@ public class PostPresenter extends AbstractMvpPersenter<PostView> {
         postModel = new PostModel(MyApplication.getContext());
     }
 
-    public void clickPost() {
+    public void clickPost(final int page, final int actionType) {
         if (getmMvpView() != null) {
             getmMvpView().requestLoading();
         }
@@ -30,7 +30,7 @@ public class PostPresenter extends AbstractMvpPersenter<PostView> {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                postModel.RequestPost(new IBaseListCallBack<Post>() {
+                postModel.RequestPost(page,actionType,new IBaseListCallBack<Post>() {
                     @Override
                     public void requestError(Throwable throwable) {
                         if (getmMvpView() != null) {

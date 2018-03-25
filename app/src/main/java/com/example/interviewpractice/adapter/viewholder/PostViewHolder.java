@@ -38,6 +38,6 @@ public class PostViewHolder extends BaseViewHolder<Post> {
                 .into(iconhead);
         iconname.setText(data.getName());
         mainContent.setText(data.getContent());
-        time.setText(TimeUtils.format(data.getCreatedAt()));
+        time.setText(TimeUtils.format(data.getCreatedAt())+"    来自  "+data.getPhoneType());
     }
 }

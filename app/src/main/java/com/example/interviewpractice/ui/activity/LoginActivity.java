@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.interviewpractice.MainActivity;
 import com.example.interviewpractice.R;
+import com.example.interviewpractice.enity.MyUser;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.util.QMUIViewHelper;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
@@ -56,12 +57,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void init() {
-        BmobUser bUser = new BmobUser();
+//        BmobUser bUser = new BmobUser();
+        MyUser myUser=new MyUser();
         String name = inputName.getText().toString();
         String password = inputPassword.getText().toString();
-        bUser.setUsername(name);
-        bUser.setPassword(password);
-        bUser.signUp(this, new SaveListener() {
+        myUser.setUsername(name);
+        myUser.setPassword(password);
+        myUser.setLocalName(name);
+        myUser.signUp(this, new SaveListener() {
             @Override
             public void onSuccess() {
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));

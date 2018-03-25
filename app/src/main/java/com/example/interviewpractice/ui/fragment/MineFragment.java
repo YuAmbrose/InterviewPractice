@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
+import com.example.interviewpractice.enity.MyUser;
 import com.example.interviewpractice.enity.UpdateAppInfo;
 import com.example.interviewpractice.mvp.mine.presenter.UpdatePresenterImp;
 import com.example.interviewpractice.mvp.mine.view.UpdateView;
@@ -52,7 +53,7 @@ public class MineFragment extends BaseFragment implements UpdateView {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         ButterKnife.bind(this, view);
         QMUIStatusBarHelper.translucent(getActivity()); // 沉浸式状态栏
-        String username = (String) BmobUser.getObjectByKey(MyApplication.getContext(),"username");
+        String username = (String) MyUser.getObjectByKey(MyApplication.getContext(),"localName");
         name.setText(username);
         PackageManager packageManager = MyApplication.getContext().getPackageManager();
         try {

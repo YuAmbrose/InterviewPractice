@@ -1,37 +1,37 @@
-<LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+       xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.example.interviewpractice.ui.fragment.ForumFragment">
+   <android.support.design.widget.AppBarLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
 <include
     layout="@layout/top_bar_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
-   <EditText
+   </android.support.design.widget.AppBarLayout>
 
-       android:id="@+id/edit_query"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content" />
-   <Button
-       android:text="发送"
-       android:id="@+id/push"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content" />
    <com.jude.easyrecyclerview.EasyRecyclerView
+       app:layout_behavior="@string/appbar_scrolling_view_behavior"
        android:id="@+id/recycleview"
        android:layout_width="match_parent"
        android:layout_height="match_parent"/>
-   <!--<android.support.design.widget.FloatingActionButton-->
-       <!--android:layout_width="wrap_content"-->
-       <!--android:layout_height="wrap_content"-->
-       <!--android:layout_gravity="bottom|right"-->
-       <!--android:layout_margin="17dp"-->
-       <!--android:id="@+id/btn"-->
-       <!--android:elevation="8dp"-->
-       <!--app:layout_anchor="@id/recycleview"-->
-       <!--app:layout_anchorGravity="bottom|right|end" />-->
-</LinearLayout>
+
+   <android.support.design.widget.FloatingActionButton
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_gravity="bottom|right"
+       android:layout_margin="17dp"
+       android:id="@+id/btn"
+       app:backgroundTint="#586958"
+       app:rippleColor="#FFFFFF"
+       android:src="@drawable/post"
+       android:elevation="8dp"
+       app:layout_anchor="@id/recycleview"
+       app:layout_anchorGravity="bottom|right|end"
+       app:layout_behavior="com.example.interviewpractice.utils.helper.ScrollAwareFABBehavior"/>
+</android.support.design.widget.CoordinatorLayout>
 

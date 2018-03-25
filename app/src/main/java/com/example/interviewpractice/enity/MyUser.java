@@ -17,4 +17,14 @@ public class MyUser extends BmobUser {
     }
 
     private BmobFile avatar;
+
+    public String getLocalName() {
+        return localName;
+    }
+
+    public void setLocalName(String localName) {
+        this.localName = localName;
+    }
+
+    private String localName;
 }

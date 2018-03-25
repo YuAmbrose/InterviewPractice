@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/linelayout"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.interviewpractice.ui.activity.PostActivity">
+    <include
+        layout="@layout/qmui_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <com.example.interviewpractice.weight.LinedEditText
+    android:id="@+id/edit_query"
+        app:ce_edit_text_color="#08090a"
+        app:ce_edit_text_size="16px"
+        app:ce_count_text_size="16px"
+        app:ce_maxLength="300"
+        app:ce_countMode="Percentage"
+        app:ce_hint="来吧，尽情发挥吧..."
+        android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+        app:qmui_backgroundColor="#24292b"
+        app:qmui_radiusBottomLeft="5dp"
+        app:qmui_radiusBottomRight="5dp"
+        app:qmui_radiusTopLeft="5dp"
+        app:qmui_radiusTopRight="5dp"
+        android:text="发送"
+        android:textColor="#FFFFFF"
+        android:id="@+id/push"
+        android:layout_margin="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+</LinearLayout>

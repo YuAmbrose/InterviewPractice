@@ -77,8 +77,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+        android:foreground="?android:attr/selectableItemBackground"
+        app:qmui_backgroundColor="#ffffff"
         android:id="@+id/exit"
-       app:qmui_radiusBottomLeft="5dp"
+        app:qmui_radiusBottomLeft="5dp"
         app:qmui_radiusBottomRight="5dp"
         app:qmui_radiusTopLeft="5dp"
         app:qmui_radiusTopRight="5dp"
@@ -90,7 +92,7 @@
         android:padding="10dp"
         android:text="退出应用"
         android:textColor="#1d1c18"
-        app:qmui_borderColor="#1d1c18"
+        app:qmui_borderColor="#FFFFFF"
         app:qmui_borderWidth="2px"/>
                 <!--<de.hdodenhof.circleimageview.CircleImageView-->
                     <!--android:src="@mipmap/ic_launcher"-->
