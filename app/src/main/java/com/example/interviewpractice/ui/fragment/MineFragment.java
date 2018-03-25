@@ -1,8 +1,10 @@
 package com.example.interviewpractice.ui.fragment;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.example.interviewpractice.enity.MyUser;
 import com.example.interviewpractice.enity.UpdateAppInfo;
 import com.example.interviewpractice.mvp.mine.presenter.UpdatePresenterImp;
 import com.example.interviewpractice.mvp.mine.view.UpdateView;
+import com.example.interviewpractice.ui.activity.ChangeMessageActivity;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.example.interviewpractice.utils.update.UpdateManager;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
@@ -32,8 +35,6 @@ import cn.bmob.v3.BmobUser;
 
 
 public class MineFragment extends BaseFragment implements UpdateView {
-
-
     @BindView(R.id.groupListView)
     QMUIGroupListView mGroupListView;
     @BindView(R.id.iv_cover_bg)
@@ -47,7 +48,7 @@ public class MineFragment extends BaseFragment implements UpdateView {
     private UpdatePresenterImp updateModelImp = new UpdatePresenterImp(this, getContext());
     private PackageInfo packInfo = null;
     private QMUICommonListItemView itemWithChevron;
-
+    private static final String TAG = "MineFragment";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
@@ -65,6 +66,13 @@ public class MineFragment extends BaseFragment implements UpdateView {
         initListView();
         initExit();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        String username = (String) MyUser.getObjectByKey(MyApplication.getContext(),"localName");
+        name.setText(username);
     }
 
     private void initExit() {
@@ -93,7 +101,8 @@ public class MineFragment extends BaseFragment implements UpdateView {
         itemWithChevron1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent(MyApplication.getContext(), ChangeMessageActivity.class);
+                startActivity(intent);
             }
         });
         QMUICommonListItemView itemWithChevron2 = mGroupListView.createItemView("意见反馈");

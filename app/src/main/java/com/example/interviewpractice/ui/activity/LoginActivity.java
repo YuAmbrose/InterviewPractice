@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.interviewpractice.MainActivity;
+import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.enity.MyUser;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
@@ -49,22 +50,42 @@ public class LoginActivity extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Tip();
+                Tip("注册中");
                 init();
             }
         });
 
     }
-
     private void init() {
 //        BmobUser bUser = new BmobUser();
         MyUser myUser=new MyUser();
-        String name = inputName.getText().toString();
-        String password = inputPassword.getText().toString();
+        final String name = inputName.getText().toString();
+        final String password = inputPassword.getText().toString();
         myUser.setUsername(name);
         myUser.setPassword(password);
         myUser.setLocalName(name);
         myUser.signUp(this, new SaveListener() {
+            @Override
+            public void onSuccess() {
+                Tip("登录中~");
+                LoginIn(name,password);
+//                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                finish();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                tipDialog.dismiss();
+                showSnackbar();
+            }
+        });
+    }
+    private void LoginIn(String name,String psd){
+
+        MyUser myUser=new MyUser();
+        myUser.setUsername(name);
+        myUser.setPassword(psd);
+        myUser.login(MyApplication.getContext(), new SaveListener() {
             @Override
             public void onSuccess() {
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
@@ -78,11 +99,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void Tip() {
+    private void Tip(String text) {
         tipDialog = new QMUITipDialog.Builder(this)
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
-                .setTipWord("注册中")
+                .setTipWord(text)
                 .create();
         tipDialog.show();
     }
