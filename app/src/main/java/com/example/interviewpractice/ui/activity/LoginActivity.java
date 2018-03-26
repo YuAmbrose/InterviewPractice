@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         myUser.signUp(this, new SaveListener() {
             @Override
             public void onSuccess() {
+                tipDialog.dismiss();
                 Tip("登录中~");
                 LoginIn(name,password);
 //                startActivity(new Intent(LoginActivity.this, MainActivity.class));
