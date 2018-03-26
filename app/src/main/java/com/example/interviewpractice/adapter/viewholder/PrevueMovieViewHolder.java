@@ -17,8 +17,6 @@ import cn.jzvd.JZVideoPlayerStandard;
 public class PrevueMovieViewHolder extends BaseViewHolder<PrevueBean.DataBean> {
     private JZVideoPlayerStandard player;
     private TextView originName;
-
-
     public PrevueMovieViewHolder(ViewGroup parent) {
         super(parent, R.layout.vlayout_forum_cmitem);
         player=$(R.id.player);
@@ -34,7 +32,7 @@ public class PrevueMovieViewHolder extends BaseViewHolder<PrevueBean.DataBean> {
                 .load(data.getImg())
                 .into(player.thumbImageView);
         player.setUp(data.getUrl(),player.SCREEN_WINDOW_NORMAL,"");
-       originName.setText("  #"+data.getName());
+        originName.setText("  #"+data.getName());
 
     }
 }

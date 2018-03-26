@@ -41,6 +41,7 @@ public class PostModel  {
     }
     public void  RequestPost(int page,final int actionType,final IBaseListCallBack<Post> iBaseRequestCallBack){
         BmobQuery<Post> query = new BmobQuery<>();
+        query.include("author");
         query.order("-createdAt");
         if (actionType == STATE_MORE) {
             Date date = null;

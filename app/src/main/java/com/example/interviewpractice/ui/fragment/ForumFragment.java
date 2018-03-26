@@ -1,10 +1,15 @@
 package com.example.interviewpractice.ui.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,8 +59,11 @@ public class ForumFragment extends AbstractMvpFragment<PostView, PostPresenter> 
         recycleview.setLayoutManager(staggeredGridLayoutManager);
         postAdapter = new PostAdapter(MyApplication.getContext());
         recycleview.setAdapter(postAdapter);
+//        onRefresh();
         getPresenter().clickPost(0,STATE_REFRESH);
         postAdapter.setNoMore(R.layout.vlayout_home_end);
+        recycleview.setRefreshListener(this);
+        recycleview.setRefreshing(true);
         postAdapter.setMore(R.layout.load_more, new RecyclerArrayAdapter.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
@@ -115,5 +123,22 @@ public class ForumFragment extends AbstractMvpFragment<PostView, PostPresenter> 
                 getPresenter().clickPost(0, STATE_REFRESH);
             }
         },100);
+    }
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(getActivity());
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.intent.action.CART_BROADCAST");
+        BroadcastReceiver mItemViewListClickReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent){
+                String msg = intent.getStringExtra("data");
+                if("refresh".equals(msg)){
+                    onRefresh();
+                }
+            }
+        };
+        broadcastManager.registerReceiver(mItemViewListClickReceiver, intentFilter);
     }
 }

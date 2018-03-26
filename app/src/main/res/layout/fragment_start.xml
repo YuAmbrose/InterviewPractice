@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.interviewpractice.ui.fragment.StartFragment">
 
-<android.support.v7.widget.RecyclerView
+<com.jude.easyrecyclerview.EasyRecyclerView
     android:id="@+id/startrecyclerview"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.v7.widget.RecyclerView>
+</com.jude.easyrecyclerview.EasyRecyclerView>
 
 </FrameLayout>

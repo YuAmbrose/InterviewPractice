@@ -36,7 +36,8 @@ public class PostViewHolder extends BaseViewHolder<Post> {
                 .load(R.mipmap.skybg)
                 .bitmapTransform(new CropCircleTransformation(getContext()))
                 .into(iconhead);
-        iconname.setText(data.getName());
+        Log.e(TAG, "setData: "+data.getAuthor().getLocalName() );
+        iconname.setText(data.getAuthor().getLocalName() );
         mainContent.setText(data.getContent());
         time.setText(TimeUtils.format(data.getCreatedAt())+"    来自  "+data.getPhoneType());
     }

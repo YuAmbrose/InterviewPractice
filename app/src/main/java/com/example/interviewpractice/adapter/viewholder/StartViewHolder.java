@@ -1,21 +1,25 @@
 package com.example.interviewpractice.adapter.viewholder;
 
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.enity.RecomendarMovie;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
 import cn.jzvd.JZVideoPlayer;
+import cn.jzvd.JZVideoPlayerStandard;
 
 /**
  * Created by Administrator on 2018/1/25.
  */
 
 public class StartViewHolder extends BaseViewHolder<RecomendarMovie> {
-    private JZVideoPlayer jzVideo;
+    private JZVideoPlayerStandard jzVideo;
     private TextView textView;
+    private static final String TAG = "StartViewHolder";
     public StartViewHolder(ViewGroup parent) {
         super(parent, R.layout.start_recyclerview_item);
         jzVideo=$(R.id.jzplayer);
@@ -26,10 +30,10 @@ public class StartViewHolder extends BaseViewHolder<RecomendarMovie> {
     public void setData(RecomendarMovie data) {
         super.setData(data);
         textView.setText("#"+data.getDescription());
-
-//        Glide.with(getContext())
-//                .load(data.getImageUrl().getUrl())
-//                .into(jzVideo.thumbImageView);
+        Log.e(TAG, "setData: "+data.getImagepng() );
+        Glide.with(getContext())
+                .load(data.getImagepng())
+                .into(jzVideo.thumbImageView);
         jzVideo.setUp(data.getMovieUrl(),jzVideo.SCREEN_WINDOW_NORMAL,"");
         jzVideo.startWindowTiny();
     }

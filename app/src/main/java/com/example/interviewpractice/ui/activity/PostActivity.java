@@ -1,8 +1,10 @@
 package com.example.interviewpractice.ui.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -74,13 +76,17 @@ public class PostActivity extends AppCompatActivity {
 
                 @Override
                 public void onSuccess() {
-                    Toast.makeText(MyApplication.getContext(), "成功了", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent("android.intent.action.CART_BROADCAST");
+                    intent.putExtra("data","refresh");
+                    LocalBroadcastManager.getInstance(PostActivity.this).sendBroadcast(intent);
+                    sendBroadcast(intent);
+                    Toast.makeText(MyApplication.getContext(), "发送成功", Toast.LENGTH_SHORT).show();
                     finish();
                 }
 
                 @Override
                 public void onFailure(int i, String s) {
-                    Toast.makeText(MyApplication.getContext(), "失败了", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyApplication.getContext(), "发送失败，请检查网络设置。", Toast.LENGTH_SHORT).show();
                 }
 
             });
