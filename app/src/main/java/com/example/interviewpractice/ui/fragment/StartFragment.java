@@ -15,6 +15,7 @@ import com.example.interviewpractice.adapter.adapter.StartAdapter;
 import com.example.interviewpractice.enity.Post;
 import com.example.interviewpractice.enity.RecomendarMovie;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpFragment;
+import com.example.interviewpractice.mvp.EyDetail.LayzMvpFragment;
 import com.example.interviewpractice.mvp.forum.PostPresenter;
 import com.example.interviewpractice.mvp.forum.PostView;
 import com.example.interviewpractice.mvp.start.BmobPresenter;
@@ -22,6 +23,7 @@ import com.example.interviewpractice.mvp.start.BmobView;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
+import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,7 +38,7 @@ import cn.bmob.v3.datatype.BmobDate;
 import cn.bmob.v3.listener.FindListener;
 import cn.jzvd.JZVideoPlayerStandard;
 
-public class StartFragment extends AbstractMvpFragment<BmobView, BmobPresenter> implements BmobView,SwipeRefreshLayout.OnRefreshListener  {
+public class StartFragment extends LayzMvpFragment<BmobView, BmobPresenter> implements BmobView,SwipeRefreshLayout.OnRefreshListener  {
 
 
     @BindView(R.id.startrecyclerview)
@@ -50,24 +52,35 @@ public class StartFragment extends AbstractMvpFragment<BmobView, BmobPresenter> 
     private int limit = 10;
     private int curPage = 0;
     String lastTime = null;
+    private QMUITipDialog tipDialog;
+    private static final String TAG = "StartFragment";
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_start, container, false);
-        ButterKnife.bind(this, view);
-        staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-        startAdapter=new StartAdapter(MyApplication.getContext());
-        startrecyclerview.setLayoutManager(staggeredGridLayoutManager);
-        startrecyclerview.setAdapter(startAdapter);
-        startrecyclerview.setRefreshListener(this);
+    public void loadDataStart() {
+
         getPresenter().clickPost(0, STATE_REFRESH);
         startAdapter.setMore(R.layout.load_more, new RecyclerArrayAdapter.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                getPresenter().clickPost(curPage,STATE_MORE);
+                getPresenter().clickPost(curPage, STATE_MORE);
             }
         });
+    }
+    @Override
+    protected void findViewById(View view) {
+        ButterKnife.bind(this, view);
+        staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        startAdapter = new StartAdapter(MyApplication.getContext());
+        startrecyclerview.setLayoutManager(staggeredGridLayoutManager);
+        startrecyclerview.setAdapter(startAdapter);
+        startrecyclerview.setRefreshListener(this);
+    }
+
+    @Override
+    protected View initRootView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_start, container, false);
         return view;
     }
+
     @Override
     public void onRefresh() {
         handler.postDelayed(new Runnable() {

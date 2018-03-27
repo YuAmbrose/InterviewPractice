@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 /**
+ * bmob请求下来的数据
  * @description：  首页分类ViewPager适配器
  */
 public class CagegoryViewPagerAdapter extends PagerAdapter {

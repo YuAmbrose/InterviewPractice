@@ -1,5 +1,11 @@
 <resources>
-
+    <style name="ThemeSplash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@drawable/start</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <!--<item name="windowActionBar">false</item>-->
+        <item name="windowNoTitle">true</item>
+    </style>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="QMUI.Compat.NoActionBar">
         <!-- 配置Android提供的theme -->
@@ -83,13 +89,7 @@
         <item name="android:background">@drawable/qmui_divider_bottom_bitmap</item>
     </style>
 
-    <style name="ThemeSplash" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:background">@drawable/start</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
-        <!--<item name="windowActionBar">false</item>-->
-        <item name="windowNoTitle">true</item>
-    </style>
+
 
     <style name="MainAppBar" parent="android:Widget">
         <item name="elevation">0dip</item>

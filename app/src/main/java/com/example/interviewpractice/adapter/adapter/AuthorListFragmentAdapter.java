@@ -18,11 +18,6 @@ public class AuthorListFragmentAdapter extends FragmentPagerAdapter {
     public AuthorListFragmentAdapter(FragmentManager fm) {
         super(fm);
     }
-
-//    public RankListFragmentAdapter(FragmentManager fragmentManager) {
-//        super();
-//    }
-
     @Override
     public Fragment getItem(int position) {
         return AuthorDetailFragment.newInstance(position);

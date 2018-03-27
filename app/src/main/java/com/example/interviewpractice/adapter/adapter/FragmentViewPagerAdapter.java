@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.List;
 
 /**
- * Created by imgod on 2016/3/30.
+ * 滑动fragment
  */
 public class FragmentViewPagerAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragments;
