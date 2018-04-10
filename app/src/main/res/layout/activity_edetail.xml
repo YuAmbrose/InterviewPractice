@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
     tools:context="com.example.interviewpractice.ui.activity.EDetailActivity">
     <com.example.interviewpractice.weight.JzPlayer
         android:id="@+id/player"
@@ -23,6 +24,7 @@
     android:layout_height="match_parent" />
         <android.support.v7.widget.RecyclerView
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:overScrollMode="never"
             android:id="@+id/pgc_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

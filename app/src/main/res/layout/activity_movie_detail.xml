@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants"
     tools:context="com.example.interviewpractice.ui.activity.MovieDetailActivity">
     <com.example.interviewpractice.weight.JzPlayer
         android:id="@+id/player"

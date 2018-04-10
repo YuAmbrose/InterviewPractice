@@ -5,9 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/home_fragment"
+    android:descendantFocusability="blocksDescendants"
     tools:context="com.example.interviewpractice.ui.fragment.HomePageFragment">
 <com.example.interviewpractice.weight.FatRecyclerview
     android:id="@+id/recycler"
+    android:overScrollMode="never"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
 <!--<com.youth.banner.Banner-->

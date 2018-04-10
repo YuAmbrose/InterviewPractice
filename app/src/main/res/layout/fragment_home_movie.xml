@@ -2,9 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
     tools:context="com.example.interviewpractice.ui.fragment.HomeMovieFragment">
     <com.example.interviewpractice.weight.FatRecyclerview
         android:id="@+id/recycler"
+        android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </FrameLayout>
