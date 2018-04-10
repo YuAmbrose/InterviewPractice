@@ -116,7 +116,5 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 }).setDuration(Snackbar.LENGTH_SHORT).show();
-
-
     }
 }

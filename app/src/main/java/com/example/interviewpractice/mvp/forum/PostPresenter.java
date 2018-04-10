@@ -44,13 +44,9 @@ public class PostPresenter extends AbstractMvpPersenter<PostView> {
                             getmMvpView().resultSuccess(callBack);
                         }
                     }
-
                     @Override
                     public void requestList(List<String> callBack) {
-
                     }
-
-
                 });
 
             }

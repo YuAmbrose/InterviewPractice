@@ -148,10 +148,10 @@ public class MovieDetailActivity extends AbstractMvpActivity<MovieRequestView, M
 
     private void showSimpleBottomSheetList(List<String> text) {
         QMUIBottomSheet.BottomListSheetBuilder builder = new QMUIBottomSheet.BottomListSheetBuilder(MovieDetailActivity.this);
-        for (int i = 0; i < text.size(); i++) {
-            builder.addItem(text.get(i));
-        }
-        builder.addItem("你好哦这里是沈光耀：这个时代，缺的不是完美的人，缺的是从自己心里给出的真心、正义、无畏和同情。");
+//        for (int i = 0; i < text.size(); i++) {
+//            builder.addItem(text.get(i));
+//        }
+        builder.addItem("一共有"+text.size()+"张照片");
         builder.setOnSheetItemClickListener(new QMUIBottomSheet.BottomListSheetBuilder.OnSheetItemClickListener() {
             @Override
             public void onClick(QMUIBottomSheet dialog, View itemView, int position, String tag) {

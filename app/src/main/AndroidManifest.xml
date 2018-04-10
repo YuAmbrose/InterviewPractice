@@ -39,7 +39,9 @@
             android:name=".ui.activity.EDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.MovieDetailActivity" />
+        <activity android:name=".ui.activity.MovieDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.MoreAuthorActivity" />
         <activity android:name=".ui.activity.AuthorDetailActivity" />
         <activity android:name=".ui.activity.CategoryActivity" />

@@ -49,11 +49,11 @@ public class ReplyHolder extends VlayoutBaseHolder<EyReplyBean> {
         easyrecycler.setAdapter(replyAdapter);
         replyListBeans = cData.getReplyList();
         replyAdapter.addAll(replyListBeans);
-        replyAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                mListener.onItemClick(mView, position, mData);
-            }
-        });
+//        replyAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+//                mListener.onItemClick(mView, position, mData);
+//            }
+//        });
     }
 }

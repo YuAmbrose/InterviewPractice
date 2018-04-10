@@ -11,9 +11,6 @@ import android.util.Log;
 
 import com.example.interviewpractice.utils.util.SpUtils;
 
-/**
- * Created by ccc on 2017/10/30.
- */
 
 public class UpdateManager {
 
