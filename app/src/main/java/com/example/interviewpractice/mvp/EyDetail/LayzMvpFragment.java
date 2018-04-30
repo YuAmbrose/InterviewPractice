@@ -37,6 +37,7 @@ public  abstract class LayzMvpFragment<V extends IMvpBaseView, P extends Abstrac
         if (presenter != null) {
             presenter.detachMvpView();
         }
+
         super.onDestroy();
     }
     public P getPresenter() {

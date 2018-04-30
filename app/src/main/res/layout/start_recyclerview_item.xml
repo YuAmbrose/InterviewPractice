@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="1dp">
@@ -9,12 +12,27 @@
     android:id="@+id/jzplayer"
     android:layout_width="match_parent"
     android:layout_height="200dp"/>
-    <TextView
-        android:layout_marginLeft="10dp"
-        android:paddingTop="5dp"
+    <!--<TextView-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:paddingTop="5dp"-->
+        <!--android:id="@+id/des"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="10dp"/>-->
+    <com.hymane.expandtextview.ExpandTextView
         android:id="@+id/des"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"/>
-
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="15dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="4dp"
+        app:contentTextSize="14sp"
+        app:expandHint="查看更多"
+        app:foldHint="点击收回"
+        app:textContentColor="?android:attr/textColorPrimary"
+        app:textHintColor="?android:attr/textColorPrimary"
+        app:textTitleColor="?android:attr/textColorSecondary"
+        />
 </LinearLayout>

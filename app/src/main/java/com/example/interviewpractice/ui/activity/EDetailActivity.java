@@ -197,7 +197,8 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
 
     @Override
     public void resultFailure(String result) {
-
+        tipDialog.dismiss();
+        Toast.makeText(EDetailActivity.this, "出错了", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -226,7 +227,7 @@ public class EDetailActivity extends AbstractMvpActivity<RequestView, RequestPre
         if (JZVideoPlayer.backPress()) {
             return;
         }
-         tipDialog.dismiss();
+
         super.onBackPressed();
     }
 

@@ -121,4 +121,9 @@ public class MainActivity extends BaseActivity {
        
         return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    protected int getContextViewId() {
+        return R.id.qmuidemo;
+    }
 }

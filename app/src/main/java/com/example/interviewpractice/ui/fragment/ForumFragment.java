@@ -70,7 +70,12 @@ public class ForumFragment extends AbstractMvpFragment<PostView, PostPresenter> 
                 getPresenter().clickPost(curPage,STATE_MORE);
             }
         });
+        postAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
 
+            }
+        });
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

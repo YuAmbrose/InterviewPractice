@@ -7,8 +7,8 @@ android {
         applicationId "com.example.interviewpractice"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 18
-        versionName "1.0.18"
+        versionCode 19
+        versionName "1.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk { abiFilters "armeabi", "armeabi-v7a", "x86", "mips" }
     }
@@ -62,6 +62,6 @@ dependencies {
     compile 'co.lujun:androidtagview:1.1.4'
     compile 'com.qmuiteam:qmui:1.0.6'
     compile 'com.hymane.expandtextview:library:1.0.2'
-//    compile 'com.qmuiteam:qmuilint:1.0.1'
-//    compile 'com.qmuiteam:arch:0.0.1'
+    compile 'com.qmuiteam:qmuilint:1.0.1'
+    compile 'com.qmuiteam:arch:0.0.1'
 }

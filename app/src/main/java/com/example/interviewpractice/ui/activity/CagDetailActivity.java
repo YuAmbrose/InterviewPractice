@@ -1,22 +1,18 @@
 package com.example.interviewpractice.ui.activity;
 
-import android.annotation.SuppressLint;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.FragmentViewPagerAdapter;
 import com.example.interviewpractice.enity.CagAuthorBean;
@@ -25,23 +21,13 @@ import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.mvp.CagDetail.CagDetailPresenter;
 import com.example.interviewpractice.mvp.CagDetail.CagDetailView;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpActivity;
-import com.example.interviewpractice.ui.fragment.HomeMovieFragment;
-import com.example.interviewpractice.ui.fragment.StartFragment;
-import com.example.interviewpractice.ui.fragment.childFragment.AuthorFragment;
 import com.example.interviewpractice.ui.fragment.childFragment.CagAllFragment;
 import com.example.interviewpractice.ui.fragment.childFragment.CagPopularFragment;
-import com.example.interviewpractice.utils.rxbus.MessageEvent;
-import com.example.interviewpractice.utils.rxbus.RxBus;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.QMUIAppBarLayout;
 import com.qmuiteam.qmui.widget.QMUICollapsingTopBarLayout;
-import com.qmuiteam.qmui.widget.QMUIPagerAdapter;
-import com.qmuiteam.qmui.widget.QMUITabSegment;
 import com.qmuiteam.qmui.widget.QMUITopBar;
-import com.qmuiteam.qmui.widget.QMUIViewPager;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
-
-import org.reactivestreams.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,7 +124,8 @@ public class CagDetailActivity extends AbstractMvpActivity<CagDetailView, CagDet
 
     @Override
     public void resultFailure(String result) {
-
+        tipDialog.dismiss();
+        Toast.makeText(MyApplication.getContext(), "出错了", Toast.LENGTH_SHORT).show();
     }
     private enum AppBarState {EXPANDED, COLLAPSED, MIDDLE}
     private void initAppBar(final String name) {

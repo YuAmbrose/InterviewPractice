@@ -1,5 +1,8 @@
 package com.example.interviewpractice.adapter.viewholder;
 
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +23,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class CagViewHolder extends BaseViewHolder<RankListBean.ItemListBean> {
+        private static final String TAG = "CagViewHolder";
 private ImageView imageView;
 private TextView timer,name,description;
 private CircleImageView circleImageView;
@@ -44,8 +48,15 @@ public void setData(RankListBean.ItemListBean data) {
         .load(data.getData().getCover().getFeed())
         .transform(new GlideRoundTransform(getContext(), 8))
         .into(imageView);
-        description.setText(data.getData().getAuthor().getDescription());
-        Glide.with(MyApplication.getContext()).load(data.getData().getAuthor().getIcon()).into(circleImageView);
-        name.setText(data.getData().getAuthor().getName());
+        if (data.getData().getAuthor()!= null) {
+                Glide.with(MyApplication.getContext()).load(data.getData().getAuthor().getIcon()).into(circleImageView);
+                description.setText(data.getData().getAuthor().getDescription());
+                name.setText(data.getData().getAuthor().getName());
+        }else {
+                name.setText("作者信息为空哦~~");
+                description.setVisibility(View.GONE);
+                circleImageView.setVisibility(View.GONE);
+        }
+
         }
         }

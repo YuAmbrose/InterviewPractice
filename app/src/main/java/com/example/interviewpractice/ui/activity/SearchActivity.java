@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.interviewpractice.MyApplication;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.HomeRecyclervAdapter;
+import com.example.interviewpractice.adapter.adapter.SearchAdapter;
 import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpActivity;
 import com.example.interviewpractice.mvp.search.SearchRequestPresenter;
@@ -22,12 +23,15 @@ import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import co.lujun.androidtagview.TagContainerLayout;
 import co.lujun.androidtagview.TagView;
+import io.reactivex.Observable;
+import io.reactivex.functions.Predicate;
 
 import static com.example.interviewpractice.MyApplication.getContext;
 
@@ -44,8 +48,8 @@ public class SearchActivity extends AbstractMvpActivity<SearchRequestView,Search
     EasyRecyclerView easyrecycler;
     private static final String TAG = "SearchActivity";
     private SearchView.SearchAutoComplete mSearchAutoComplete;
-    private List<RankListBean.ItemListBean> itemListBeans;
-    private HomeRecyclervAdapter homeRecyclervAdapter;
+    private List<RankListBean.ItemListBean> itemListBeans=new ArrayList<>();
+    private SearchAdapter homeRecyclervAdapter;
     private String WORD;
     private Handler handler = new Handler();
     private int num=10;
@@ -66,7 +70,7 @@ public class SearchActivity extends AbstractMvpActivity<SearchRequestView,Search
         getPresenter().clickRequestList();
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         easyrecycler.setLayoutManager(staggeredGridLayoutManager);
-        homeRecyclervAdapter=new HomeRecyclervAdapter(getContext());
+        homeRecyclervAdapter=new SearchAdapter(getContext());
         easyrecycler.setAdapter(homeRecyclervAdapter);
         homeRecyclervAdapter.setMore(R.layout.load_more_layout,this);
         homeRecyclervAdapter.setNoMore(R.layout.no_more_layout);
@@ -89,6 +93,7 @@ public class SearchActivity extends AbstractMvpActivity<SearchRequestView,Search
         mSearchView.onActionViewExpanded();
         mSearchView.setIconified(true);
         mSearchView.setSubmitButtonEnabled(true);
+
         mSearchAutoComplete = (SearchView.SearchAutoComplete) mSearchView.findViewById(R.id.search_src_text);
         mSearchAutoComplete.setHintTextColor(getResources().getColor(android.R.color.darker_gray));
         mSearchAutoComplete.setTextColor(getResources().getColor(android.R.color.background_dark));
@@ -127,13 +132,33 @@ public class SearchActivity extends AbstractMvpActivity<SearchRequestView,Search
 
     @Override
     public void resultSuccess(RankListBean rankListBean) {
-        for (int i = 0; i < rankListBean.getItemList().size(); i++) {
-            if (rankListBean.getItemList().get(i).getType().equals("video")) {
 
-            } else {
-                rankListBean.getItemList().remove(i);
-            }
-        }
+//        Observable.just(rankListBean.getItemList())
+//                .filter(new Predicate<List<RankListBean.ItemListBean>>() {
+//                    @Override
+//                    public boolean test(List<RankListBean.ItemListBean> itemListBeans) throws Exception {
+//                        for (int i = 0; i <itemListBeans.size() ; i++) {
+//                            i++;
+//                        }
+//                        return itemListBeans.;
+//
+//                })
+
+//        for (int i = 0; i < rankListBean.getItemList().size(); i++) {
+//            if (rankListBean.getItemList().get(i).getType()==("video")) {
+//                itemListBeans.add(rankListBean.getItemList().get(i));
+//            } else {
+//
+//            }
+//        }
+
+//        for (int i = 0; i < rankListBean.getItemList().size(); i++) {
+//            if (rankListBean.getItemList().get(i).getType().equals("video")) {
+//
+//            } else {
+//                rankListBean.getItemList().remove(i);
+//            }
+//        }
         itemListBeans = rankListBean.getItemList();
         homeRecyclervAdapter.addAll(itemListBeans);
 
