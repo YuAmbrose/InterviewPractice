@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearSmoothScroller;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -94,7 +95,7 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
     private CagPesenterImp cagPesenterImp = new CagPesenterImp(this, getContext());
     private ZHotPresenterImp zHotPresenterImp = new ZHotPresenterImp(this, getContext());
     private HomeRecyclervAdapter homeRecyclervAdapter = new HomeRecyclervAdapter(getContext());
-
+    private VirtualLayoutManager virtualLayoutManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
@@ -104,7 +105,8 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
         pgcPresenterImp.loadPgc(10,10);
         rankListPresenterImp.loadSelect(10, 20);
         zHotPresenterImp.loadZhiHuNews();
-        VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(mContext);
+        virtualLayoutManager = new VirtualLayoutManager(mContext);
+
         mRecycler.setLayoutManager(virtualLayoutManager);
         final RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
         mRecycler.setRecycledViewPool(viewPool);
@@ -209,6 +211,20 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                              startActivity(artIntent);
                                 break;
                             case "1":
+
+                                RecyclerView.SmoothScroller smoothScroller = new LinearSmoothScroller(MyApplication.getContext()) {
+                                    @Override protected int getVerticalSnapPreference() {
+                                        return LinearSmoothScroller.SNAP_TO_START;
+                                    }
+                                };
+                                int positio = findFristPosition(6);
+                                smoothScroller.setTargetPosition(positio);
+                                virtualLayoutManager.startSmoothScroll(smoothScroller);
+
+//                                mRecycler.scrollToPosition(positio);
+//                                mRecycler.getLayoutManager().smoothScrollToPosition(mRecycler,new RecyclerView.State(),positio);
+//                                mRecycler.smoothScrollToPosition(positio);
+
                                 Toast.makeText(MyApplication.getContext(), mData.getId(), Toast.LENGTH_SHORT).show();
                                 break;
                             case "2":
@@ -420,24 +436,25 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
         zhotAdapter.notifyDataSetChanged();
     }
 
+    private int findFristPosition(int adaterIndex){
+
+        int position = 0;
+        final List<LayoutHelper> helpers = delegateAdapter.getLayoutHelpers();
+        for(int i=0; i<helpers.size(); i++){
+            if(adaterIndex == i){
+                break;
+            }
+            position += helpers.get(i).getItemCount();
+        }
+        return position;
+    }
+
+
     private void replaceFragment(Fragment fragment){
         FragmentManager fm = getChildFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.home_fragment,fragment);
         ft.addToBackStack(null);
         ft.commit();
-
-
-//        FragmentManager fm = getChildFragmentManager();
-//        FragmentTransaction ft = fm.beginTransaction();
-//        HomePageFragment homePageFragment=new HomePageFragment();
-//        ft.hide(homePageFragment);
-//        if (fragment==null){
-//            ft.add(R.id.home_fragment, fragment);
-//        }else {
-//            ft.show(fragment);
-//        }
-//        ft.addToBackStack(null);
-//        ft.commit();
     }
 }
