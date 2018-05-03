@@ -134,8 +134,8 @@ public class MovieDetailActivity extends AbstractMvpActivity<MovieRequestView, M
                 .addItemView(itemWithChevron3, onClickListener)
                 .addTo(mGroupListView);
 
-        String iUrl = ImgSizeUtil.resetPicUrl(movieDetailBean.getData().getMovie().getAlbumImg(), ".webp@321w_447h_1e_1c_1l");
-        Log.e(TAG, "~~~~~~~~~~`" + movieDetailBean.getData().getMovie().getAlbumImg());
+//        String iUrl = ImgSizeUtil.resetPicUrl(movieDetailBean.getData().getMovie().getAlbumImg(), ".webp@321w_447h_1e_1c_1l");
+//        Log.e(TAG, "~~~~~~~~~~`" + movieDetailBean.getData().getMovie().getAlbumImg());
         String bgUrl=ImgSizeUtil.resetPicUrl(movieDetailBean.getData().getMovie().getImg(),".webp@321w_447h_1e_1c_1l");
         Glide.with(this).load(bgUrl).into(bgPic);
 //        if (movieDetailBean.getData().getMovie().getAlbumImg()!=null){

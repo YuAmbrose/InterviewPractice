@@ -11,6 +11,10 @@ public class RecomendarMovie extends BmobObject {
     private String movieUrl;
     private BmobFile imageUrl;
     private String description;
+    public RecomendarMovie(){}
+    public RecomendarMovie(String id) {
+            setObjectId(id);
+    }
 
     public String getImagepng() {
         return imagepng;
