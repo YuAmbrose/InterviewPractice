@@ -79,8 +79,8 @@ public class MineFragment extends BaseFragment implements UpdateView {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BmobUser.logOut(MyApplication.getContext());   //清除缓存用户对象
-                BmobUser currentUser = BmobUser.getCurrentUser(MyApplication.getContext()); // 现在的currentUser是null了
+//                BmobUser.logOut(MyApplication.getContext());   //清除缓存用户对象
+                        getActivity().finish();
             }
         });
     }

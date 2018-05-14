@@ -1,6 +1,7 @@
 package com.example.interviewpractice.ui.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.SearchView;
@@ -166,13 +167,14 @@ public class SearchActivity extends AbstractMvpActivity<SearchRequestView,Search
     }
 
     @Override
-    public void hotSuccess(List<String> list) {
+    public void hotSuccess(final List<String> list) {
 
         tagContainerLayout.setTags(list);
+
         tagContainerLayout.setOnTagClickListener(new TagView.OnTagClickListener() {
             @Override
             public void onTagClick(int position, String text) {
-
+                    tagContainerLayout.setBackgroundColor(Color.parseColor("#6495ED"));
             }
             @Override
             public void onTagLongClick(int position, String text) {

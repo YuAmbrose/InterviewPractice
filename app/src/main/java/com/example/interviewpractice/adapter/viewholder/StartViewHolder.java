@@ -71,7 +71,7 @@ public class StartViewHolder extends BaseViewHolder<RecomendarMovie> {
         dra.setTitleTextSize(0);
         dra.setTitle("");
         dra.setAnimationDuration(60);
-
+        Log.e(TAG, "setData: "+data.getCheck()+"==="+data.getObjectId() );
 //        textView.setText("#"+data.getDescription());
 //        Log.e(TAG, "setData: "+getRingDuring(data.getMovieUrl()) );
         Glide.with(getContext())
@@ -81,11 +81,11 @@ public class StartViewHolder extends BaseViewHolder<RecomendarMovie> {
         jzVideo.setUp(data.getMovieUrl(),jzVideo.SCREEN_WINDOW_NORMAL,"");
 //        jzVideo.thumbImageView.setImageBitmap(getNetVideoBitmap(data.getMovieUrl()));
 
-        try {
-            saveFile(createVideoThumbnail(data.getMovieUrl(),480,270),data.getObjectId());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            saveFile(createVideoThumbnail(data.getMovieUrl(),480,270),data.getObjectId());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 //        Log.e(TAG, "setData: **********"+saveBitmap(MyApplication.getContext(),getNetVideoBitmap(data.getMovieUrl())));
         jzVideo.startWindowTiny();
@@ -199,6 +199,7 @@ public class StartViewHolder extends BaseViewHolder<RecomendarMovie> {
         if (!myCaptureFile.exists()){
             myCaptureFile.createNewFile();
         }
+        Log.e(TAG, "saveFile: "+myCaptureFile );
         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(myCaptureFile));
         file.compress(Bitmap.CompressFormat.PNG, 80, bos);
         bos.flush();

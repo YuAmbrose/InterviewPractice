@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         />
     <com.example.interviewpractice.weight.LinedEditText
-    android:id="@+id/edit_query"
+        android:id="@+id/edit_query"
         app:ce_edit_text_color="#08090a"
         app:ce_edit_text_size="16px"
         app:ce_count_text_size="16px"
@@ -22,7 +22,7 @@
         app:ce_countMode="Percentage"
         app:ce_hint="来吧，尽情发挥吧..."
         android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" />
 
     <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
         app:qmui_backgroundColor="#24292b"

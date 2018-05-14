@@ -24,9 +24,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CagViewHolder extends BaseViewHolder<RankListBean.ItemListBean> {
         private static final String TAG = "CagViewHolder";
-private ImageView imageView;
-private TextView timer,name,description;
-private CircleImageView circleImageView;
+        private ImageView imageView;
+        private TextView timer,name,description;
+        private CircleImageView circleImageView;
 public CagViewHolder(ViewGroup parent) {
         super(parent, R.layout.cag_item);
         imageView=$(R.id.bgPic);

@@ -3,6 +3,7 @@ package com.example.interviewpractice.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 
 import com.example.interviewpractice.R;
@@ -77,7 +78,7 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
 
     @Override
     public void resultSuccess(List<Cag> list) {
-
+        Log.e(TAG, "s是s: "+list );
         categoryAdapter.addAll(list);
         tipDialog.dismiss();
     }

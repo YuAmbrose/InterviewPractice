@@ -40,6 +40,7 @@ public class CategoryRequestModel {
         query.findObjects(MyApplication.getContext(), new FindListener<Cag>() {
             @Override
             public void onSuccess(List<Cag> list) {
+
                 iBaseRequestCallBack.requestSuccess(list);
             }
             @Override
