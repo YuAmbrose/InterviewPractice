@@ -15,6 +15,7 @@ import com.example.interviewpractice.enity.HotMovieBean;
 import com.example.interviewpractice.enity.PgcBean;
 import com.example.interviewpractice.enity.RankListBean;
 import com.example.interviewpractice.enity.UpdateAppInfo;
+import com.example.interviewpractice.enity.YoutubeBean;
 import com.example.interviewpractice.enity.ZhihuHotBean;
 
 import java.util.List;
@@ -178,4 +179,10 @@ public interface Api {
      */
     @GET("5aa409d0ca87a87c64766e8b?")
     Observable<UpdateAppInfo> getUpdateInfo(@Query("api_token") String api_token);
+
+    /**
+     * youtube api
+     */
+    @GET("playlistItems?part=snippet&maxResults=50&key=AIzaSyAfyOOKJSBjjvborWWbB2p4uh4oCVlIj8k")
+    Observable<YoutubeBean> getYoutube(@Query("playlistId") String playlistId);
 }

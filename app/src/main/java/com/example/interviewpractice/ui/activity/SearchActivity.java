@@ -202,7 +202,6 @@ public class SearchActivity extends AbstractMvpActivity<SearchRequestView,Search
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 getPresenter().clickRequest(start*num,num,WORD);
                 start++;
             }

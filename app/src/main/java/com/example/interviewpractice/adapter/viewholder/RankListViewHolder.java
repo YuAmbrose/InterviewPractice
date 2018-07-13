@@ -42,9 +42,7 @@ public class RankListViewHolder extends BaseViewHolder<RankListBean.ItemListBean
         super.setData(data);
         iconname.setText(data.getData().getAuthor().getName());
         title.setText("    #"+data.getData().getTitle());
-        Glide.with(getContext())
-                .load(data.getData().getCover().getFeed())
-                .into(player.thumbImageView);
+
 //        linearLayout.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -59,7 +57,9 @@ public class RankListViewHolder extends BaseViewHolder<RankListBean.ItemListBean
 //                "http://2449.vod.myqcloud.com/2449_43b6f696980311e59ed467f22794e792.f20.mp4",
 //                "http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640",
 //                "一行代码实现视频播放");
-
+        Glide.with(getContext())
+                .load(data.getData().getCover().getFeed())
+                .into(player.thumbImageView);
         player.setUp(data.getData().getPlayUrl(),player.SCREEN_WINDOW_NORMAL,"");
         Glide.with(getContext())
                 .load(data.getData().getAuthor().getIcon())

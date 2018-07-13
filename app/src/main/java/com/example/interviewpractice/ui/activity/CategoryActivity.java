@@ -9,6 +9,7 @@ import android.view.View;
 import com.example.interviewpractice.R;
 import com.example.interviewpractice.adapter.adapter.CategoryAdapter;
 import com.example.interviewpractice.enity.Cag;
+import com.example.interviewpractice.enity.YoutubeBean;
 import com.example.interviewpractice.mvp.EyDetail.AbstractMvpActivity;
 import com.example.interviewpractice.mvp.category.CategoryRequestPresenter;
 import com.example.interviewpractice.mvp.category.CategoryRequestView;
@@ -32,6 +33,7 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
     private CategoryAdapter categoryAdapter;
     private QMUITipDialog tipDialog;
     private static final String TAG = "CategoryActivity";
+    private  List<YoutubeBean.ItemsBean> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,7 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
             }
         });
         mTopBar.setTitle("全部分类");
+        getPresenter().requesYoutube("PLXRPwD7vOoN24keLPN2e5LYPkq5RgLTCY");
     }
 
     @Override
@@ -114,6 +117,17 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
     @Override
     public void resultFailure(String result) {
 
+    }
+
+    @Override
+    public void successYou(YoutubeBean youtubeBean) {
+        StringBuffer sBuffer = new StringBuffer("菜鸟教程官网：");
+
+        list=youtubeBean.getItems();
+        for (int i = 0; i <list.size() ; i++) {
+            sBuffer.append(list.get(i).getSnippet().getThumbnails().getStandard().getUrl()+"\n");
+        }
+        Log.e(TAG, "successYou: "+sBuffer );
     }
 
 }

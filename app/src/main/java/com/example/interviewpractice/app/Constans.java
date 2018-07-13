@@ -10,4 +10,5 @@ public class Constans {
     public static  final String MaoYanBaseUrl="http://api.maoyan.com/mmdb/";
     public static  final String article="https://interface.meiriyiwen.com/article/";
     public static  final String FirUrl="http://api.fir.im/apps/latest/";
+    public  static  final  String YoutuBeUrl="https://www.googleapis.com/youtube/v3/";
 }

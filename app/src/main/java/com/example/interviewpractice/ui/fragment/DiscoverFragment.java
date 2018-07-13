@@ -61,8 +61,9 @@ public class DiscoverFragment extends BaseFragment {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
-        viewPager.setCurrentItem(1);
-        viewPager.setCurrentItem(0);//直接设置0的话竟然不起作用,好吧.就这样迂回一下吧
+//        tabLayout.getTabAt(1).select();  //跳转指定的tab
+//        viewPager.setCurrentItem(1);
+//        viewPager.setCurrentItem(0);//直接设置0的话竟然不起作用,好吧.就这样迂回一下吧
 //        mTopBar.setTitle("发现");
         LinearLayout.LayoutParams params= (LinearLayout.LayoutParams) statebarHeight.getLayoutParams();//获取当前控件的布局对象
         params.height=getStatusBarHeight(this);//设置当前控件布局的高度

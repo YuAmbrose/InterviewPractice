@@ -92,6 +92,7 @@ public class ArticleActivity extends AbstractMvpActivity<ArticleView, ArticlePre
     public void resultSuccess(ArticleBean articleBean) {
         author.setText("作者：" + articleBean.getData().getAuthor());
         mTopBar.setTitle(articleBean.getData().getTitle());
+        String content="<p><img src=\\\"/ueditor/php/upload/image/20180627/1530082324.jpg\\\" title=\\\"1530082324.jpg\\\"/></p><p><img src=\\\"/ueditor/php/upload/image/20180627/1530082324.jpg\\\" title=\\\"1530082324.jpg\\\"/></p><p>\\t\\t\\t\\t\\t\\t</p>";
         webView.loadData(articleBean.getData().getContent(), HtmlUtil.MIME_TYPE, HtmlUtil.ENCODING);
         textView.setText("全文完    共" + articleBean.getData().getWc() + "字");
     }
