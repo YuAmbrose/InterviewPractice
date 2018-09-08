@@ -51,6 +51,7 @@ import com.example.interviewpractice.ui.activity.CategoryActivity;
 import com.example.interviewpractice.ui.activity.EDetailActivity;
 import com.example.interviewpractice.ui.activity.MoreAuthorActivity;
 import com.example.interviewpractice.ui.activity.MoreEyActivity;
+import com.example.interviewpractice.ui.activity.MorePPActivity;
 import com.example.interviewpractice.ui.activity.RankActivity;
 import com.example.interviewpractice.ui.activity.SearchActivity;
 import com.example.interviewpractice.ui.baseView.BaseFragment;
@@ -142,7 +143,8 @@ public class HomePageFragment extends BaseFragment implements CategorytabView, B
                 .setListener(new ItemListener() {
                     @Override
                     public void onItemClick(View view, int position, Object mData) {
-                        Intent intent=new Intent(MyApplication.getContext(), MoreAuthorActivity.class);
+//                        Intent intent=new Intent(MyApplication.getContext(), MoreAuthorActivity.class);
+                        Intent intent=new Intent(MyApplication.getContext(), MorePPActivity.class);
                         startActivity(intent);
                         getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_still);
                     }

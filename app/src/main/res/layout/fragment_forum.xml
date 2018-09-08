@@ -17,6 +17,7 @@
    <com.jude.easyrecyclerview.EasyRecyclerView
        app:layout_behavior="@string/appbar_scrolling_view_behavior"
        android:id="@+id/recycleview"
+       app:layout_empty="@layout/view_empty"
        android:layout_width="match_parent"
        android:layout_height="match_parent"/>
 

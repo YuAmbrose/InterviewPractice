@@ -133,11 +133,11 @@ public class MainActivity extends BaseActivity {
         super.onPause();
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-       
-        return super.onKeyDown(keyCode, event);
-    }
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//
+//        return super.onKeyDown(keyCode, event);
+//    }
 
     @Override
     protected int getContextViewId() {

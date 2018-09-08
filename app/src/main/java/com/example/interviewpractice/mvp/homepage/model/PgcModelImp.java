@@ -28,7 +28,7 @@ public class PgcModelImp extends BaseModel implements PgcModel {
     }
     @Override
     public void loadPgc(int start,int num,final  IBaseRequestCallBack iBaseRequestCallBack) {
-        mcompositeDisposable.add(api.getPgc(start,num)
+        mcompositeDisposable.add(api.getPgc(start,num,"71832b53062e4030b29af17f7ddfe6e5a82c43e7")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Consumer<PgcBean>() {

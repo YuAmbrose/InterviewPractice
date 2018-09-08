@@ -87,7 +87,8 @@ public interface Api {
      */
     @GET("v4/pgcs/all")
     Observable<PgcBean> getPgc(@Query("start") int start,
-                               @Query("num") int num);
+                               @Query("num") int num,
+                                @Query("udid") String  udid);
 
     /**
      * 知乎日报
@@ -122,8 +123,10 @@ public interface Api {
     /**
      * 作者详情信息
      */
-    @GET("v4/pgcs/detail/tab")
-    Observable<AuthorDetailBean> getAuthor(@Query("id") String id);
+    @GET("v5/userInfo/tab")
+    Observable<AuthorDetailBean> getAuthor(@Query("id") String id,
+                                           @Query("userType") String userType,
+                                           @Query("udid") String udid);
 
     @GET("v4/pgcs/videoList")
     Observable<RankListBean> getAuthorList(@Query("strategy") String strategy,

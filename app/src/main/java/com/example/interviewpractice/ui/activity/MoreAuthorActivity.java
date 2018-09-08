@@ -71,8 +71,10 @@ public class MoreAuthorActivity extends AppCompatActivity implements PgcView,Rec
     }
     @Override
     public void loadPgc(PgcBean pData) {
+        Log.e(TAG, "loadPgc: " );
         itemListBeans = pData.getItemList();
         pgcMoreAdapter.addAll(itemListBeans);
+
     }
 
     @Override

@@ -30,7 +30,7 @@ public class AuthorRequestModel extends BaseModel {
         mcompositeDisposable = new CompositeDisposable();
     }
     public void RequestAuthoretail(String id, final IBaseRequestCallBack<AuthorDetailBean> iBaseRequestCallBack){
-        mcompositeDisposable.add(api.getAuthor(id)
+        mcompositeDisposable.add(api.getAuthor(id,"PGC","71832b53062e4030b29af17f7ddfe6e5a82c43e7")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Consumer<AuthorDetailBean>() {

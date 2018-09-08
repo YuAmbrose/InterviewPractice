@@ -62,7 +62,7 @@ public class CategoryActivity extends AbstractMvpActivity<CategoryRequestView, C
             }
         });
         mTopBar.setTitle("全部分类");
-        getPresenter().requesYoutube("PLXRPwD7vOoN24keLPN2e5LYPkq5RgLTCY");
+//        getPresenter().requesYoutube("PLXRPwD7vOoN24keLPN2e5LYPkq5RgLTCY");
     }
 
     @Override

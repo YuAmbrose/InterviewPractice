@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.interviewpractice.ui.activity.MoreAuthorActivity">
+    tools:context="com.example.interviewpractice.ui.activity.MorePPActivity">
     <include
         layout="@layout/qmui_top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
-<com.jude.easyrecyclerview.EasyRecyclerView
+<android.support.v7.widget.RecyclerView
     android:id="@+id/recycleview"
-    app:layout_empty="@layout/view_empty"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-</com.jude.easyrecyclerview.EasyRecyclerView>
+    android:layout_height="match_parent"/>
 </LinearLayout>
